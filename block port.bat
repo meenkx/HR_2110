@@ -1,0 +1,1 @@
+﻿Taskkill /PID 6820 /F
