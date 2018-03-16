@@ -82,9 +82,16 @@
                     <br>
                     <div>PASSWORD :</div>
                     <div class="input-group">
+<<<<<<< HEAD
+                        <div style="padding-right: 20px;width: 74%;" class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <input type="password" name="lastname" class="form-control inputcss">
+=======
                         <div style="padding-right: 20px;width: 74%;">
                             <input type="password" name="lastname" class="form-control inputcsspass">
+>>>>>>> 103ee23489274429d5fa097aab0097f6ab35290a
                         </div>
+
                         <div>
                             <button type="submit" class="btn btn-default submitcsss" aria-label="Left Align">
                                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> GO!
