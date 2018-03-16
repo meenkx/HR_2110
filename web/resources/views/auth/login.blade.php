@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center align-items-center" style="background-color: white">
+    <div class="row justify-content-center align-items-center h-100" style="background-color: white">
         {{--<div class="col-md-8">--}}
             {{--<div class="card">--}}
                 {{--<div class="card-header">{{ __('Login') }}</div>--}}
@@ -67,7 +67,8 @@
 
         {{--type your code here--}}
         <div class="col-md-4 col-centered">
-            <img src="{{ asset('img/icon/logo2.jpg') }}" alt="" class="logo2">
+            <img src="{{ asset('img/icon/logo2.jpg') }}" class="responsive_img_logo2" alt="">
+
         </div>
         <div class="col-md-8">
             <div class="loginbox1">
@@ -77,22 +78,34 @@
 
                 <form action="/action_page.php">
                     <div>USERNAME :</div>
-                    <input type="text" name="firstname" class="form-control inputcss">
+                    <input type="text" name="firstname" class="form-control inputcssusername">
                     <br>
                     <div>PASSWORD :</div>
                     <div class="input-group">
+<<<<<<< HEAD
                         <div style="padding-right: 20px;width: 74%;" class="inner-addon left-addon">
                             <i class="glyphicon glyphicon-user"></i>
                             <input type="password" name="lastname" class="form-control inputcss">
+=======
+                        <div style="padding-right: 20px;width: 74%;">
+                            <input type="password" name="lastname" class="form-control inputcsspass">
+>>>>>>> 103ee23489274429d5fa097aab0097f6ab35290a
                         </div>
 
                         <div>
-                            <input type="submit" value="GO!" class="submitcsss">
+                            <button type="submit" class="btn btn-default submitcsss" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> GO!
+                            </button>
                         </div>
-
                     </div>
-
                 </form>
+
+                <div class="invalid_error">
+                    Invalid username or password.
+                </div>
+                <div style="text-align: center;">
+                    Forgot Password ?
+                </div>
 
             </div>
         </div>
