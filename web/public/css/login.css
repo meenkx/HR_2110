@@ -1,16 +1,30 @@
-.logo2{
-    width: 300px;
-}
+
 .loginbox1{
     font-size: 50px;
     font-weight: bold;
     text-align: center;
 }
-.inputcss{
+.inputcssusername{
     border-radius: 15px;
-    background-color: #e7e7e7;
+    background-color: #e7e7e7 !important;
     border: 0.5px solid #707070;
     width: 96%;
+    background: url(../img/icon/user1.png) no-repeat scroll 7px 7px;
+    background-position: left;
+    background-position-x: 12px;
+    background-size: 20px 20px;
+    padding-left: 40px;
+}
+.inputcsspass{
+    border-radius: 15px;
+    background-color: #e7e7e7 !important;
+    border: 0.5px solid #707070;
+    width: 96%;
+    background: url(../img/icon/key.png) no-repeat scroll 7px 7px;
+    background-position: left;
+    background-position-x: 12px;
+    background-size: 20px 20px;
+    padding-left: 40px;
 }
 .submitcsss{
     background-color: #82e88f;
@@ -18,4 +32,18 @@
     border-radius: 15px;
     height: 36px;
     width: 155px;
+}
+.responsive_img_logo2{
+    width: 100%;
+    margin-left: -15px;
+    height: 100%;
+}
+.invalid_error{
+    background-color: red;
+    margin: 10px 0px;
+    text-align: center;
+    padding: 5px 0px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
 }
