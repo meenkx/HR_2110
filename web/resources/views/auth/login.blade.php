@@ -81,9 +81,11 @@
                     <br>
                     <div>PASSWORD :</div>
                     <div class="input-group">
-                        <div style="padding-right: 20px;width: 74%;">
+                        <div style="padding-right: 20px;width: 74%;" class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-user"></i>
                             <input type="password" name="lastname" class="form-control inputcss">
                         </div>
+
                         <div>
                             <input type="submit" value="GO!" class="submitcsss">
                         </div>
