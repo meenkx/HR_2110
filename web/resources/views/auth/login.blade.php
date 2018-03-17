@@ -70,45 +70,45 @@
             <img src="{{ asset('img/icon/logo2.jpg') }}" class="responsive_img_logo2" alt="">
 
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8" style="padding: 0px 185px;">
             <div class="loginbox1">
                 Sing In
             </div>
             <div>
 
-                <form action="/action_page.php">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
                     <div>USERNAME :</div>
                     <input type="text" name="firstname" class="form-control inputcssusername">
                     <br>
                     <div>PASSWORD :</div>
                     <div class="input-group">
-<<<<<<< HEAD
-                        <div style="padding-right: 20px;width: 74%;" class="inner-addon left-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                            <input type="password" name="lastname" class="form-control inputcss">
-=======
+
                         <div style="padding-right: 20px;width: 74%;">
                             <input type="password" name="lastname" class="form-control inputcsspass">
->>>>>>> 103ee23489274429d5fa097aab0097f6ab35290a
                         </div>
 
                         <div>
                             <button type="submit" class="btn btn-default submitcsss" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> GO!
+                                <span style="padding-right: 15px;">GO!</span><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                             </button>
                         </div>
                     </div>
                 </form>
 
-                <div class="invalid_error">
-                    Invalid username or password.
-                </div>
-                <div style="text-align: center;">
-                    Forgot Password ?
+                {{--@if ($errors->has('password'))--}}
+                    {{--<div class="invalid_error">--}}
+                        {{--Invalid username or password.--}}
+                    {{--</div>--}}
+                {{--@endif--}}
+
+                <div style="text-align: center;text-align: center;background-color: transparent;margin: 10px 0px;padding: 5px 0px;">
+                    <u>Forgot Password ?</u>
                 </div>
 
             </div>
         </div>
+
     </div>
 </div>
 @endsection
