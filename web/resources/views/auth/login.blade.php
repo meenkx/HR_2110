@@ -96,6 +96,7 @@
                     </div>
                 </form>
 
+<<<<<<< HEAD
                 {{--@if ($errors->has('password'))--}}
                     {{--<div class="invalid_error">--}}
                         {{--Invalid username or password.--}}
@@ -104,6 +105,13 @@
 
                 <div style="text-align: center;text-align: center;background-color: transparent;margin: 10px 0px;padding: 5px 0px;">
                     <u>Forgot Password ?</u>
+=======
+                <div class="invalid_error">
+                    Invalid username or password. jjjjj
+                </div>
+                <div style="text-align: center;">
+                    Forgot Password ?
+>>>>>>> 3d31545bf3342a961261a909e8bdab72cd03346c
                 </div>
 
             </div>
