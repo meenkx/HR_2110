@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'HRcontroller@test')->name('test');
 Route::get('/test_calender', 'HRcontroller@test_calender')->name('test');
 Route::get('/test_workhistory', 'HRcontroller@test_workhistory')->name('test_workhistory');
+Route::get('/test_teamlist', 'HRcontroller@test_teamlist')->name('test_teamlist');

@@ -23,6 +23,7 @@
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/test.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/teamlist.css') }}" rel="stylesheet">
 
     {{--bootstrap--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
@@ -74,9 +75,12 @@
 
                           <div id="menu">
                               <ul>
-                                  <li style="line-height: 30px !important;"><a href="#home"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work history</a></li>
-                                  <li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work zxxvzxv</a></li>
-                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Resignation</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#home"><span><img src="{{ asset('../img/icon/time.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work history</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work calendar</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/copy.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Resignation</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/followers.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Team List</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/money.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Salary</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/logout.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Log out</a></li>
                               </ul>
                           </div>
 

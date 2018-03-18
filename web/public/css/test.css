@@ -88,10 +88,10 @@ input[type=text].search {
 
 /* menu appearance*/
 #menu {
-    position: relative;
+    position: absolute;
     color: black;
-    top: -3px;
-    right: 66px;
+    top: 37px;
+    right: -10px;
     width: 200px;
     padding: 10px;
     margin: auto;
@@ -114,6 +114,7 @@ li a {
     padding: 5px;
     color: white;
     font-size: 15px;
+    height: 45px;
     font-weight: bold;
     text-align: left;
     text-decoration: none;

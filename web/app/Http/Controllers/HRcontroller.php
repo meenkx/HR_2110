@@ -19,4 +19,8 @@ class HRcontroller extends Controller
     public function test_workhistory(){
         return view('test_workhistory');
     }
+
+    public function test_teamlist(){
+        return view('test_teamlist');
+    }
 }
