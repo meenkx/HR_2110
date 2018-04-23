@@ -19,8 +19,16 @@ class HRcontroller extends Controller
     public function test_workhistory(){
         return view('test_workhistory');
     }
-
+    
     public function test_teamlist(){
         return view('test_teamlist');
+    }
+    
+    public function noti(){
+        return view('notifications');
+    }
+    
+    public function edit(){
+        return view('edit.edit_main');
     }
 }

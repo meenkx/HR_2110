@@ -7,14 +7,14 @@
                 <span><img src="{{ asset('https://png.icons8.com/metro/1600/time.png') }}" alt="" width="50px"></span>
                 <span style="font-size: 35px;font-weight: bold;vertical-align: middle;line-height: 60px;padding-left: 10px;padding-right: 50px;">Work history</span>
 
-                <select style="border-radius: 10px;height: 30px;width: 60px;vertical-align: middle;line-height: 30px;margin: 15px 0px;outline: none">
+                <select style="border-radius: 10px;height: 30px;width: 70px;vertical-align: middle;line-height: 30px;margin: 15px 0px;outline: none;padding-left: 10px">
                     <option value="2018">2018</option>
                     <option value="2018">2018</option>
                     <option value="2018">2018</option>
                     <option value="2018">2018</option>
                 </select>
 
-                <select style="border-radius: 10px;height: 30px;width: 95px;vertical-align: middle;line-height: 30px;margin: 15px 0px;outline: none;margin-left: 10px">
+                <select style="border-radius: 10px;height: 30px;width: 115px;vertical-align: middle;line-height: 30px;margin: 15px 0px;outline: none;margin-left: 10px;padding-left: 10px" id="option_css">
                     <option value="January">January</option>
                     <option value="February">February</option>
                     <option value="March">March</option>

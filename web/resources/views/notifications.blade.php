@@ -3,14 +3,9 @@
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center" style="border-bottom: 1px solid black;padding: 10px 50px">
-            <div class="col-md-11" style="display: inline-flex;">
-                <span style="line-height: 85px;"><img src="{{ asset('img/icon/followers.png') }}" alt="" width="50px"></span>
-                <span style="font-size: 35px;font-weight: bold;vertical-align: middle;line-height: 85px;padding-left: 10px;padding-right: 50px;">Team List</span>
-            </div>
-            <div class="col-md-1">
-                <span>
-                    <img src="{{ asset('img/icon/list.png') }}" alt="" style="width: 85px;">
-                </span>
+            <div class="col-md-12" style="display: inline-flex;">
+                <span style="line-height: 85px;"><img src="{{ asset('img/icon/bell.png') }}" alt="" width="50px"></span>
+                <span style="font-size: 35px;font-weight: bold;vertical-align: middle;line-height: 85px;padding-left: 10px;padding-right: 50px;">Notifications</span>
             </div>
         </div>
         <div class="row justify-content-center" style="padding: 0px 50px;">
@@ -20,17 +15,19 @@
                     <tr>
                         <th class="col-md-1" style="text-align: center">Photo</th>
                         <th class="col-md-2" style="text-align: center">Name</th>
-                        <th class="col-md-1" style="text-align: center">Position</th>
-                        <th class="col-md-6" style="text-align: center">Job</th>
-                        <th class="col-md-2" style="text-align: center">Contact</th>
+                        <th class="col-md-1" style="text-align: center">Date/time</th>
+                        <th class="col-md-5" style="text-align: center">Annotation</th>
+                        <th class="col-md-2" style="text-align: center">File</th>
+                        <th class="col-md-1" style="text-align: center">Confirm</th>
                     </tr>
                     </thead>
                     <tr>
                         <td class="col-md-1" style="text-align: center;vertical-align: middle;"><img src="{{ asset('img/icon/June_2017_BNK48_Nayika_Srinian.jpg') }}" alt="" class="pic_intable"></td>
                         <td class="col-md-2" style="vertical-align: middle;">Ms. NAYIKA SRINIAN</td>
-                        <td class="col-md-1" style="vertical-align: middle;"><span style="color: #7914dd;font-weight: bold">HEAD</span></td>
-                        <td class="col-md-6" style="vertical-align: middle;"></td>
+                        <td class="col-md-1" style="vertical-align: middle;"></td>
+                        <td class="col-md-5" style="vertical-align: middle;"></td>
                         <td class="col-md-2" style="vertical-align: middle;"></td>
+                        <td class="col-md-1" style="vertical-align: middle;"><input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"></td>
                     </tr>
                     <tbody>
                     </tbody>
