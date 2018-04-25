@@ -39,8 +39,19 @@
             margin-top: auto;
             margin-bottom: auto;
         }
-    </style> 
-    
+    </style>
+
+    {{--dropdown--}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/dropdown/dropdown.css') }}">
+    <script src="{{ asset('js/dropdown/dropdown.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('#dropdown_date').stbDropdown();
+            $('#dropdown_day').stbDropdown();
+        });
+    </script>
+
 </head>
 <body>
     <div id="app">

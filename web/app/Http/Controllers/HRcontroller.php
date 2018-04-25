@@ -31,4 +31,8 @@ class HRcontroller extends Controller
     public function edit(){
         return view('edit.edit_main');
     }
+
+    public function leave(){
+        return view('leave');
+    }
 }
