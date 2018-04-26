@@ -35,4 +35,8 @@ class HRcontroller extends Controller
     public function leave(){
         return view('leave');
     }
+
+    public function testex(){
+        return view('testex');
+    }
 }

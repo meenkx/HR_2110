@@ -25,3 +25,4 @@ Route::get('/test_teamlist', 'HRcontroller@test_teamlist')->name('test_teamlist'
 Route::get('/notifications', 'HRcontroller@noti')->name('noti');
 Route::get('/edit', 'HRcontroller@edit')->name('edit');
 Route::get('/leave', 'HRcontroller@leave')->name('leave');
+Route::get('/testex', 'HRcontroller@testex')->name('testex');

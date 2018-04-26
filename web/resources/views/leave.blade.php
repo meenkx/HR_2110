@@ -14,7 +14,7 @@
                 <div class="col-md-7">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="email"><span style="font-size: 20px;">Date:</span></label>
-                        <div class="col-sm-3" style="margin-right: -50px;">
+                        <div class="col-sm-3">
                             <select id="dropdown_date">
                                 <option value disabled selected>Select date</option>
                                 <option value="january">January</option>
@@ -32,8 +32,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="Annotation"><span style="font-size: 20px;">Annotation:</span></label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-2" for="Annotation"><span style="font-size: 20px;margin-left: -30px;">Annotation:</span></label>
+                        <div class="col-sm-10" style="padding-left: 22px;">
                             <textarea class="form-control" rows="5" id="comment"></textarea>
                         </div>
                     </div>

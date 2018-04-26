@@ -1,7 +1,7 @@
 .stb-select-container {
     font-family:Arial, Helvetica, sans-serif;
     border-radius:4px;
-    width:200px;
+    width:100%;
     display:inline-block;
     outline:none;
     box-shadow:none;
@@ -38,7 +38,7 @@
     border-top: 0;
     z-index: 10;
     max-height:200px;
-    width: 200px;
+    width: 101.5%;
     overflow-x:scroll;
     -webkit-border-bottom-left-radius: 4px;
     -moz-border-bottom-left-radius: 4px;
