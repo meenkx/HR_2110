@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 class HRcontroller extends Controller
 {
     //
-    public function test()
+    public function profile()
     {
-        return view('test');
+        return view('profile');
     }
 
     public function test_calender(){

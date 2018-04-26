@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'HR 2110') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -17,12 +17,13 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/test.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/teamlist.css') }}" rel="stylesheet">
     <link href="{{ asset('css/workhistory.css') }}" rel="stylesheet">
 
@@ -49,6 +50,8 @@
         jQuery(document).ready(function ($) {
             $('#dropdown_date').stbDropdown();
             $('#dropdown_day').stbDropdown();
+            $('#dropdown_month').stbDropdown();
+            $('#dropdown_year').stbDropdown();
         });
     </script>
 
@@ -73,6 +76,7 @@
             vertical-align: top;
             border-top: 1px solid #ddd;
             padding: 8px;
+            vertical-align: middle;
         }
 
         div.table .file-row:nth-child(odd) {
@@ -108,7 +112,63 @@
 
     </style>
 
+    {{--config--}}
+    <style>
+        html,body{
+            font-family: 'Ubuntu', sans-serif;
+            overflow-x: hidden;
+        }
+        .stb-select-container .stb-select{
+            overflow-x: hidden;
+        }
+        .stb-select::-webkit-scrollbar-track
+        {
+            /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+            border-radius: 0px;
+            background-color: #F5F5F5;
+        }
+        .stb-select::-webkit-scrollbar
+        {
+            width: 12px;
+            background-color: #F5F5F5;
+        }
+        .stb-select::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #555;
+        }
+        @if (Route::current()->getName() == 'test_workhistory' )
+            .stb-select-container{
+                width: 10% !important;
+            }
+        @elseif (Route::current()->getName() == 'edit' )
+        .vertical-alignment-helper {
+            display:table;
+            height: 100%;
+            width: 100%;
+            pointer-events:none;
+        }
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+            pointer-events:none;
+        }
+        .modal-content {
+            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+            width:inherit;
+            max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching full width */
+            height:inherit;
+            /* To center horizontally */
+            margin: 0 auto;
+            pointer-events:all;
+        }
+        @elseif(Route::getCurrentRoute()->uri() == '/'){
 
+        }
+        @endif
+    </style>
 </head>
 <body>
     <div id="app">
@@ -117,9 +177,9 @@
       <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
           <div class="container-fluid">
               @guest
-              <a class="navbar-brand" href="{{ url('/') }}" style="padding-right: 30px;border-right: 1px solid black">
-                  <img src="{{ asset('img/icon/home.png') }}" alt="" class="homeicon">
-              </a>
+                  {{--<a class="navbar-brand" href="{{ url('/') }}" style="padding-right: 30px;border-right: 1px solid black">--}}
+                      {{--<img src="{{ asset('img/icon/home.png') }}" alt="" class="homeicon">--}}
+                  {{--</a>--}}
                   <div class="col-md-6">
                       <div style="padding-bottom: 3px;">
                           <span class="topbartext1">Ms. Nayika Srinian</span>
@@ -137,12 +197,12 @@
                       </div>
                   </div>
                   <div class="col-md-5" style="padding: 0px 25px;">
-                      <input type="text" name="search" class="search" placeholder="Search..">
+                      <input type="text" name="search" class="search" placeholder="Search people">
                   </div>
                   <div class="col-md-1" style="border-left: 1px solid black;margin: 0px 30px;height: 60px;line-height: 60px;">
-                      <div class="menu-toggle">
-                      <img src="{{ asset('../img/icon/down-arrow.png') }}" alt="" style="width: 40px;">
-                      </div>
+                      {{--<div class="menu-toggle">--}}
+                        {{--<img src="{{ asset('../img/icon/down-arrow.png') }}" alt="" style="width: 40px;">--}}
+                      {{--</div>--}}
                       <div class="dropdown">
                           <a href="#menu" id="toggle"><span></span></a>
 
@@ -153,7 +213,7 @@
                                   <li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work calendar</a></li>
                                   <li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notifications</a></li>
                                   <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/copy.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Resignation</a></li>
-                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/followers.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Team List</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/followers.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Team</a></li>
                                   <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/money.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Salary</a></li>
                                   <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/logout.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Log out</a></li>
                               </ul>
@@ -167,7 +227,6 @@
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
               </button>
-
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <!-- Left Side Of Navbar -->
                   <ul class="navbar-nav mr-auto">
@@ -178,8 +237,8 @@
                   <ul class="navbar-nav ml-auto">
                       <!-- Authentication Links -->
                       @guest
-                          <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                          <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                          {{--<li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>--}}
+                          {{--<li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>--}}
                       @else
                           <li class="nav-item dropdown">
                               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -210,7 +269,6 @@
     </div>
 
     {{--script zone--}}
-
 
     <script>
         $(document).ready(function(){
@@ -365,5 +423,29 @@
 
         };
     </script>
+
+    {{--popup--}}
+    <script>
+        var modal = document.querySelector(".modal");
+        var trigger = document.querySelector(".trigger");
+        var closeButton = document.querySelector(".close-button");
+
+        function toggleModal() {
+            modal.classList.toggle("show-modal");
+        }
+
+        function windowOnClick(event) {
+            if (event.target === modal) {
+                toggleModal();
+            }
+        }
+
+        trigger.addEventListener("click", toggleModal);
+        closeButton.addEventListener("click", toggleModal);
+        window.addEventListener("click", windowOnClick);
+    </script>
+
+    {{--javascript config--}}
+
 </body>
 </html>

@@ -30,8 +30,8 @@ input[type=text].search {
     font-size: 16px;
 }
 .img-picture-profile img{
-    width: 80%;
-    border-radius: 200px;
+    width: 50%;
+    border-radius: 300px;
     border: 1px solid black;
 }
 

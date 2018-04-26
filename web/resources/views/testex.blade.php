@@ -22,7 +22,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/test.css') }}" rel="stylesheet">
+    <link href="{{ asset('profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/teamlist.css') }}" rel="stylesheet">
     <link href="{{ asset('css/workhistory.css') }}" rel="stylesheet">
 
@@ -108,231 +108,89 @@
 
     </style>
 
+    <style>
+        .modal {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transform: scaleX(1.1) scaleY(1.1);
+            transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+            font-family: sans-serif;
+        }
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 1rem 1.5rem;
+            width: 24rem;
+            border-radius: 0.5rem;
+        }
+        .close-button {
+            float: right;
+            width: 1.5rem;
+            line-height: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 0.25rem;
+            background-color: lightgray;
+        }
+        .close-button:hover {
+            background-color: darkgray;
+        }
+        .show-modal {
+            opacity: 1;
+            visibility: visible;
+            transform: scaleX(1.0) scaleY(1.0);
+            transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+        }
+        @media only screen and (max-width: 50rem) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            .modal-content {
+                width: calc(100% - 5rem);
+            }
+        }
+    </style>
 
 </head>
 
 <body>
 
-<div class="container">
-    <!-- HTML heavily inspired by https://blueimp.github.io/jQuery-File-Upload/ -->
-    <div id="actions" class="row">
-        <div class="col-lg-7">
-            <!-- The fileinput-button span is used to style the file input field as button -->
-            <span class="btn btn-success fileinput-button dz-clickable">
-          <i class="glyphicon glyphicon-plus"></i>
-          <span>Add files...</span>
-      </span>
-            <button type="submit" class="btn btn-primary start">
-                <i class="glyphicon glyphicon-upload"></i>
-                <span>Start upload</span>
-            </button>
-            <button type="reset" class="btn btn-warning cancel">
-                <i class="glyphicon glyphicon-ban-circle"></i>
-                <span>Cancel upload</span>
-            </button>
-        </div>
-
-        <div class="col-lg-5">
-            <!-- The global file processing state -->
-            <span class="fileupload-process">
-        <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress=""></div>
-        </div>
-      </span>
-        </div>
-    </div>
-    <div class="table table-striped files" id="previews">
-        <div id="template" class="file-row dz-image-preview">
-            <!-- This is used as the file preview template -->
-            <div>
-                <span class="preview"><img data-dz-thumbnail></span>
-            </div>
-            <div>
-                <p class="name" data-dz-name></p>
-                <strong class="error text-danger" data-dz-errormessage></strong>
-            </div>
-            <div>
-                <p class="size" data-dz-size></p>
-                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                    <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
-                </div>
-            </div>
-            <div>
-                <button class="btn btn-primary start">
-                    <i class="glyphicon glyphicon-upload"></i>
-                    <span>Start</span>
-                </button>
-                <button data-dz-remove class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Cancel</span>
-                </button>
-                <button data-dz-remove class="btn btn-danger delete">
-                    <i class="glyphicon glyphicon-trash"></i>
-                    <span>Delete</span>
-                </button>
-            </div>
-        </div>
+<button class="trigger">Click here to trigger the modal!</button>
+<div class="modal">
+    <div class="modal-content">
+        <span class="close-button">×</span>
+        <h1>Hello, I am a modal!</h1>
     </div>
 </div>
 
-
 <script>
-    $(document).ready(function(){
-        var theToggle = document.getElementById('toggle');
+    var modal = document.querySelector(".modal");
+    var trigger = document.querySelector(".trigger");
+    var closeButton = document.querySelector(".close-button");
 
-        // based on Todd Motto functions
-        // https://toddmotto.com/labs/reusable-js/
-
-        // hasClass
-        function hasClass(elem, className) {
-            return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
-        }
-        // addClass
-        function addClass(elem, className) {
-            if (!hasClass(elem, className)) {
-                elem.className += ' ' + className;
-            }
-        }
-        // removeClass
-        function removeClass(elem, className) {
-            var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ') + ' ';
-            if (hasClass(elem, className)) {
-                while (newClass.indexOf(' ' + className + ' ') >= 0 ) {
-                    newClass = newClass.replace(' ' + className + ' ', ' ');
-                }
-                elem.className = newClass.replace(/^\s+|\s+$/g, '');
-            }
-        }
-        // toggleClass
-        function toggleClass(elem, className) {
-            var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, " " ) + ' ';
-            if (hasClass(elem, className)) {
-                while (newClass.indexOf(" " + className + " ") >= 0 ) {
-                    newClass = newClass.replace( " " + className + " " , " " );
-                }
-                elem.className = newClass.replace(/^\s+|\s+$/g, '');
-            } else {
-                elem.className += ' ' + className;
-            }
-        }
-
-        theToggle.onclick = function() {
-            toggleClass(this, 'on');
-            return false;
-        }
-    });
-</script>
-
-<script>
-    $(document).ready(function(){
-        var $container = $('.dropdown-menu'),
-            $list = $('.dropdown-menu ul'),
-            listItem = $list.find('li');
-
-        $(".dropdown .title").click(function () {
-            if( $container.height() > 0) {
-                closeMenu(this);
-            } else {
-                openMenu(this);
-            }
-        });
-
-        $(".dropdown-menu li").click(function () {
-            closeMenu(this);
-        });
-
-        function closeMenu(el) {
-            $(el).closest('.dropdown').toggleClass("closed").find(".title").text($(el).text());
-            $container.css("height", 0);
-            $list.css( "top", 0 );
-        }
-
-        function openMenu(el) {
-            $(el).parent().toggleClass("closed");
-
-            $container.css({
-                height: 200
-            })
-                .mousemove(function(e) {
-                    var heightDiff = $list.height() / $container.height(),
-                        offset = $container.offset(),
-                        relativeY = (e.pageY - offset.top),
-                        top = relativeY*heightDiff > $list.height()-$container.height() ?
-                            $list.height()-$container.height() : relativeY*heightDiff;
-
-                    $list.css("top", -top);
-                });
-        }
-    });
-</script>
-
-{{--dropzone--}}
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js'></script>
-
-<script>
-
-    var APP_URL = {!! json_encode(url('/leave')) !!} ;
-    //console.log(APP_URL);
-    if(APP_URL == "http://127.0.0.1:8000/leave"){
-
-
-        // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-        var previewNode = document.querySelector("#template");
-        previewNode.id = "";
-        var previewTemplate = previewNode.parentNode.innerHTML;
-        previewNode.parentNode.removeChild(previewNode);
-
-        var myDropzone = new Dropzone(".container", { // Make the whole body a dropzone
-            url: "/upload", // Set the url
-            thumbnailWidth: 80,
-            thumbnailHeight: 80,
-            parallelUploads: 20,
-            previewTemplate: previewTemplate,
-            autoQueue: false, // Make sure the files aren't queued until manually added
-            previewsContainer: "#previews", // Define the container to display the previews
-            clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-        });
-
-        myDropzone.on("addedfile", function (file) {
-            // Hookup the start button
-            file.previewElement.querySelector(".start").onclick = function () {
-                myDropzone.enqueueFile(file);
-            };
-        });
-
-        // Update the total progress bar
-        myDropzone.on("totaluploadprogress", function (progress) {
-            document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
-        });
-
-        myDropzone.on("sending", function (file) {
-            // Show the total progress bar when upload starts
-            document.querySelector("#total-progress").style.opacity = "1";
-            // And disable the start button
-            file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
-        });
-
-        // Hide the total progress bar when nothing's uploading anymore
-        myDropzone.on("queuecomplete", function (progress) {
-            document.querySelector("#total-progress").style.opacity = "0";
-        });
-
-        // Setup the buttons for all transfers
-        // The "add files" button doesn't need to be setup because the config
-        // `clickable` has already been specified.
-        document.querySelector("#actions .start").onclick = function () {
-            myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
-        };
-        document.querySelector("#actions .cancel").onclick = function () {
-            myDropzone.removeAllFiles(true);
-        };
+    function toggleModal() {
+        modal.classList.toggle("show-modal");
     }
 
+    function windowOnClick(event) {
+        if (event.target === modal) {
+            toggleModal();
+        }
+    }
+
+    trigger.addEventListener("click", toggleModal);
+    closeButton.addEventListener("click", toggleModal);
+    window.addEventListener("click", windowOnClick);
 </script>
-
-
 </body>
 
 </html>

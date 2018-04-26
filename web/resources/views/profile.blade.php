@@ -1,11 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="container-fluid">
+        <div class="row justify-content-center" style="border-bottom: 1px solid black;padding: 10px 50px">
+            <div class="col-md-12" style="display: inline-flex;">
+                <span style="line-height: 85px;"><img src="{{ asset('http://cdn.onlinewebfonts.com/svg/img_87237.png') }}" alt="" width="50px"></span>
+                <span style="font-size: 35px;font-weight: bold;vertical-align: middle;line-height: 85px;padding-left: 10px;padding-right: 50px;">Profile</span>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="padding: 60px 20px;">
 
             <div class="col-md-4">
-                <div class="img-picture-profile">
+                <div class="img-picture-profile" style="text-align: center">
                     <img src="{{ asset('../img/icon/June_2017_BNK48_Nayika_Srinian.jpg') }}" alt="">
                 </div>
             </div>
