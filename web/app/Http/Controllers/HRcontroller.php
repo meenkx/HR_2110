@@ -11,6 +11,10 @@ class HRcontroller extends Controller
     {
         return view('profile');
     }
+    public function admin_profile()
+    {
+        return view('edit.edit_content.profile');
+    }
 
     public function test_calender(){
         return view('test_calender');
@@ -18,6 +22,10 @@ class HRcontroller extends Controller
 
     public function test_workhistory(){
         return view('test_workhistory');
+    }
+
+    public function admin_workhistory(){
+        return view('edit.edit_content.admin_workhistory');
     }
     
     public function test_teamlist(){

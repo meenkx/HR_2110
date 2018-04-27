@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'HR 2110') }}</title>
+    <title> {{ config('app.name') }} - {{ date('Y') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -52,6 +52,7 @@
             $('#dropdown_day').stbDropdown();
             $('#dropdown_month').stbDropdown();
             $('#dropdown_year').stbDropdown();
+            $('#dropdown_department').stbDropdown();
         });
     </script>
 
@@ -118,6 +119,15 @@
             font-family: 'Ubuntu', sans-serif;
             overflow-x: hidden;
         }
+        /* unvisited link */
+        a:link {text-decoration: none;}
+        /* visited link */
+        a:visited {text-decoration: none;}
+        /* mouse over link */
+        a:hover {text-decoration: none;}
+        /* selected link */
+        a:active {text-decoration: none;}
+
         .stb-select-container .stb-select{
             overflow-x: hidden;
         }
@@ -137,6 +147,17 @@
             border-radius: 10px;
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: #555;
+        }
+
+        /*bootstrap button*/
+        .btn:focus, .btn:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
+            color: black;
+            background-color: #f7f2f2;
+            border-color: red; /*set the color you want here*/
         }
         @if (Route::current()->getName() == 'test_workhistory' )
             .stb-select-container{
@@ -163,6 +184,10 @@
             /* To center horizontally */
             margin: 0 auto;
             pointer-events:all;
+        }
+        @elseif(Route::current()->getName() == 'admin_workhistory')
+            .stb-select-container{
+            width: 20% !important;
         }
         @elseif(Route::getCurrentRoute()->uri() == '/'){
 

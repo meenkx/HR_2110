@@ -19,8 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HRcontroller@profile')->name('test');
+Route::get('/admin_profile', 'HRcontroller@admin_profile')->name('test');
 Route::get('/test_calender', 'HRcontroller@test_calender')->name('test');
 Route::get('/test_workhistory', 'HRcontroller@test_workhistory')->name('test_workhistory');
+Route::get('/admin_workhistory', 'HRcontroller@admin_workhistory')->name('admin_workhistory');
 Route::get('/test_teamlist', 'HRcontroller@test_teamlist')->name('test_teamlist');
 Route::get('/notifications', 'HRcontroller@noti')->name('noti');
 Route::get('/edit', 'HRcontroller@edit')->name('edit');
