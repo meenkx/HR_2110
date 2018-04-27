@@ -20,12 +20,20 @@ class HRcontroller extends Controller
         return view('test_calender');
     }
 
-    public function test_workhistory(){
-        return view('test_workhistory');
+    public function calender(){
+        return view('calender');
     }
 
     public function admin_workhistory(){
         return view('edit.edit_content.admin_workhistory');
+    }
+
+    public function admin_kpi(){
+        return view('edit.edit_content.kpi');
+    }
+
+    public function admin_calender(){
+        return view('edit.edit_content.admin_calender');
     }
     
     public function test_teamlist(){

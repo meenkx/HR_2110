@@ -17,7 +17,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kanit:300,700" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -42,6 +42,9 @@
         }
     </style>
 
+    {{--Calendar--}}
+    <link href="{{ asset('css/calender/helloWeek.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maurovieirareis.github.io/hello-week/demos/css/demo.css">
     {{--dropdown--}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/dropdown/dropdown.css') }}">
@@ -116,8 +119,11 @@
     {{--config--}}
     <style>
         html,body{
-            font-family: 'Ubuntu', sans-serif;
+            font-family: 'Kanit', sans-serif;
             overflow-x: hidden;
+        }
+        .navbar{
+            border-radius: 0px;
         }
         /* unvisited link */
         a:link {text-decoration: none;}
@@ -189,6 +195,14 @@
             .stb-select-container{
             width: 20% !important;
         }
+        @elseif(Route::current()->getName() == 'admin_kpi')
+            .stb-select-container{
+                width: 15% !important;
+                margin-left: 0px;
+            }
+            .stb-select-container .stb-select{
+                width: 101.5%;
+            }
         @elseif(Route::getCurrentRoute()->uri() == '/'){
 
         }
@@ -231,11 +245,22 @@
                       <div class="dropdown">
                           <a href="#menu" id="toggle"><span></span></a>
 
-                          <div id="menu">
-                              <ul>
-                                  <li style="line-height: 30px !important;"><a href="#home"><span><img src="{{ asset('../img/icon/user1.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Profile</a></li>
-                                  <li style="line-height: 30px !important;"><a href="#home"><span><img src="{{ asset('../img/icon/time.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work history</a></li>
-                                  <li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work calendar</a></li>
+                          <div id="menu" style="display: inline-flex;">
+                              <ul style="padding-right: 15px">
+                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_profile') }}"><span><img src="{{ asset('../img/icon/user1.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Profile</a></li>
+                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_workhistory') }}"><span><img src="{{ asset('../img/icon/time.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work history</a></li>
+                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_calender') }}"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work calendar</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notifications</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/copy.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Resignation</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/followers.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Team</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/money.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Salary</a></li>
+                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/logout.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Log out</a></li>
+                              </ul>
+
+                              <ul style="padding-left: 15px;border-left: 1px solid;">
+                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_profile') }}"><span><img src="{{ asset('../img/icon/user1.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>mjjjj</a></li>
+                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_workhistory') }}"><span><img src="{{ asset('../img/icon/time.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work history</a></li>
+                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_calender') }}"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work calendar</a></li>
                                   <li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notifications</a></li>
                                   <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/copy.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Resignation</a></li>
                                   <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/followers.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Team</a></li>
@@ -243,6 +268,7 @@
                                   <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/logout.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Log out</a></li>
                               </ul>
                           </div>
+
 
                       </div>
                   </div>
@@ -294,7 +320,6 @@
     </div>
 
     {{--script zone--}}
-
     <script>
         $(document).ready(function(){
             var theToggle = document.getElementById('toggle');
