@@ -8,7 +8,7 @@
 
             <div class="row justify-content-center" style="padding: 60px 20px;margin: 0px;">
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="img-picture-profile" style="text-align: center">
                         <img src="{{ asset('../img/icon/June_2017_BNK48_Nayika_Srinian.jpg') }}" alt="">
                     </div>
@@ -19,7 +19,7 @@
 
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div>
                         <div style="border-bottom: 1px solid black;font-size: 30px;font-weight: bold;">
                             General information
@@ -37,7 +37,7 @@
                                     <span style="padding-left: 40px;font-weight: bold">Education :</span> <span>Mahidol University</span>
                                 </div>
                             </div>
-                            <div style="line-height: 80px;vertical-align: middle;padding-left: 90px;">
+                            <div style="line-height: 80px;vertical-align: middle;padding-left: 60px;">
                                 <button type="button" class="btn btn-default trigger" style="border: 1px solid red;color: red;width: 100px;" data-toggle="modal" data-target="#General_information">Edit</button>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                     <span style="padding-left: 40px;font-weight: bold">Emergency Contact :</span> <span>085-2148856</span>
                                 </div>
                             </div>
-                            <div style="line-height: 80px;vertical-align: middle;padding-left: 90px;">
+                            <div style="line-height: 80px;vertical-align: middle;padding-left: 60px;">
                                 <button type="button" class="btn btn-default" style="border: 1px solid red;color: red;width: 100px;" data-toggle="modal" data-target="#Contact_information">Edit</button>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                     <span style="font-weight: bold">Job :</span> <span>bioresource & environmental biotechnology</span>
                                 </div>
                             </div>
-                            <div style="line-height: 80px;vertical-align: middle;padding-left: 90px;">
+                            <div style="line-height: 80px;vertical-align: middle;padding-left: 60px;">
                                 <button type="button" class="btn btn-default" style="border: 1px solid red;color: red;width: 100px;" data-toggle="modal" data-target="#Job_information">Edit</button>
                             </div>
                         </div>

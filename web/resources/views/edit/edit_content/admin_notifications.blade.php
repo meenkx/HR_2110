@@ -27,7 +27,13 @@
                         <td class="col-md-1" style="vertical-align: middle;"></td>
                         <td class="col-md-5" style="vertical-align: middle;"></td>
                         <td class="col-md-2" style="vertical-align: middle;"></td>
-                        <td class="col-md-1" style="vertical-align: middle;"><input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"></td>
+                        <td class="col-md-1" style="vertical-align: middle;">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                            {{--<input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger">--}}
+                        </td>
                     </tr>
                     <tbody>
                     </tbody>

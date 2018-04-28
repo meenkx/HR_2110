@@ -31,8 +31,6 @@
     <!-- bootstrap --> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <style>
         .col-centered{
             float: none;
@@ -56,6 +54,17 @@
             $('#dropdown_month').stbDropdown();
             $('#dropdown_year').stbDropdown();
             $('#dropdown_department').stbDropdown();
+            $('#dropdown_department_kpi').stbDropdown();
+            $('#dropdown_month_workhistory').stbDropdown();
+            $('#dropdown_year_workhistory').stbDropdown();
+            $('#dropdown_department_workhistory').stbDropdown();
+            $('#dropdown_month_salary').stbDropdown();
+            $('#dropdown_year_salary').stbDropdown();
+            $('#dropdown_location_branchLocation').stbDropdown();
+            $('#dropdown_department_branchLocation').stbDropdown();
+            $('#dropdown_department_payment').stbDropdown();
+            $('#dropdown_year_salaryEdit').stbDropdown();
+            $('#dropdown_month_salaryEdit').stbDropdown();
         });
     </script>
 
@@ -166,13 +175,7 @@
             border-color: red; /*set the color you want here*/
         }
 
-
-
-        @if (Route::current()->getName() == 'test_workhistory' )
-            .stb-select-container{
-                width: 10% !important;
-            }
-        @elseif (Route::current()->getName() == 'edit' )
+        @if (Route::getCurrentRoute()->uri() == 'edit' )
         .vertical-alignment-helper {
             display:table;
             height: 100%;
@@ -194,11 +197,11 @@
             margin: 0 auto;
             pointer-events:all;
         }
-        @elseif(Route::current()->getName() == 'admin_workhistory')
+        @elseif(Route::getCurrentRoute()->uri() == 'admin_workhistory')
             .stb-select-container{
             width: 20% !important;
         }
-        @elseif(Route::current()->getName() == 'admin_kpi')
+        @elseif(Route::getCurrentRoute()->uri() == 'admin_kpi')
             .stb-select-container{
                 width: 15% !important;
                 margin-left: 0px;
@@ -206,7 +209,7 @@
             .stb-select-container .stb-select{
                 width: 101.5%;
             }
-        @elseif(Route::current()->getName() == 'admin_profile')
+        @elseif(Route::getCurrentRoute()->uri() == 'admin_profile')
             .vertical-alignment-helper {
                 display:table;
                 height: 100%;
@@ -231,6 +234,62 @@
             .modal-lg {
                 width: 900px;
                 margin: auto;
+            }
+        @elseif(Route::getCurrentRoute()->uri() == 'admin_notifications')
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+            }
+
+            .switch input {display:none;}
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #d46262;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            input:checked + .slider {
+                background-color: #4bd964;
+            }
+
+            input:focus + .slider {
+                box-shadow: 0 0 1px #4bd964;
+            }
+
+            input:checked + .slider:before {
+                -webkit-transform: translateX(26px);
+                -ms-transform: translateX(26px);
+                transform: translateX(26px);
+            }
+
+            /* Rounded sliders */
+            .slider.round {
+                border-radius: 34px;
+            }
+
+            .slider.round:before {
+                border-radius: 50%;
             }
         @elseif(Route::getCurrentRoute()->uri() == '/'){
 
@@ -277,11 +336,11 @@
                           <div id="menu" style="display: inline-flex;">
                               <ul style="padding-right: 15px">
                                   <li style="line-height: 30px !important;padding: 20px 0px;"><button type="button" class="btn btn-default trigger" style="border: 1px solid red;color: red;width: 90%;">Administrator</button></li>
-                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_profile') }}"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notification</a></li>
-                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_workhistory') }}"><span><img src="{{ asset('../img/icon/location.svg') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Branch location</a></li>
-                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_calender') }}"><span><img src="{{ asset('../img/icon/certificate.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Certificate</a></li>
-                                  <li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/payment.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Payment</a></li>
-                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/salary.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>salary edit</a></li>
+                                  <li style="line-height: 30px !important;"><a href="{{ route('noti') }}"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notification</a></li>
+                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_branchLocation') }}"><span><img src="{{ asset('../img/icon/location.svg') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Branch location</a></li>
+                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_certificate') }}"><span><img src="{{ asset('../img/icon/certificate.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Certificate</a></li>
+                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_payment') }}"><span><img src="{{ asset('../img/icon/payment.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Payment</a></li>
+                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_salaryEdit') }}"><span><img src="{{ asset('../img/icon/salary.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>salary edit</a></li>
                               </ul>
 
                               <ul style="padding-left: 15px;border-left: 1px solid;">
@@ -289,9 +348,9 @@
                                   <li style="line-height: 30px !important;"><a href="{{ route('admin_workhistory') }}"><span><img src="{{ asset('../img/icon/time.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work history</a></li>
                                   <li style="line-height: 30px !important;"><a href="{{ route('admin_calender') }}"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work calendar</a></li>
                                   {{--<li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notifications</a></li>--}}
-                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/copy.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Resignation</a></li>
+                                  <li style="line-height: 30px !important;"><a href="{{ asset('leave') }}"><span><img src="{{ asset('../img/icon/copy.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Leave</a></li>
                                   <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/followers.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Team</a></li>
-                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/money.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Salary</a></li>
+                                  <li style="line-height: 30px !important;"><a href="{{ route('salary') }}"><span><img src="{{ asset('../img/icon/money.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Salary</a></li>
                                   <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/logout.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Log out</a></li>
                               </ul>
                           </div>

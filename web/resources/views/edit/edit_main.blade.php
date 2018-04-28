@@ -98,7 +98,36 @@
                                                     </div>
                                                     <div class="form-group" style="display: inline-flex;">
                                                         <label for="Education" style="width: 180px;margin: 5px 0px;padding-left: 20px;">Education :</label>
-                                                        <input type="text" class="form-control" id="Education" style="margin: 5px 0px;margin-left: 20px">
+                                                        <input type="text" class="form-control" id="Education" style="margin: 5px 0px;margin-left: 20px;margin-right: 7px">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="content_zone" style="text-align: center">
+                                        <div style="font-size: 25px;font-weight: bold;border-bottom: 1px solid black;padding: 15px 0px;text-align: left;margin-top: 10px">
+                                            Contact information
+                                        </div>
+                                        <div style="text-align: left;padding: 20px 0px;">
+                                            <form class="form-inline" action="">
+                                                <div style="display: inline-flex;">
+                                                    <div class="form-group" style="display: inline-flex;">
+                                                        <label for="Email">Email :</label>
+                                                        <input type="email" class="form-control" id="Email" style="margin: 5px 15px;margin-left: 65px">
+                                                    </div>
+                                                    <div class="form-group" style="display: inline-flex;margin-left: 40px;">
+                                                        <label for="Mobile" >Mobile :</label>
+                                                        <input type="tel" class="form-control" id="Mobile" style="margin: 5px 15px;margin-left: 110px">
+                                                    </div>
+                                                </div>
+                                                <div style="display: inline-flex;">
+                                                    <div class="form-group" style="display: inline-flex;">
+                                                        <label for="Work_Phone" >Work Phone :</label>
+                                                        <input type="text" class="form-control" id="Work_Phone" style="margin: 5px 15px;">
+                                                    </div>
+                                                    <div class="form-group" style="display: inline-flex;margin-left: 40px;">
+                                                        <label for="Emergency_Contact" >Emergency Contact :</label>
+                                                        <input type="text" class="form-control" id="Emergency_Contact" style="margin: 5px 15px;">
                                                     </div>
                                                 </div>
                                             </form>

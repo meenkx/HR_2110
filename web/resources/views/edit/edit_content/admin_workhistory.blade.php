@@ -3,13 +3,13 @@
     <div class="row justify-content-center" style="padding: 0px 50px;">
         <div class="col-md-12" style="padding: 20px 0px;">
             <div style="display: inline-flex;width: 100%">
-                <select id="dropdown_month">
+                <select id="dropdown_month_workhistory">
                     <option value disabled selected>Select date</option>
                     <option value="january">January</option>
                     <option value="febuary">Febuary</option>
                     <option value="march">March</option>
                 </select>
-                <select id="dropdown_year">
+                <select id="dropdown_year_workhistory">
                     <option value disabled selected>Select month</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
@@ -21,7 +21,7 @@
                     <option value="2011">2011</option>
                     <option value="2010">2010</option>
                 </select>
-                <select id="dropdown_department">
+                <select id="dropdown_department_workhistory">
                     <option value disabled selected>Select department</option>
                     <option value="january">aa</option>
                     <option value="febuary">bb</option>
