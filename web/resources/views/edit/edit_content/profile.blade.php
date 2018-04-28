@@ -25,7 +25,7 @@
                             General information
                         </div>
                         <div style="display: inline-flex;">
-                            <div style="padding-top: 15px;font-size: 18px;line-height: 1.8;width: 620px;">
+                            <div style="padding-top: 15px;font-size: 18px;line-height: 1.8;width: 630px;">
                                 <div>
                                     <span style="font-weight: bold">Name :</span> <span>Ms. Nayika Srinian</span>
                                     <span style="padding-left: 40px;font-weight: bold">Birthday :</span> <span>November 10, 1996</span>
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div style="line-height: 80px;vertical-align: middle;padding-left: 90px;">
-                                <button type="button"  onclick="General_information()" class="btn btn-default trigger" style="border: 1px solid red;color: red;width: 100px;" data-toggle="modal" data-target="#General_information">Edit</button>
+                                <button type="button" class="btn btn-default trigger" style="border: 1px solid red;color: red;width: 100px;" data-toggle="modal" data-target="#General_information">Edit</button>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                             Contact information
                         </div>
                         <div style="display: inline-flex;">
-                            <div style="padding-top: 15px;font-size: 18px;line-height: 1.8;width: 620px;">
+                            <div style="padding-top: 15px;font-size: 18px;line-height: 1.8;width: 630px;">
                                 <div>
                                     <span style="font-weight: bold">E-mail :</span> <span>nayika_bnk48@mail.in.th</span>
                                     <span style="padding-left: 40px;font-weight: bold">Mobile :</span> <span>088-46250</span>
@@ -71,7 +71,7 @@
                             Job information
                         </div>
                         <div style="display: inline-flex;">
-                            <div style="padding-top: 15px;font-size: 18px;line-height: 1.8;width: 620px;">
+                            <div style="padding-top: 15px;font-size: 18px;line-height: 1.8;width: 630px;">
                                 <div>
                                     <span style="font-weight: bold">Department :</span> <span>Introduction International</span>
                                 </div>
@@ -131,8 +131,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="reset" class="btn btn-danger" data-dismiss="modal" style="width: 100px">Close</button>
+                                <button type="submit" class="btn btn-primary" style="width: 175px">Save changes</button>
                             </div>
                         </div>
                     </form>
@@ -170,8 +170,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="reset" class="btn btn-danger" data-dismiss="modal" style="width: 100px">Close</button>
+                                <button type="submit" class="btn btn-primary" style="width: 175px">Save changes</button>
                             </div>
                         </div>
                     </form>
@@ -201,8 +201,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="reset" class="btn btn-danger" data-dismiss="modal" style="width: 100px">Close</button>
+                                <button type="submit" class="btn btn-primary" style="width: 175px">Save changes</button>
                             </div>
                         </div>
                     </form>
@@ -228,8 +228,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="reset" class="btn btn-danger" data-dismiss="modal" style="width: 100px">Close</button>
+                                <button type="submit" class="btn btn-primary" style="width: 175px">Save changes</button>
                             </div>
                         </div>
                     </form>

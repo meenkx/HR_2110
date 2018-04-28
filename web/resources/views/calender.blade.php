@@ -25,15 +25,15 @@
         <div style="display: inline-flex">
             <div class="hello-week">
                 <div class="hello-week__header">
-                    <button class="btn demo-prev" style="font-size: 30px;line-height: 0px">◀</button>
+                    <button class="btn demo-prev" style="font-size: 30px;line-height: 0px;background-color: transparent;">◀</button>
                     <div class="hello-week__label"></div>
-                    <button class="btn demo-next" style="font-size: 30px;line-height: 0px">▶</button>
+                    <button class="btn demo-next" style="font-size: 30px;line-height: 0px;background-color: transparent;">▶</button>
                 </div>
                 <div class="hello-week__week"></div>
                 <div class="hello-week__month"></div>
             </div>
 
-            <div style="border-left: 0.5px solid #808080;margin-left: 30px;padding: 0px 30px;">
+            <div style="border-left: 0.5px solid #808080;margin-left: 30px;padding: 0px 30px;" class="container-fluid">
                 <div class="row" style="display: inline-flex;">
                     <div class="col-md-1">
                         <span style="font-size: 100px;color: #808080" class="demo-picked">26</span>
