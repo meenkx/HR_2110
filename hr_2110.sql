@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 12, 2018 at 01:03 PM
--- Server version: 5.6.34-log
--- PHP Version: 7.1.7
+-- Host: 127.0.0.1
+-- Generation Time: Apr 29, 2018 at 07:11 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,7 +45,20 @@ CREATE TABLE `activity` (
 
 CREATE TABLE `activity_department` (
   `Depart_ID` int(10) UNSIGNED NOT NULL,
-  `Activity_ID` int(10) UNSIGNED NOT NULL
+  `Activity_ID` int(10) UNSIGNED NOT NULL,
+  `ID_listActivity` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_status`
+--
+
+CREATE TABLE `activity_status` (
+  `ID_listActivity` int(10) UNSIGNED NOT NULL,
+  `ID_member` int(11) NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -67,42 +80,6 @@ CREATE TABLE `address` (
   `District_Area` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Province` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Postal_Code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bonus_deduction_from_status`
---
-
-CREATE TABLE `bonus_deduction_from_status` (
-  `Work_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Score_Bonus` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Work_status_id` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bonus_deduction_per_each_score`
---
-
-CREATE TABLE `bonus_deduction_per_each_score` (
-  `Deduction_Bonus_ID` int(10) UNSIGNED NOT NULL,
-  `Rate_Score` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Value_Score` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `calendar_of_holiday`
---
-
-CREATE TABLE `calendar_of_holiday` (
-  `Id_holiday` int(10) UNSIGNED NOT NULL,
-  `Date` date NOT NULL,
-  `Detail` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -134,13 +111,28 @@ CREATE TABLE `department` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `education_history`
+--
+
+CREATE TABLE `education_history` (
+  `ID_mamber` int(10) UNSIGNED NOT NULL,
+  `ID_Education` int(11) NOT NULL,
+  `certificate` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Academy` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `forms_evidence`
 --
 
 CREATE TABLE `forms_evidence` (
   `ID_member` int(10) UNSIGNED NOT NULL,
-  `Evidence` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ID_Evidence` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   `Reason` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Confirm` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -216,27 +208,26 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2018_03_12_130236_create_Activity_Department_table', 1),
-(2, '2018_03_12_130236_create_Activity_table', 1),
-(3, '2018_03_12_130236_create_Address_table', 1),
-(4, '2018_03_12_130236_create_Bonus_deduction_from_status_table', 1),
-(5, '2018_03_12_130236_create_Bonus_deduction_per_each_score_table', 1),
-(6, '2018_03_12_130236_create_Calendar_of_holiday_table', 1),
-(7, '2018_03_12_130236_create_Certificate_table', 1),
-(8, '2018_03_12_130236_create_Department_table', 1),
-(9, '2018_03_12_130236_create_Forms_Evidence_table', 1),
-(10, '2018_03_12_130236_create_History_Work_table', 1),
-(11, '2018_03_12_130236_create_Job_table', 1),
-(12, '2018_03_12_130236_create_Location_table', 1),
-(13, '2018_03_12_130236_create_PM__history_table', 1),
-(14, '2018_03_12_130236_create_PM_of_each_department_table', 1),
-(15, '2018_03_12_130236_create_Payment_Special_table', 1),
-(16, '2018_03_12_130236_create_Performance_measurement_table', 1),
-(17, '2018_03_12_130236_create_Profile_table', 1),
-(18, '2018_03_12_130236_create_Status_work_table', 1),
-(19, '2018_03_12_130236_create_Transection_Peyment_table', 1),
-(20, '2018_03_12_130236_create_Value_of_Each_Certificate_table', 1),
-(21, '2018_03_12_130246_create_foreign_keys', 1);
+(1, '2018_04_29_171042_create_Activity_Department_table', 1),
+(2, '2018_04_29_171042_create_Activity_table', 1),
+(3, '2018_04_29_171042_create_Address_table', 1),
+(4, '2018_04_29_171042_create_Certificate_table', 1),
+(5, '2018_04_29_171042_create_Department_table', 1),
+(6, '2018_04_29_171042_create_Forms_Evidence_table', 1),
+(7, '2018_04_29_171042_create_History_Work_table', 1),
+(8, '2018_04_29_171042_create_Job_table', 1),
+(9, '2018_04_29_171042_create_Location_table', 1),
+(10, '2018_04_29_171042_create_PM__history_table', 1),
+(11, '2018_04_29_171042_create_PM_of_each_department_table', 1),
+(12, '2018_04_29_171042_create_Payment_Special_table', 1),
+(13, '2018_04_29_171042_create_Performance_measurement_table', 1),
+(14, '2018_04_29_171042_create_Profile_table', 1),
+(15, '2018_04_29_171042_create_Status_work_table', 1),
+(16, '2018_04_29_171042_create_Transection_Peyment_table', 1),
+(17, '2018_04_29_171042_create_Value_of_Each_Certificate_table', 1),
+(18, '2018_04_29_171043_create_Activity_status_table', 1),
+(19, '2018_04_29_171043_create_Education_history_table', 1),
+(20, '2018_04_29_171053_create_foreign_keys', 1);
 
 -- --------------------------------------------------------
 
@@ -327,11 +318,10 @@ CREATE TABLE `status_work` (
   `ID_Status` int(10) UNSIGNED NOT NULL,
   `ID_member` int(10) UNSIGNED NOT NULL,
   `Work_date` date NOT NULL,
-  `Work_status_id` int(10) UNSIGNED NOT NULL,
+  `Work_status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Time_checkin` date NOT NULL,
   `Time_checkout` date NOT NULL,
-  `OT` int(11) NOT NULL,
-  `Deduction_Bonus_ID` int(10) UNSIGNED NOT NULL
+  `OT` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -378,8 +368,15 @@ ALTER TABLE `activity`
 -- Indexes for table `activity_department`
 --
 ALTER TABLE `activity_department`
+  ADD PRIMARY KEY (`ID_listActivity`),
   ADD KEY `activity_department_depart_id_foreign` (`Depart_ID`),
   ADD KEY `activity_department_activity_id_foreign` (`Activity_ID`);
+
+--
+-- Indexes for table `activity_status`
+--
+ALTER TABLE `activity_status`
+  ADD KEY `activity_status_id_listactivity_foreign` (`ID_listActivity`);
 
 --
 -- Indexes for table `address`
@@ -387,24 +384,6 @@ ALTER TABLE `activity_department`
 ALTER TABLE `address`
   ADD PRIMARY KEY (`ID_Address`),
   ADD KEY `address_id_member_foreign` (`ID_member`);
-
---
--- Indexes for table `bonus_deduction_from_status`
---
-ALTER TABLE `bonus_deduction_from_status`
-  ADD PRIMARY KEY (`Work_status_id`);
-
---
--- Indexes for table `bonus_deduction_per_each_score`
---
-ALTER TABLE `bonus_deduction_per_each_score`
-  ADD PRIMARY KEY (`Deduction_Bonus_ID`);
-
---
--- Indexes for table `calendar_of_holiday`
---
-ALTER TABLE `calendar_of_holiday`
-  ADD PRIMARY KEY (`Id_holiday`);
 
 --
 -- Indexes for table `certificate`
@@ -419,6 +398,12 @@ ALTER TABLE `certificate`
 ALTER TABLE `department`
   ADD PRIMARY KEY (`Depart_ID`),
   ADD KEY `department_location_id_foreign` (`Location_ID`);
+
+--
+-- Indexes for table `education_history`
+--
+ALTER TABLE `education_history`
+  ADD KEY `education_history_id_mamber_foreign` (`ID_mamber`);
 
 --
 -- Indexes for table `forms_evidence`
@@ -490,9 +475,7 @@ ALTER TABLE `profile`
 --
 ALTER TABLE `status_work`
   ADD PRIMARY KEY (`ID_Status`),
-  ADD KEY `status_work_id_member_foreign` (`ID_member`),
-  ADD KEY `status_work_work_status_id_foreign` (`Work_status_id`),
-  ADD KEY `status_work_deduction_bonus_id_foreign` (`Deduction_Bonus_ID`);
+  ADD KEY `status_work_id_member_foreign` (`ID_member`);
 
 --
 -- Indexes for table `transection_peyment`
@@ -517,86 +500,91 @@ ALTER TABLE `value_of_each_certificate`
 --
 ALTER TABLE `activity`
   MODIFY `Activity_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `activity_department`
+--
+ALTER TABLE `activity_department`
+  MODIFY `ID_listActivity` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
   MODIFY `ID_Address` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `bonus_deduction_from_status`
---
-ALTER TABLE `bonus_deduction_from_status`
-  MODIFY `Work_status_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `bonus_deduction_per_each_score`
---
-ALTER TABLE `bonus_deduction_per_each_score`
-  MODIFY `Deduction_Bonus_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `calendar_of_holiday`
---
-ALTER TABLE `calendar_of_holiday`
-  MODIFY `Id_holiday` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
   MODIFY `Depart_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `history_work`
 --
 ALTER TABLE `history_work`
   MODIFY `HW_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
   MODIFY `Job_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
   MODIFY `Location_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT for table `payment_special`
 --
 ALTER TABLE `payment_special`
   MODIFY `ID_Payment_Special` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `performance_measurement`
 --
 ALTER TABLE `performance_measurement`
   MODIFY `KPI_Code` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `pm_of_each_department`
 --
 ALTER TABLE `pm_of_each_department`
   MODIFY `PM_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
   MODIFY `ID_member` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `status_work`
 --
 ALTER TABLE `status_work`
   MODIFY `ID_Status` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `transection_peyment`
 --
 ALTER TABLE `transection_peyment`
   MODIFY `ID_list` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `value_of_each_certificate`
 --
 ALTER TABLE `value_of_each_certificate`
   MODIFY `ID_Certificate` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- Constraints for dumped tables
 --
@@ -607,6 +595,12 @@ ALTER TABLE `value_of_each_certificate`
 ALTER TABLE `activity_department`
   ADD CONSTRAINT `activity_department_activity_id_foreign` FOREIGN KEY (`Activity_ID`) REFERENCES `activity` (`Activity_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `activity_department_depart_id_foreign` FOREIGN KEY (`Depart_ID`) REFERENCES `department` (`Depart_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `activity_status`
+--
+ALTER TABLE `activity_status`
+  ADD CONSTRAINT `activity_status_id_listactivity_foreign` FOREIGN KEY (`ID_listActivity`) REFERENCES `activity_department` (`ID_listActivity`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `address`
@@ -626,6 +620,12 @@ ALTER TABLE `certificate`
 --
 ALTER TABLE `department`
   ADD CONSTRAINT `department_location_id_foreign` FOREIGN KEY (`Location_ID`) REFERENCES `location` (`Location_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `education_history`
+--
+ALTER TABLE `education_history`
+  ADD CONSTRAINT `education_history_id_mamber_foreign` FOREIGN KEY (`ID_mamber`) REFERENCES `profile` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `forms_evidence`
@@ -668,9 +668,7 @@ ALTER TABLE `profile`
 -- Constraints for table `status_work`
 --
 ALTER TABLE `status_work`
-  ADD CONSTRAINT `status_work_deduction_bonus_id_foreign` FOREIGN KEY (`Deduction_Bonus_ID`) REFERENCES `bonus_deduction_per_each_score` (`Deduction_Bonus_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `status_work_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profile` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `status_work_work_status_id_foreign` FOREIGN KEY (`Work_status_id`) REFERENCES `bonus_deduction_from_status` (`Work_status_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `status_work_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profile` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transection_peyment`

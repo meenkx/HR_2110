@@ -53,16 +53,6 @@ class CreateForeignKeys extends Migration {
 						->onDelete('cascade')
 						->onUpdate('cascade');
 		});
-		Schema::table('Status_work', function(Blueprint $table) {
-			$table->foreign('Work_status_id')->references('Work_status_id')->on('Bonus_deduction_from_status')
-						->onDelete('cascade')
-						->onUpdate('cascade');
-		});
-		Schema::table('Status_work', function(Blueprint $table) {
-			$table->foreign('Deduction_Bonus_ID')->references('Deduction_Bonus_ID')->on('Bonus_deduction_per_each_score')
-						->onDelete('cascade')
-						->onUpdate('cascade');
-		});
 		Schema::table('Department', function(Blueprint $table) {
 			$table->foreign('Location_ID')->references('Location_ID')->on('Location')
 						->onDelete('cascade')
@@ -98,6 +88,16 @@ class CreateForeignKeys extends Migration {
 						->onDelete('cascade')
 						->onUpdate('cascade');
 		});
+		Schema::table('Education_history', function(Blueprint $table) {
+			$table->foreign('ID_mamber')->references('ID_member')->on('Profile')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('Activity_status', function(Blueprint $table) {
+			$table->foreign('ID_listActivity')->references('ID_listActivity')->on('Activity_Department')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
 	}
 
 	public function down()
@@ -129,12 +129,6 @@ class CreateForeignKeys extends Migration {
 		Schema::table('Status_work', function(Blueprint $table) {
 			$table->dropForeign('Status_work_ID_member_foreign');
 		});
-		Schema::table('Status_work', function(Blueprint $table) {
-			$table->dropForeign('Status_work_Work_status_id_foreign');
-		});
-		Schema::table('Status_work', function(Blueprint $table) {
-			$table->dropForeign('Status_work_Deduction_Bonus_ID_foreign');
-		});
 		Schema::table('Department', function(Blueprint $table) {
 			$table->dropForeign('Department_Location_ID_foreign');
 		});
@@ -155,6 +149,12 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('Activity_Department', function(Blueprint $table) {
 			$table->dropForeign('Activity_Department_Activity_ID_foreign');
+		});
+		Schema::table('Education_history', function(Blueprint $table) {
+			$table->dropForeign('Education_history_ID_mamber_foreign');
+		});
+		Schema::table('Activity_status', function(Blueprint $table) {
+			$table->dropForeign('Activity_status_ID_listActivity_foreign');
 		});
 	}
 }

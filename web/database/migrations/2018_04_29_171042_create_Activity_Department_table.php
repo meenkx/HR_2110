@@ -10,6 +10,7 @@ class CreateActivityDepartmentTable extends Migration {
 		Schema::create('Activity_Department', function(Blueprint $table) {
 			$table->integer('Depart_ID')->unsigned();
 			$table->integer('Activity_ID')->unsigned();
+			$table->increments('ID_listActivity');
 		});
 	}
 
