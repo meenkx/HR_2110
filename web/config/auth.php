@@ -67,6 +67,8 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
+//            'model' => App\User::class,
+//            App\User::class => App\User::table('profile')->where('User_role', 'user'),
             'model' => App\User::class,
         ],
 
