@@ -409,11 +409,51 @@
     <div id="app">
 
         @desktop
-            {{--@if (Auth::guest())--}}
-            {{--@else--}}
-            <nav class="navbar navbar-expand-md navbar-light navbar-laravel" id="navbar_web">
+            @if (Auth::guest())
+            @else
+                <nav class="navbar navbar-expand-md navbar-light navbar-laravel" id="navbar_web">
                 <div class="container-fluid">
                     @guest
+                    @else
+
+                    @endguest
+                    {{--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--}}
+                        {{--<span class="navbar-toggler-icon"></span>--}}
+                    {{--</button>--}}
+                    {{--<div class="collapse navbar-collapse" id="navbarSupportedContent">--}}
+                        {{--<!-- Left Side Of Navbar -->--}}
+                        {{--<ul class="navbar-nav mr-auto">--}}
+
+                        {{--</ul>--}}
+
+                        {{--<!-- Right Side Of Navbar -->--}}
+                        {{--<ul class="navbar-nav ml-auto">--}}
+                            {{--<!-- Authentication Links -->--}}
+                            {{--@guest--}}
+                                {{--<li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>--}}
+                                {{--<li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>--}}
+                            {{--@else--}}
+                                {{--<li class="nav-item dropdown">--}}
+                                    {{--<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}
+                                        {{--{{ Auth::user()->Email }} <span class="caret"></span>--}}
+                                    {{--</a>--}}
+
+                                    {{--<div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
+                                        {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
+                                           {{--onclick="event.preventDefault();--}}
+                                                       {{--document.getElementById('logout-form').submit();">--}}
+                                            {{--{{ __('Logout') }}--}}
+                                        {{--</a>--}}
+
+                                        {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
+                                            {{--@csrf--}}
+                                        {{--</form>--}}
+                                    {{--</div>--}}
+                                {{--</li>--}}
+                            {{--@endguest--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+
                         {{--<a class="navbar-brand" href="{{ url('/') }}" style="padding-right: 30px;border-right: 1px solid black">--}}
                         {{--<img src="{{ asset('img/icon/home.png') }}" alt="" class="homeicon">--}}
                         {{--</a>--}}
@@ -461,55 +501,19 @@
                                         <li style="line-height: 30px !important;"><a href="{{ asset('leave') }}"><span><img src="{{ asset('../img/icon/copy.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Leave</a></li>
                                         <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/followers.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Team</a></li>
                                         <li style="line-height: 30px !important;"><a href="{{ route('salary') }}"><span><img src="{{ asset('../img/icon/money.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Salary</a></li>
-                                        <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/logout.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Log out</a></li>
+                                        <li style="line-height: 30px !important;"><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span><img src="{{ asset('../img/icon/logout.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Log out</a></li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: one;">
+                                            {{ csrf_field() }}
+                                        </form>
                                     </ul>
                                 </div>
 
-
                             </div>
                         </div>
-                    @else
 
-                    @endguest
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
-
-                        </ul>
-
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                                {{--<li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>--}}
-                                {{--<li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>--}}
-                            @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }} <span class="caret"></span>
-                                    </a>
-
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                       document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            @endguest
-                        </ul>
-                    </div>
                 </div>
             </nav>
-            {{--@endif--}}
+            @endif
 
             <main class="py-4">
                 @yield('content')

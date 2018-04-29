@@ -18,12 +18,12 @@
                             <div class="card fat">
                                 <div class="card-body">
                                     <h4 class="card-title">Sign In</h4>
-                                    <form method="POST">
+                                    <form method="POST" action="{{ route('login') }}">
+                                        @csrf
 
                                         <div class="form-group">
-                                            <label for="username" style="text-align: left">Username</label>
-
-                                            <input id="username" type="text" class="form-control" name="username" value="" required autofocus>
+                                            <label for="Email" style="text-align: left">E-mail</label>
+                                            <input id="Email" type="text" class="form-control" name="Email" value="123@123.com" required autofocus>
                                         </div>
 
                                         <div class="form-group">
@@ -32,8 +32,16 @@
                                                     Forgot Password?
                                                 </a>
                                             </label>
-                                            <input id="password" type="password" class="form-control" name="password" required data-eye>
+                                            <input id="password" type="password" class="form-control" name="password" required data-eye value="1234567890">
+                                            @if ($errors->has('password'))
+                                                <button class="btn btn-danger" style="margin: 0px;width: 100%;margin-top: 10px">Incorrect username or password</button>
+                                                <span class="invalid-feedback">
+                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
+
+
 
                                         <div class="form-group">
                                             <label>

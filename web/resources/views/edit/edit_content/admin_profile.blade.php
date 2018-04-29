@@ -111,8 +111,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Birthday </label>
-                                    <input type="date" name="Birthday" class="form-control">
+                                    <input type="date"  name="Birthday" class="form-control">
                                 </div>
+
                                 <div class="form-group">
                                     <label>Age </label>
                                     <input type="text" id="Age" name="Age" class="form-control" disabled >

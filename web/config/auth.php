@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'profiles',
     ],
 
     /*
@@ -38,12 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'profiles',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'profiles',
         ],
     ],
 
@@ -65,11 +65,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'profiles' => [
             'driver' => 'eloquent',
-//            'model' => App\User::class,
-//            App\User::class => App\User::table('profile')->where('User_role', 'user'),
-            'model' => App\User::class,
+            'model' => App\Profile::class,
         ],
 
         // 'users' => [
@@ -94,8 +92,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'profiles' => [
+            'provider' => 'profiles',
             'table' => 'password_resets',
             'expire' => 60,
         ],
