@@ -28,9 +28,8 @@
     <link href="{{ asset('css/workhistory.css') }}" rel="stylesheet">
 
 
-    <!-- bootstrap --> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <style>
         .col-centered{
             float: none;
@@ -39,6 +38,7 @@
             margin-bottom: auto;
         }
     </style>
+
 
     {{--Calendar--}}
     <link href="{{ asset('css/calender/helloWeek.css') }}" rel="stylesheet">
@@ -67,7 +67,6 @@
             $('#dropdown_month_salaryEdit').stbDropdown();
         });
     </script>
-
     {{--dropzone--}}
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css'>
     <style>
@@ -124,7 +123,6 @@
         }
 
     </style>
-
     {{--config--}}
     <style>
         html,body{
@@ -174,7 +172,30 @@
             background-color: #f7f2f2;
             border-color: red; /*set the color you want here*/
         }
+        .btn-warning{
+            color: black;
+            background-color: #F8C557;
+            border-color: #F8C557;
+        }
+        .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open>.dropdown-toggle.btn-warning
+        {
+            color: #fff;
+            background-color: black;
+            border-color: black; /*set the color you want here*/
+        }
+        .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open>.dropdown-toggle.btn-danger,
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary
+        {
+            color: #fff;
+        }
 
+        #edit_icon:hover , #edit_icon:focus{
+            box-shadow: 0px 0px 10px 0px black;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all .2s ease-out;
+            animation: pulse 5s infinite;
+        }
         @if (Route::getCurrentRoute()->uri() == 'edit' )
         .vertical-alignment-helper {
             display:table;
@@ -234,6 +255,92 @@
             .modal-lg {
                 width: 900px;
                 margin: auto;
+            }
+        @elseif(Route::getCurrentRoute()->uri() == 'login')
+            .py-4{
+                height: 100vh;
+            }
+            .my-login-page .brand {
+                width: 90px;
+                height: 90px;
+                overflow: hidden;
+                border-radius: 50%;
+                margin: 0 auto;
+                margin: 40px auto;
+                box-shadow: 0 0 40px rgba(0,0,0,.05);
+            }
+
+            .my-login-page .brand img {
+                width: 100%;
+            }
+
+            .my-login-page .card-wrapper {
+                width: 400px;
+                margin: 0 auto;
+            }
+
+            .my-login-page .card {
+                border-color: transparent;
+                box-shadow: 0 0 40px rgba(0,0,0,.05);
+            }
+
+            .my-login-page .card.fat {
+                padding: 10px;
+            }
+
+            .my-login-page .card .card-title {
+                margin-bottom: 30px;
+            }
+
+            .my-login-page .form-control {
+                border-width: 2.3px;
+            }
+
+            .my-login-page .form-group label {
+                width: 100%;
+            }
+
+            .my-login-page .btn.btn-block {
+                /*padding: 12px 10px;*/
+            }
+
+            .my-login-page .margin-top20 {
+                margin-top: 20px;
+            }
+
+            .my-login-page .no-margin {
+                margin: 0;
+            }
+
+            .my-login-page .footer {
+                margin: 40px 0;
+                color: #888;
+                text-align: center;
+            }
+
+            .my-login-page .btn-outline-warning{
+
+                color: black;
+                border: 2px solid #F8C557;
+                background-color: white;
+                padding: 5px 7px !important;
+            }
+
+            @media screen and (max-width: 425px) {
+                .my-login-page .card-wrapper {
+                    width: 90%;
+                    margin: 0 auto;
+                }
+            }
+
+            @media screen and (max-width: 320px) {
+                .my-login-page .card.fat {
+                    padding: 0;
+                }
+
+                .my-login-page .card.fat .card-body {
+                    padding: 15px;
+                }
             }
         @elseif(Route::getCurrentRoute()->uri() == 'admin_notifications')
             .switch {
@@ -296,113 +403,121 @@
         }
         @endif
     </style>
+
 </head>
-<body>
+<body class="my-login-page">
     <div id="app">
 
+        @desktop
+            {{--@if (Auth::guest())--}}
+            {{--@else--}}
+            <nav class="navbar navbar-expand-md navbar-light navbar-laravel" id="navbar_web">
+                <div class="container-fluid">
+                    @guest
+                        {{--<a class="navbar-brand" href="{{ url('/') }}" style="padding-right: 30px;border-right: 1px solid black">--}}
+                        {{--<img src="{{ asset('img/icon/home.png') }}" alt="" class="homeicon">--}}
+                        {{--</a>--}}
+                        <div class="col-md-6">
+                            <div style="padding-bottom: 3px;">
+                                <span class="topbartext1">Ms. Nayika Srinian</span>
+                                <button type="button" class="btn btn-default topbarbutton1" style="outline: none">
+                                    <span style="color: #39a938;text-transform: uppercase">employee</span>
+                                </button>
+                            </div>
+                            <div>
+                          <span class="topbartext2">
+                              <span style="font-weight: bold">ID : </span>
+                              <span>590701027</span>
+                              <span style="font-weight: bold">Department : </span>
+                              <span>Introduction International</span>
+                          </span>
+                            </div>
+                        </div>
+                        <div class="col-md-5" style="padding: 0px 25px;">
+                            <input type="text" name="search" class="search" placeholder="Search people">
+                        </div>
+                        <div class="col-md-1" style="border-left: 1px solid black;margin: 0px 30px;height: 60px;line-height: 60px;">
+                            {{--<div class="menu-toggle">--}}
+                            {{--<img src="{{ asset('../img/icon/down-arrow.png') }}" alt="" style="width: 40px;">--}}
+                            {{--</div>--}}
+                            <div class="dropdown">
+                                <a href="#menu" id="toggle"><span></span></a>
 
-      <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-          <div class="container-fluid">
-              @guest
-                  {{--<a class="navbar-brand" href="{{ url('/') }}" style="padding-right: 30px;border-right: 1px solid black">--}}
-                      {{--<img src="{{ asset('img/icon/home.png') }}" alt="" class="homeicon">--}}
-                  {{--</a>--}}
-                  <div class="col-md-6">
-                      <div style="padding-bottom: 3px;">
-                          <span class="topbartext1">Ms. Nayika Srinian</span>
-                          <button type="button" class="btn btn-default topbarbutton1" style="outline: none">
-                              <span style="color: #39a938">employee</span>
-                          </button>
-                      </div>
-                      <div>
-                      <span class="topbartext2">
-                          <span style="font-weight: bold">ID : </span>
-                          <span>590701027</span>
-                          <span style="font-weight: bold">Department : </span>
-                          <span>Introduction International</span>
-                      </span>
-                      </div>
-                  </div>
-                  <div class="col-md-5" style="padding: 0px 25px;">
-                      <input type="text" name="search" class="search" placeholder="Search people">
-                  </div>
-                  <div class="col-md-1" style="border-left: 1px solid black;margin: 0px 30px;height: 60px;line-height: 60px;">
-                      {{--<div class="menu-toggle">--}}
-                        {{--<img src="{{ asset('../img/icon/down-arrow.png') }}" alt="" style="width: 40px;">--}}
-                      {{--</div>--}}
-                      <div class="dropdown">
-                          <a href="#menu" id="toggle"><span></span></a>
+                                <div id="menu" style="display: inline-flex;">
+                                    <ul style="padding-right: 15px">
+                                        <li style="line-height: 30px !important;padding: 20px 0px;"><button type="button" class="btn btn-default trigger" style="border: 1px solid red;color: red;width: 90%;">Administrator</button></li>
+                                        <li style="line-height: 30px !important;"><a href="{{ route('noti') }}"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notification</a></li>
+                                        <li style="line-height: 30px !important;"><a href="{{ route('admin_branchLocation') }}"><span><img src="{{ asset('../img/icon/location.svg') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Branch location</a></li>
+                                        <li style="line-height: 30px !important;"><a href="{{ route('admin_certificate') }}"><span><img src="{{ asset('../img/icon/certificate.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Certificate</a></li>
+                                        <li style="line-height: 30px !important;"><a href="{{ route('admin_payment') }}"><span><img src="{{ asset('../img/icon/payment.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Payment</a></li>
+                                        <li style="line-height: 30px !important;"><a href="{{ route('admin_salaryEdit') }}"><span><img src="{{ asset('../img/icon/salary.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>salary edit</a></li>
+                                    </ul>
 
-                          <div id="menu" style="display: inline-flex;">
-                              <ul style="padding-right: 15px">
-                                  <li style="line-height: 30px !important;padding: 20px 0px;"><button type="button" class="btn btn-default trigger" style="border: 1px solid red;color: red;width: 90%;">Administrator</button></li>
-                                  <li style="line-height: 30px !important;"><a href="{{ route('noti') }}"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notification</a></li>
-                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_branchLocation') }}"><span><img src="{{ asset('../img/icon/location.svg') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Branch location</a></li>
-                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_certificate') }}"><span><img src="{{ asset('../img/icon/certificate.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Certificate</a></li>
-                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_payment') }}"><span><img src="{{ asset('../img/icon/payment.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Payment</a></li>
-                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_salaryEdit') }}"><span><img src="{{ asset('../img/icon/salary.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>salary edit</a></li>
-                              </ul>
-
-                              <ul style="padding-left: 15px;border-left: 1px solid;">
-                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_profile') }}"><span><img src="{{ asset('../img/icon/user1.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Profile</a></li>
-                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_workhistory') }}"><span><img src="{{ asset('../img/icon/time.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work history</a></li>
-                                  <li style="line-height: 30px !important;"><a href="{{ route('admin_calender') }}"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work calendar</a></li>
-                                  {{--<li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notifications</a></li>--}}
-                                  <li style="line-height: 30px !important;"><a href="{{ asset('leave') }}"><span><img src="{{ asset('../img/icon/copy.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Leave</a></li>
-                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/followers.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Team</a></li>
-                                  <li style="line-height: 30px !important;"><a href="{{ route('salary') }}"><span><img src="{{ asset('../img/icon/money.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Salary</a></li>
-                                  <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/logout.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Log out</a></li>
-                              </ul>
-                          </div>
+                                    <ul style="padding-left: 15px;border-left: 1px solid;">
+                                        <li style="line-height: 30px !important;"><a href="{{ route('admin_profile') }}"><span><img src="{{ asset('../img/icon/user1.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Profile</a></li>
+                                        <li style="line-height: 30px !important;"><a href="{{ route('admin_workhistory') }}"><span><img src="{{ asset('../img/icon/time.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work history</a></li>
+                                        <li style="line-height: 30px !important;"><a href="{{ route('admin_calender') }}"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work calendar</a></li>
+                                        {{--<li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notifications</a></li>--}}
+                                        <li style="line-height: 30px !important;"><a href="{{ asset('leave') }}"><span><img src="{{ asset('../img/icon/copy.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Leave</a></li>
+                                        <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/followers.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Team</a></li>
+                                        <li style="line-height: 30px !important;"><a href="{{ route('salary') }}"><span><img src="{{ asset('../img/icon/money.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Salary</a></li>
+                                        <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/logout.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Log out</a></li>
+                                    </ul>
+                                </div>
 
 
-                      </div>
-                  </div>
-              @else
+                            </div>
+                        </div>
+                    @else
 
-              @endguest
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <!-- Left Side Of Navbar -->
-                  <ul class="navbar-nav mr-auto">
+                    @endguest
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav mr-auto">
 
-                  </ul>
+                        </ul>
 
-                  <!-- Right Side Of Navbar -->
-                  <ul class="navbar-nav ml-auto">
-                      <!-- Authentication Links -->
-                      @guest
-                          {{--<li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>--}}
-                          {{--<li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>--}}
-                      @else
-                          <li class="nav-item dropdown">
-                              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                  {{ Auth::user()->name }} <span class="caret"></span>
-                              </a>
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Authentication Links -->
+                            @guest
+                                {{--<li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>--}}
+                                {{--<li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>--}}
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
 
-                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="{{ route('logout') }}"
-                                     onclick="event.preventDefault();
-                                                   document.getElementById('logout-form').submit();">
-                                      {{ __('Logout') }}
-                                  </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
 
-                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                      @csrf
-                                  </form>
-                              </div>
-                          </li>
-                      @endguest
-                  </ul>
-              </div>
-          </div>
-      </nav>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            {{--@endif--}}
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+            <main class="py-4">
+                @yield('content')
+            </main>
+        @elsedesktop
+            <div style="height: 100vh;background: url('{{ asset('img/icon/browser_not_supported.png') }}') no-repeat center center fixed;-webkit-background-size: 100%;-moz-background-size: 100%;-o-background-size: 100%;background-size: 100%;background-color: #96d6f7;"></div>
+        @enddesktop
+
     </div>
 
     {{--script zone--}}
@@ -452,7 +567,6 @@
             }
         });
     </script>
-
     <script>
         $(document).ready(function(){
             var $container = $('.dropdown-menu'),
@@ -498,11 +612,8 @@
 
     {{--dropzone--}}
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js'></script>
-
     <script>
-
         window.onload = function(){
 
 
@@ -582,6 +693,50 @@
     </script>
 
     {{--javascript config--}}
+    {{--bootstrap--}}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    {{--login--}}
+    <script>
+        $(function() {
+            $("input[type='password'][data-eye]").each(function(i) {
+                var $this = $(this);
+
+                $this.wrap($("<div/>", {
+                    style: 'position:relative'
+                }));
+                $this.css({
+                    paddingRight: 60
+                });
+                $this.after($("<div/>", {
+                    html: 'Show',
+                    class: 'btn btn-warning btn-sm',
+                    id: 'passeye-toggle-'+i,
+                    style: 'position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 7px 7px;font-size:12px;cursor:pointer;width:60px;margin: 0px -5px;'
+                }));
+                $this.after($("<input/>", {
+                    type: 'hidden',
+                    id: 'passeye-' + i
+                }));
+                $this.on("keyup paste", function() {
+                    $("#passeye-"+i).val($(this).val());
+                });
+                $("#passeye-toggle-"+i).on("click", function() {
+                    if($this.hasClass("show")) {
+                        $this.attr('type', 'password');
+                        $this.removeClass("show");
+                        $(this).removeClass("btn-outline-warning");
+                    }else{
+                        $this.attr('type', 'text');
+                        $this.val($("#passeye-"+i).val());
+                        $this.addClass("show");
+                        $(this).addClass("btn-outline-warning");
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>

@@ -123,8 +123,9 @@ li a {
 }
 li a:hover,
 li a:focus {
-    background: #eeeeee;
+    background: white;
     color: black;
+    border-radius: 7px;
 }
 
 

@@ -35,33 +35,23 @@
         </div>
         <div class="row justify-content-center" style="padding: 50px 50px;">
             <div class="col-md-12">
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table table-bordered" style="text-align: center">
+                    <thead class="thead-light">
                     <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>Control</th>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Control</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td><button type="button" class="btn btn-default open-popup" style="border: 1px solid red;color: red;width: 100px;" >Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                        <td><button type="button" class="btn btn-default open-popup" style="border: 1px solid red;color: red;width: 100px;" >Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                        <td><button type="button" class="btn btn-default open-popup" style="border: 1px solid red;color: red;width: 100px;" >Edit</button></td>
+                        <th scope="row" style="vertical-align: middle"><img src="{{ asset('img/icon/June_2017_BNK48_Nayika_Srinian.jpg') }}" alt="" class="pic_intable"></th>
+                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
+                        <td style="vertical-align: middle">sasdasdasd</td>
+                        <td style="vertical-align: middle">
+                            <button type="button" class="btn btn-default open-popup" style="border: 1px solid red;color: red;width: 100px;" >Edit</button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

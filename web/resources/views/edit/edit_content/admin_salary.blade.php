@@ -30,44 +30,30 @@
         </div>
         <div class="row justify-content-center" style="padding: 50px 50px;">
             <div class="col-md-12">
-                <table class="table table-bordered">
-                    <thead>
+
+                <table class="table table-bordered" style="text-align: center">
+                    <thead class="thead-light">
                     <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Control</th>
+                        <th scope="col">Control</th>
+                        <th scope="col">Control</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
+                        <th scope="row" style="vertical-align: middle">Ms. NAYIKA SRINIAN</th>
+                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
+                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
+                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
+                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
+                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
                     </tr>
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>

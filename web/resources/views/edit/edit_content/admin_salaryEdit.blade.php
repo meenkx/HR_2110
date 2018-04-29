@@ -6,10 +6,10 @@
             <div class="col-md-12" style="display: inline-flex;">
                 <span style="line-height: 85px;"><img src="{{ asset('img/icon/money.png') }}" alt="" width="50px"></span>
                 <span style="font-size: 35px;font-weight: bold;vertical-align: middle;line-height: 85px;padding-left: 10px;padding-right: 50px;">Salary Edit</span>
-                <div style="    display: inline-flex;width: 530px;height: 45px;vertical-align: middle;margin: 20px 0px;">
+                <div style="    display: inline-flex;width: 50%;height: 45px;vertical-align: middle;margin: 20px 0px;">
                     <div class="form-group" style="display: inherit;">
-                        <label style="width: 170px">Location : </label>
-                        <input type="text" name="search" class="search" placeholder="Search edit people" style="height: 45px">
+                        <label style="width: 100px;font-size: 20px">Location : </label>
+                        <input type="text" name="search" class="search" placeholder="Search edit people" style="width: 255px;height: 45px">
                     </div>
                     <select id="dropdown_year_salaryEdit">
                         <option value disabled selected>Select month</option>
@@ -34,33 +34,23 @@
         </div>
         <div class="row justify-content-center" style="padding: 50px 50px;">
             <div class="col-md-12">
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table table-bordered" style="text-align: center">
+                    <thead class="thead-light">
                     <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>Control</th>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Control</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td><button type="button" class="btn btn-default open-popup" style="border: 1px solid red;color: red;width: 100px;" >Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                        <td><button type="button" class="btn btn-default open-popup" style="border: 1px solid red;color: red;width: 100px;" >Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                        <td><button type="button" class="btn btn-default open-popup" style="border: 1px solid red;color: red;width: 100px;" >Edit</button></td>
+                        <th scope="row" style="vertical-align: middle"><img src="{{ asset('img/icon/June_2017_BNK48_Nayika_Srinian.jpg') }}" alt="" class="pic_intable"></th>
+                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
+                        <td style="vertical-align: middle">sasdasdasd</td>
+                        <td style="vertical-align: middle">
+                            <button type="button" class="btn btn-default open-popup" style="border: 1px solid red;color: red;width: 100px;" >Edit</button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

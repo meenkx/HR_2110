@@ -27,7 +27,7 @@
                     <option value="febuary">bb</option>
                     <option value="march">cc</option>
                 </select>
-                <input type="text" name="search" class="search" placeholder="Search edit people">
+                <input type="text" name="search" class="search" placeholder="Search edit people" style="width: 800px;margin-left: 100px;">
             </div>
             <div style="padding: 30px 10px;">
                 <table class="table table-striped">
