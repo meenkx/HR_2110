@@ -395,7 +395,7 @@ CREATE TABLE `profiles` (
   `End_date` date NOT NULL,
   `Nationality` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Data_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `User_role` enum('admin','hr_admin','hod','user') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `User_role` enum('admin','hr_admin','head','user') COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

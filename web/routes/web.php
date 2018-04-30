@@ -23,6 +23,11 @@ Route::get('/2110', function () {
     return redirect()->route('register');
 });
 
+Route::get('register', function () {
+//    return view('welcome');
+    return redirect()->route('login');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HRcontroller@profile')->name('profile');
 Route::get('/admin_profile', 'HRcontroller@admin_profile')->name('admin_profile');
