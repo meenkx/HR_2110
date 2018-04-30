@@ -1,25 +1,17 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 30, 2018 at 04:52 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Host: localhost:3306
+-- Generation Time: Apr 30, 2018 at 05:14 PM
+-- Server version: 5.6.38
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Database: `hr_2110`
+-- Database: `HR_2110`
 --
 
 -- --------------------------------------------------------
@@ -413,7 +405,7 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`ID_member`, `Firstname`, `Lastname`, `DOB`, `Gender`, `Marital_status`, `Email`, `Tel`, `Job_ID`, `Social_link`, `Work_type`, `Education`, `Photo`, `Emergency_Contact`, `Hire_day`, `End_date`, `Nationality`, `Data_status`, `User_role`, `password`, `remember_token`) VALUES
-(1, 'teeraphat', 'duangkongngoen', '2018-04-17', 'male', 'single', '123@123.com', 0, 1, 'facebook', 'full time', 'ประถม', '', 900212368, '2018-04-02', '0000-00-00', 'thai', 'on', 'user', '$2y$10$/hORS04mmGZ3GMtwz.6o6.5sUd83vtJWHE4QD9LIaQK5dsNCn3MI.', '8OMYJy0vLuF3wFZ3wbrdFZiduyn9SC0AGLTBhD8bm07oAHXMJgbEIkJtRx5E');
+(1, 'teeraphat', 'duangkongngoen', '2018-04-17', 'male', 'single', '123@123.com', 0, 1, 'facebook', 'full time', 'ประถม', '', 900212368, '2018-04-02', '0000-00-00', 'thai', 'on', 'user', '$2y$10$/hORS04mmGZ3GMtwz.6o6.5sUd83vtJWHE4QD9LIaQK5dsNCn3MI.', '');
 
 -- --------------------------------------------------------
 
@@ -837,8 +829,3 @@ ALTER TABLE `status_work`
 ALTER TABLE `transection_peyment`
   ADD CONSTRAINT `transection_peyment_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profiles` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transection_peyment_id_payment_special_foreign` FOREIGN KEY (`ID_payment_special`) REFERENCES `payment_special` (`ID_Payment_Special`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
