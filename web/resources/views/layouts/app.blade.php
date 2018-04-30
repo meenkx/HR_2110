@@ -44,7 +44,7 @@
     <link href="{{ asset('css/calender/helloWeek.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maurovieirareis.github.io/hello-week/demos/css/demo.css">
     {{--dropdown--}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>--}}
     <link rel="stylesheet" href="{{ asset('css/dropdown/dropdown.css') }}">
     <script src="{{ asset('js/dropdown/dropdown.js') }}"></script>
     <script type="text/javascript">
@@ -406,7 +406,7 @@
 
 </head>
 <body class="my-login-page">
-    <div id="app">
+    <div id="app_">
 
         @desktop
             @if (Auth::guest())
@@ -482,7 +482,7 @@
                             </div>
                         </div>
                         <div class="col-md-5" style="padding: 0px 25px;">
-                            <input type="text" name="search" class="search" placeholder="Search people">
+                            <input type="text" name="search" id="search" class="search" placeholder="Search people">
                         </div>
                         <div class="col-md-1" style="border-left: 1px solid black;margin: 0px 30px;height: 60px;line-height: 60px;">
                             {{--<div class="menu-toggle">--}}
@@ -626,7 +626,7 @@
     </script>
 
     {{--dropzone--}}
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+    {{--<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>--}}
     <script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js'></script>
     <script>
         window.onload = function(){
@@ -709,7 +709,7 @@
 
     {{--javascript config--}}
     {{--bootstrap--}}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    {{--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     {{--login--}}
@@ -753,5 +753,28 @@
         });
     </script>
 
+    {{--search script--}}
+    <script>
+        {{--$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });--}}
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        $('#search').on('keyup',function(){
+            $value=$(this).val();
+            $.ajax({
+                type : 'get',
+                url : '{{ route('search') }}',
+                data:{'search':$value},
+                success:function(data){
+                    $('tbody').html(data);
+                    console.log(data);
+                }
+            });
+        })
+    </script>
 </body>
 </html>

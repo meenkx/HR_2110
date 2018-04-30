@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> {{ config('app.name') }} - {{ date('Y') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -17,21 +17,19 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Kanit:300,700" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-    <link href="{{ asset('profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/teamlist.css') }}" rel="stylesheet">
     <link href="{{ asset('css/workhistory.css') }}" rel="stylesheet">
 
 
     <!-- bootstrap -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <style>
         .col-centered{
             float: none;
@@ -41,17 +39,34 @@
         }
     </style>
 
+
+    {{--Calendar--}}
+    <link href="{{ asset('css/calender/helloWeek.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maurovieirareis.github.io/hello-week/demos/css/demo.css">
     {{--dropdown--}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>--}}
     <link rel="stylesheet" href="{{ asset('css/dropdown/dropdown.css') }}">
     <script src="{{ asset('js/dropdown/dropdown.js') }}"></script>
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             $('#dropdown_date').stbDropdown();
             $('#dropdown_day').stbDropdown();
+            $('#dropdown_month').stbDropdown();
+            $('#dropdown_year').stbDropdown();
+            $('#dropdown_department').stbDropdown();
+            $('#dropdown_department_kpi').stbDropdown();
+            $('#dropdown_month_workhistory').stbDropdown();
+            $('#dropdown_year_workhistory').stbDropdown();
+            $('#dropdown_department_workhistory').stbDropdown();
+            $('#dropdown_month_salary').stbDropdown();
+            $('#dropdown_year_salary').stbDropdown();
+            $('#dropdown_location_branchLocation').stbDropdown();
+            $('#dropdown_department_branchLocation').stbDropdown();
+            $('#dropdown_department_payment').stbDropdown();
+            $('#dropdown_year_salaryEdit').stbDropdown();
+            $('#dropdown_month_salaryEdit').stbDropdown();
         });
     </script>
-
     {{--dropzone--}}
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css'>
     <style>
@@ -73,6 +88,7 @@
             vertical-align: top;
             border-top: 1px solid #ddd;
             padding: 8px;
+            vertical-align: middle;
         }
 
         div.table .file-row:nth-child(odd) {
@@ -107,71 +123,470 @@
         }
 
     </style>
-
+    {{--config--}}
     <style>
-        .modal {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
+        html,body{
+            font-family: 'Kanit', sans-serif;
+            overflow-x: hidden;
+        }
+        .navbar{
+            border-radius: 0px;
+        }
+        /* unvisited link */
+        a:link {text-decoration: none;}
+        /* visited link */
+        a:visited {text-decoration: none;}
+        /* mouse over link */
+        a:hover {text-decoration: none;}
+        /* selected link */
+        a:active {text-decoration: none;}
+
+        .stb-select-container .stb-select{
+            overflow-x: hidden;
+        }
+        .stb-select::-webkit-scrollbar-track
+        {
+            /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+            border-radius: 0px;
+            background-color: #F5F5F5;
+        }
+        .stb-select::-webkit-scrollbar
+        {
+            width: 12px;
+            background-color: #F5F5F5;
+        }
+        .stb-select::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #555;
+        }
+
+        /*bootstrap button*/
+        .btn:focus, .btn:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
+            color: black;
+            background-color: #f7f2f2;
+            border-color: red; /*set the color you want here*/
+        }
+        .btn-warning{
+            color: black;
+            background-color: #F8C557;
+            border-color: #F8C557;
+        }
+        .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open>.dropdown-toggle.btn-warning
+        {
+            color: #fff;
+            background-color: black;
+            border-color: black; /*set the color you want here*/
+        }
+        .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open>.dropdown-toggle.btn-danger,
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary
+        {
+            color: #fff;
+        }
+
+        #edit_icon:hover , #edit_icon:focus{
+            box-shadow: 0px 0px 10px 0px black;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all .2s ease-out;
+            animation: pulse 5s infinite;
+        }
+        @if (Route::getCurrentRoute()->uri() == 'edit' )
+        .vertical-alignment-helper {
+            display:table;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            visibility: hidden;
-            transform: scaleX(1.1) scaleY(1.1);
-            transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
-            font-family: sans-serif;
+            width: 100%;
+            pointer-events:none;
+        }
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+            pointer-events:none;
         }
         .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 1rem 1.5rem;
-            width: 24rem;
-            border-radius: 0.5rem;
+            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+            width:inherit;
+            max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching full width */
+            height:inherit;
+            /* To center horizontally */
+            margin: 0 auto;
+            pointer-events:all;
         }
-        .close-button {
-            float: right;
-            width: 1.5rem;
-            line-height: 1.5rem;
+        @elseif(Route::getCurrentRoute()->uri() == 'admin_workhistory')
+            .stb-select-container{
+            width: 20% !important;
+        }
+        @elseif(Route::getCurrentRoute()->uri() == 'admin_kpi')
+            .stb-select-container{
+            width: 15% !important;
+            margin-left: 0px;
+        }
+        .stb-select-container .stb-select{
+            width: 101.5%;
+        }
+        @elseif(Route::getCurrentRoute()->uri() == 'admin_profile')
+            .vertical-alignment-helper {
+            display:table;
+            height: 100%;
+            width: 100%;
+            pointer-events:none;
+        }
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+            pointer-events:none;
+        }
+        .modal-content {
+            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+            width:inherit;
+            max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching full width */
+            height:inherit;
+            /* To center horizontally */
+            margin: 0 auto;
+            pointer-events:all;
+        }
+        .modal-lg {
+            width: 900px;
+            margin: auto;
+        }
+        @elseif(Route::getCurrentRoute()->uri() == 'login')
+            .py-4{
+            height: 100vh;
+        }
+        .my-login-page .brand {
+            width: 90px;
+            height: 90px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: 0 auto;
+            margin: 40px auto;
+            box-shadow: 0 0 40px rgba(0,0,0,.05);
+        }
+
+        .my-login-page .brand img {
+            width: 100%;
+        }
+
+        .my-login-page .card-wrapper {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .my-login-page .card {
+            border-color: transparent;
+            box-shadow: 0 0 40px rgba(0,0,0,.05);
+        }
+
+        .my-login-page .card.fat {
+            padding: 10px;
+        }
+
+        .my-login-page .card .card-title {
+            margin-bottom: 30px;
+        }
+
+        .my-login-page .form-control {
+            border-width: 2.3px;
+        }
+
+        .my-login-page .form-group label {
+            width: 100%;
+        }
+
+        .my-login-page .btn.btn-block {
+            /*padding: 12px 10px;*/
+        }
+
+        .my-login-page .margin-top20 {
+            margin-top: 20px;
+        }
+
+        .my-login-page .no-margin {
+            margin: 0;
+        }
+
+        .my-login-page .footer {
+            margin: 40px 0;
+            color: #888;
             text-align: center;
+        }
+
+        .my-login-page .btn-outline-warning{
+
+            color: black;
+            border: 2px solid #F8C557;
+            background-color: white;
+            padding: 5px 7px !important;
+        }
+
+        @media screen and (max-width: 425px) {
+            .my-login-page .card-wrapper {
+                width: 90%;
+                margin: 0 auto;
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            .my-login-page .card.fat {
+                padding: 0;
+            }
+
+            .my-login-page .card.fat .card-body {
+                padding: 15px;
+            }
+        }
+        @elseif(Route::getCurrentRoute()->uri() == 'admin_notifications')
+            .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {display:none;}
+
+        .slider {
+            position: absolute;
             cursor: pointer;
-            border-radius: 0.25rem;
-            background-color: lightgray;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #d46262;
+            -webkit-transition: .4s;
+            transition: .4s;
         }
-        .close-button:hover {
-            background-color: darkgray;
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
         }
-        .show-modal {
-            opacity: 1;
-            visibility: visible;
-            transform: scaleX(1.0) scaleY(1.0);
-            transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+
+        input:checked + .slider {
+            background-color: #4bd964;
         }
-        @media only screen and (max-width: 50rem) {
-            h1 {
-                font-size: 1.5rem;
-            }
-            .modal-content {
-                width: calc(100% - 5rem);
-            }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #4bd964;
         }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        @elseif(Route::getCurrentRoute()->uri() == '/'){
+
+        }
+        @endif
     </style>
 
 </head>
-
-<body>
-
-<button class="trigger">Click here to trigger the modal!</button>
-<div class="modal">
-    <div class="modal-content">
-        <span class="close-button">×</span>
-        <h1>Hello, I am a modal!</h1>
+<body class="my-login-page">
+<div id="appp">
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Products info </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <input type="text" class="form-controller" id="search" name="search"/>
+                    </div>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+{{--script zone--}}
+<script>
+    $(document).ready(function(){
+        var theToggle = document.getElementById('toggle');
+
+        // based on Todd Motto functions
+        // https://toddmotto.com/labs/reusable-js/
+
+        // hasClass
+        function hasClass(elem, className) {
+            return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+        }
+        // addClass
+        function addClass(elem, className) {
+            if (!hasClass(elem, className)) {
+                elem.className += ' ' + className;
+            }
+        }
+        // removeClass
+        function removeClass(elem, className) {
+            var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ') + ' ';
+            if (hasClass(elem, className)) {
+                while (newClass.indexOf(' ' + className + ' ') >= 0 ) {
+                    newClass = newClass.replace(' ' + className + ' ', ' ');
+                }
+                elem.className = newClass.replace(/^\s+|\s+$/g, '');
+            }
+        }
+        // toggleClass
+        function toggleClass(elem, className) {
+            var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, " " ) + ' ';
+            if (hasClass(elem, className)) {
+                while (newClass.indexOf(" " + className + " ") >= 0 ) {
+                    newClass = newClass.replace( " " + className + " " , " " );
+                }
+                elem.className = newClass.replace(/^\s+|\s+$/g, '');
+            } else {
+                elem.className += ' ' + className;
+            }
+        }
+
+        theToggle.onclick = function() {
+            toggleClass(this, 'on');
+            return false;
+        }
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        var $container = $('.dropdown-menu'),
+            $list = $('.dropdown-menu ul'),
+            listItem = $list.find('li');
+
+        $(".dropdown .title").click(function () {
+            if( $container.height() > 0) {
+                closeMenu(this);
+            } else {
+                openMenu(this);
+            }
+        });
+
+        $(".dropdown-menu li").click(function () {
+            closeMenu(this);
+        });
+
+        function closeMenu(el) {
+            $(el).closest('.dropdown').toggleClass("closed").find(".title").text($(el).text());
+            $container.css("height", 0);
+            $list.css( "top", 0 );
+        }
+
+        function openMenu(el) {
+            $(el).parent().toggleClass("closed");
+
+            $container.css({
+                height: 200
+            })
+                .mousemove(function(e) {
+                    var heightDiff = $list.height() / $container.height(),
+                        offset = $container.offset(),
+                        relativeY = (e.pageY - offset.top),
+                        top = relativeY*heightDiff > $list.height()-$container.height() ?
+                            $list.height()-$container.height() : relativeY*heightDiff;
+
+                    $list.css("top", -top);
+                });
+        }
+    });
+</script>
+
+{{--dropzone--}}
+{{--<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>--}}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js'></script>
+<script>
+    window.onload = function(){
+
+
+        // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+        var previewNode = document.querySelector("#template");
+        previewNode.id = "";
+        var previewTemplate = previewNode.parentNode.innerHTML;
+        previewNode.parentNode.removeChild(previewNode);
+
+        var myDropzone = new Dropzone(".container", { // Make the whole body a dropzone
+            url: "/upload", // Set the url
+            thumbnailWidth: 80,
+            thumbnailHeight: 80,
+            parallelUploads: 20,
+            previewTemplate: previewTemplate,
+            autoQueue: false, // Make sure the files aren't queued until manually added
+            previewsContainer: "#previews", // Define the container to display the previews
+            clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+        });
+
+        myDropzone.on("addedfile", function (file) {
+            // Hookup the start button
+            file.previewElement.querySelector(".start").onclick = function () {
+                myDropzone.enqueueFile(file);
+            };
+        });
+
+        // Update the total progress bar
+        myDropzone.on("totaluploadprogress", function (progress) {
+            document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+        });
+
+        myDropzone.on("sending", function (file) {
+            // Show the total progress bar when upload starts
+            document.querySelector("#total-progress").style.opacity = "1";
+            // And disable the start button
+            file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+        });
+
+        // Hide the total progress bar when nothing's uploading anymore
+        myDropzone.on("queuecomplete", function (progress) {
+            document.querySelector("#total-progress").style.opacity = "0";
+        });
+
+        // Setup the buttons for all transfers
+        // The "add files" button doesn't need to be setup because the config
+        // `clickable` has already been specified.
+        document.querySelector("#actions .start").onclick = function () {
+            myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
+        };
+        document.querySelector("#actions .cancel").onclick = function () {
+            myDropzone.removeAllFiles(true);
+        };
+
+    };
+</script>
+
+{{--popup--}}
 <script>
     var modal = document.querySelector(".modal");
     var trigger = document.querySelector(".trigger");
@@ -191,6 +606,74 @@
     closeButton.addEventListener("click", toggleModal);
     window.addEventListener("click", windowOnClick);
 </script>
-</body>
 
+{{--javascript config--}}
+{{--bootstrap--}}
+{{--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+{{--login--}}
+<script>
+    $(function() {
+        $("input[type='password'][data-eye]").each(function(i) {
+            var $this = $(this);
+
+            $this.wrap($("<div/>", {
+                style: 'position:relative'
+            }));
+            $this.css({
+                paddingRight: 60
+            });
+            $this.after($("<div/>", {
+                html: 'Show',
+                class: 'btn btn-warning btn-sm',
+                id: 'passeye-toggle-'+i,
+                style: 'position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 7px 7px;font-size:12px;cursor:pointer;width:60px;margin: 0px -5px;'
+            }));
+            $this.after($("<input/>", {
+                type: 'hidden',
+                id: 'passeye-' + i
+            }));
+            $this.on("keyup paste", function() {
+                $("#passeye-"+i).val($(this).val());
+            });
+            $("#passeye-toggle-"+i).on("click", function() {
+                if($this.hasClass("show")) {
+                    $this.attr('type', 'password');
+                    $this.removeClass("show");
+                    $(this).removeClass("btn-outline-warning");
+                }else{
+                    $this.attr('type', 'text');
+                    $this.val($("#passeye-"+i).val());
+                    $this.addClass("show");
+                    $(this).addClass("btn-outline-warning");
+                }
+            });
+        });
+    });
+</script>
+
+{{--search script--}}
+<script>
+    {{--$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });--}}
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+<script type="text/javascript">
+    $('#search').on('keyup',function(){
+        $value=$(this).val();
+        $.ajax({
+            type : 'get',
+            url : '{{ route('search') }}',
+            data:{'search':$value},
+            success:function(data){
+                $('tbody').html(data);
+            }
+        });
+    })
+</script>
+</body>
 </html>

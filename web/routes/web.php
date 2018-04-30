@@ -44,3 +44,7 @@ Route::get('/admin_salaryEdit', 'HRcontroller@admin_salaryEdit')->name('admin_sa
 Route::get('/edit', 'HRcontroller@edit')->name('edit');
 Route::get('/leave', 'HRcontroller@leave')->name('leave');
 Route::get('/testex', 'HRcontroller@testex')->name('testex');
+
+//search
+Route::get('/ss','SearchController@index')->name('ssearch');
+Route::get('/search','SearchController@search')->name('search');

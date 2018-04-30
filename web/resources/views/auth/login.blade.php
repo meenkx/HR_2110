@@ -2,10 +2,7 @@
 
 @section('content')
     {{--check session--}}
-    <script>
-        $value = session('authen_type', 'user');
-        console.log($value)
-    </script>
+    <script> console.log("session status = {{ Session::get('authen_type') }}")</script>
 
 <div class="container">
     <div class="row justify-content-center align-items-center h-100" style="background-color: white">
