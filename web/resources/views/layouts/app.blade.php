@@ -461,7 +461,15 @@
                             <div style="padding-bottom: 3px;">
                                 <span class="topbartext1">Ms. Nayika Srinian</span>
                                 <button type="button" class="btn btn-default topbarbutton1" style="outline: none">
-                                    <span style="color: #39a938;text-transform: uppercase">employee</span>
+                                    @if( Session::get('authen_type') == 'user' )
+                                        <span style="color: #39a938;width: 150px !important;text-transform: uppercase">employee</span>
+                                    @elseif( Session::get('authen_type') == 'admin' )
+                                        <span style="color: #e22222;width: 150px !important;text-transform: uppercase">administrator</span>
+                                    @elseif( Session::get('authen_type') == 'head' )
+                                        <span style="color: #7914dd;width: 150px !important;text-transform: uppercase">head</span>
+                                    @elseif( Session::get('authen_type') == 'hr_admin' )
+                                        <span style="color: black;width: 150px !important;text-transform: uppercase">hr admin</span>
+                                    @endif
                                 </button>
                             </div>
                             <div>

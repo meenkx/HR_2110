@@ -56,8 +56,15 @@ class LoginController extends Controller
             return $request->only($this->username(), 'password');
         }
         else if (Auth::attempt(['Email' => $request->Email, 'password' => $request->password, 'User_role' => 'user'])) {
-            // The user is active, not suspended, and exists.
             Session::put('authen_type', 'user');
+            return $request->only($this->username(), 'password');
+        }
+        else if (Auth::attempt(['Email' => $request->Email, 'password' => $request->password, 'User_role' => 'head'])) {
+            Session::put('authen_type', 'head');
+            return $request->only($this->username(), 'password');
+        }
+        else if (Auth::attempt(['Email' => $request->Email, 'password' => $request->password, 'User_role' => 'hr_admin'])) {
+            Session::put('authen_type', 'hr_admin');
             return $request->only($this->username(), 'password');
         }
         else{
