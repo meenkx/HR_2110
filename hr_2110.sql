@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2018 at 07:11 PM
+-- Generation Time: Apr 30, 2018 at 04:52 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -37,6 +37,13 @@ CREATE TABLE `activity` (
   `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`Activity_ID`, `Activity_name`, `Objective`, `Type`, `Detail`, `Date`) VALUES
+(1, 'jogging', 'healty', 'excersice', 'jogging1', '2018-04-30');
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +55,13 @@ CREATE TABLE `activity_department` (
   `Activity_ID` int(10) UNSIGNED NOT NULL,
   `ID_listActivity` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `activity_department`
+--
+
+INSERT INTO `activity_department` (`Depart_ID`, `Activity_ID`, `ID_listActivity`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -82,6 +96,13 @@ CREATE TABLE `address` (
   `Postal_Code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `address`
+--
+
+INSERT INTO `address` (`ID_member`, `ID_Address`, `Type`, `House_No`, `Village`, `Village_No`, `Street`, `Sub_district_Sub_area`, `Alley_Lane`, `District_Area`, `Province`, `Postal_Code`) VALUES
+(1, 1, 'home', '439', 'สวนธน', 47, '5', 'thungkru', '5', 'lksdjfl', 'bangkok', '10140');
+
 -- --------------------------------------------------------
 
 --
@@ -93,6 +114,13 @@ CREATE TABLE `certificate` (
   `ID_member` int(10) UNSIGNED NOT NULL,
   `Total_value_Certificate` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `certificate`
+--
+
+INSERT INTO `certificate` (`ID_Certificate`, `ID_member`, `Total_value_Certificate`) VALUES
+(1, 1, '14000');
 
 -- --------------------------------------------------------
 
@@ -108,6 +136,13 @@ CREATE TABLE `department` (
   `Location_ID` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`Depart_ID`, `Depart_name`, `Head_ID`, `Tel`, `Location_ID`) VALUES
+(1, 'computer', 'nut', 91111111, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -120,6 +155,13 @@ CREATE TABLE `education_history` (
   `certificate` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Academy` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `education_history`
+--
+
+INSERT INTO `education_history` (`ID_mamber`, `ID_Education`, `certificate`, `Academy`) VALUES
+(1, 1, 'verilog', 'kmutt');
 
 -- --------------------------------------------------------
 
@@ -137,6 +179,13 @@ CREATE TABLE `forms_evidence` (
   `Confirm` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `forms_evidence`
+--
+
+INSERT INTO `forms_evidence` (`ID_member`, `ID_Evidence`, `Date`, `created_at`, `updated_at`, `Reason`, `Confirm`) VALUES
+(1, '1', '2018-04-18', '2018-04-03 17:00:00', '2018-04-10 17:00:00', 'sick', '');
+
 -- --------------------------------------------------------
 
 --
@@ -152,6 +201,13 @@ CREATE TABLE `history_work` (
   `Company` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `history_work`
+--
+
+INSERT INTO `history_work` (`ID_member`, `HW_ID`, `Job`, `Position`, `Experience`, `Company`) VALUES
+(1, 1, 'webprogrammer', '111', '2 year', 'kfc');
+
 -- --------------------------------------------------------
 
 --
@@ -165,6 +221,14 @@ CREATE TABLE `job` (
   `Salary_Parttime` int(11) NOT NULL,
   `Depart_ID` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `job`
+--
+
+INSERT INTO `job` (`Job_ID`, `Job_name`, `Salary`, `Salary_Parttime`, `Depart_ID`) VALUES
+(1, 'Sound Engineering', 1500, 150, 1),
+(2, 'Computerengineering', 30000, 2000, 1);
 
 -- --------------------------------------------------------
 
@@ -190,6 +254,13 @@ CREATE TABLE `location` (
   `Tel` int(11) NOT NULL,
   `Tax` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `location`
+--
+
+INSERT INTO `location` (`Location_ID`, `Location_name`, `Apartment`, `Building`, `Floor`, `House_No`, `Village`, `Village_No`, `Street`, `Sub_district_Sub_area`, `Alley_Lane`, `District_Area`, `Province`, `Postal_Code`, `Tel`, `Tax`) VALUES
+(1, 'บ้านสวนธน', '', 'ทานตะวัน3', '2', '435/639', 'บ้านสวนธน', 47, '5', 'thungkru', 'dfasdf', 'asdf', 'bangkok', '10140', 900212368, 7);
 
 -- --------------------------------------------------------
 
@@ -242,6 +313,13 @@ CREATE TABLE `payment_special` (
   `Cost_perday` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `payment_special`
+--
+
+INSERT INTO `payment_special` (`ID_Payment_Special`, `Detail`, `Work_date`, `Cost_perday`) VALUES
+(1, 'saraly', '1 ', 222);
+
 -- --------------------------------------------------------
 
 --
@@ -254,6 +332,13 @@ CREATE TABLE `performance_measurement` (
   `MC` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `performance_measurement`
+--
+
+INSERT INTO `performance_measurement` (`KPI_Code`, `Indicators`, `MC`) VALUES
+(1, 'fasdfjldsf', 'dsfasdf');
+
 -- --------------------------------------------------------
 
 --
@@ -265,6 +350,13 @@ CREATE TABLE `pm_of_each_department` (
   `Depart_ID` int(10) UNSIGNED NOT NULL,
   `KPI_CODE` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pm_of_each_department`
+--
+
+INSERT INTO `pm_of_each_department` (`PM_ID`, `Depart_ID`, `KPI_CODE`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -279,20 +371,27 @@ CREATE TABLE `pm__history` (
   `Value` enum('succeed','failure') COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `pm__history`
+--
+
+INSERT INTO `pm__history` (`PM_ID`, `Month`, `Year`, `Value`) VALUES
+(1, 'january', '1994', 'succeed');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profile`
+-- Table structure for table `profiles`
 --
 
-CREATE TABLE `profile` (
+CREATE TABLE `profiles` (
   `ID_member` int(10) UNSIGNED NOT NULL,
   `Firstname` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Lastname` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `DOB` date NOT NULL,
   `Gender` enum('male','female') COLLATE utf8mb4_unicode_ci NOT NULL,
   `Marital_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `E-mail` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Tel` int(11) NOT NULL,
   `Job_ID` int(10) UNSIGNED NOT NULL,
   `Social_link` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -305,8 +404,16 @@ CREATE TABLE `profile` (
   `Nationality` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Data_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `User_role` enum('admin','hr_admin','hod','user') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `profiles`
+--
+
+INSERT INTO `profiles` (`ID_member`, `Firstname`, `Lastname`, `DOB`, `Gender`, `Marital_status`, `Email`, `Tel`, `Job_ID`, `Social_link`, `Work_type`, `Education`, `Photo`, `Emergency_Contact`, `Hire_day`, `End_date`, `Nationality`, `Data_status`, `User_role`, `password`, `remember_token`) VALUES
+(1, 'teeraphat', 'duangkongngoen', '2018-04-17', 'male', 'single', '123@123.com', 0, 1, 'facebook', 'full time', 'ประถม', '', 900212368, '2018-04-02', '0000-00-00', 'thai', 'on', 'user', '$2y$10$/hORS04mmGZ3GMtwz.6o6.5sUd83vtJWHE4QD9LIaQK5dsNCn3MI.', '8OMYJy0vLuF3wFZ3wbrdFZiduyn9SC0AGLTBhD8bm07oAHXMJgbEIkJtRx5E');
 
 -- --------------------------------------------------------
 
@@ -323,6 +430,14 @@ CREATE TABLE `status_work` (
   `Time_checkout` date NOT NULL,
   `OT` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `status_work`
+--
+
+INSERT INTO `status_work` (`ID_Status`, `ID_member`, `Work_date`, `Work_status`, `Time_checkin`, `Time_checkout`, `OT`) VALUES
+(1, 1, '2018-04-01', 'full time', '2018-04-01', '0000-00-00', 0),
+(3, 1, '2018-04-01', 'full time', '2018-04-01', '0000-00-00', 22);
 
 -- --------------------------------------------------------
 
@@ -342,6 +457,33 @@ CREATE TABLE `transection_peyment` (
   `ALL_Total` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `transection_peyment`
+--
+
+INSERT INTO `transection_peyment` (`ID_list`, `ID_member`, `Salary`, `Total_Value_Skill`, `Date_Pay`, `Value_OT_total`, `Value_Bonus_total`, `ID_payment_special`, `ALL_Total`) VALUES
+(1, 1, 14000, 2222, '2018-04-30', 111121, 2112, 1, 21211);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) NOT NULL,
+  `name` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
+(1, 'meenkx', 'tyamdej@gmail.com', '$2y$10$/hORS04mmGZ3GMtwz.6o6.5sUd83vtJWHE4QD9LIaQK5dsNCn3MI.');
+
 -- --------------------------------------------------------
 
 --
@@ -353,6 +495,13 @@ CREATE TABLE `value_of_each_certificate` (
   `Certificate_name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Value_Certificate` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `value_of_each_certificate`
+--
+
+INSERT INTO `value_of_each_certificate` (`ID_Certificate`, `Certificate_name`, `Value_Certificate`) VALUES
+(1, 'java', '10000');
 
 --
 -- Indexes for dumped tables
@@ -464,9 +613,9 @@ ALTER TABLE `pm__history`
   ADD KEY `pm__history_pm_id_foreign` (`PM_ID`);
 
 --
--- Indexes for table `profile`
+-- Indexes for table `profiles`
 --
-ALTER TABLE `profile`
+ALTER TABLE `profiles`
   ADD PRIMARY KEY (`ID_member`),
   ADD KEY `profile_job_id_foreign` (`Job_ID`);
 
@@ -486,6 +635,12 @@ ALTER TABLE `transection_peyment`
   ADD KEY `transection_peyment_id_payment_special_foreign` (`ID_payment_special`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `value_of_each_certificate`
 --
 ALTER TABLE `value_of_each_certificate`
@@ -499,43 +654,43 @@ ALTER TABLE `value_of_each_certificate`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `Activity_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `Activity_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `activity_department`
 --
 ALTER TABLE `activity_department`
-  MODIFY `ID_listActivity` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_listActivity` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `ID_Address` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Address` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `Depart_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `Depart_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `history_work`
 --
 ALTER TABLE `history_work`
-  MODIFY `HW_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `HW_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `Job_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `Job_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `Location_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `Location_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -547,43 +702,49 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `payment_special`
 --
 ALTER TABLE `payment_special`
-  MODIFY `ID_Payment_Special` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Payment_Special` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `performance_measurement`
 --
 ALTER TABLE `performance_measurement`
-  MODIFY `KPI_Code` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `KPI_Code` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pm_of_each_department`
 --
 ALTER TABLE `pm_of_each_department`
-  MODIFY `PM_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `PM_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `profile`
+-- AUTO_INCREMENT for table `profiles`
 --
-ALTER TABLE `profile`
-  MODIFY `ID_member` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `profiles`
+  MODIFY `ID_member` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `status_work`
 --
 ALTER TABLE `status_work`
-  MODIFY `ID_Status` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Status` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `transection_peyment`
 --
 ALTER TABLE `transection_peyment`
-  MODIFY `ID_list` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_list` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `value_of_each_certificate`
 --
 ALTER TABLE `value_of_each_certificate`
-  MODIFY `ID_Certificate` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Certificate` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -606,14 +767,14 @@ ALTER TABLE `activity_status`
 -- Constraints for table `address`
 --
 ALTER TABLE `address`
-  ADD CONSTRAINT `address_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profile` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `address_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profiles` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `certificate`
 --
 ALTER TABLE `certificate`
   ADD CONSTRAINT `certificate_id_certificate_foreign` FOREIGN KEY (`ID_Certificate`) REFERENCES `value_of_each_certificate` (`ID_Certificate`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `certificate_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profile` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `certificate_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profiles` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `department`
@@ -625,19 +786,19 @@ ALTER TABLE `department`
 -- Constraints for table `education_history`
 --
 ALTER TABLE `education_history`
-  ADD CONSTRAINT `education_history_id_mamber_foreign` FOREIGN KEY (`ID_mamber`) REFERENCES `profile` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `education_history_id_mamber_foreign` FOREIGN KEY (`ID_mamber`) REFERENCES `profiles` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `forms_evidence`
 --
 ALTER TABLE `forms_evidence`
-  ADD CONSTRAINT `forms_evidence_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profile` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `forms_evidence_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profiles` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `history_work`
 --
 ALTER TABLE `history_work`
-  ADD CONSTRAINT `history_work_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profile` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `history_work_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profiles` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `job`
@@ -659,22 +820,22 @@ ALTER TABLE `pm__history`
   ADD CONSTRAINT `pm__history_pm_id_foreign` FOREIGN KEY (`PM_ID`) REFERENCES `pm_of_each_department` (`PM_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `profile`
+-- Constraints for table `profiles`
 --
-ALTER TABLE `profile`
+ALTER TABLE `profiles`
   ADD CONSTRAINT `profile_job_id_foreign` FOREIGN KEY (`Job_ID`) REFERENCES `job` (`Job_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `status_work`
 --
 ALTER TABLE `status_work`
-  ADD CONSTRAINT `status_work_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profile` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `status_work_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profiles` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transection_peyment`
 --
 ALTER TABLE `transection_peyment`
-  ADD CONSTRAINT `transection_peyment_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profile` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transection_peyment_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profiles` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transection_peyment_id_payment_special_foreign` FOREIGN KEY (`ID_payment_special`) REFERENCES `payment_special` (`ID_Payment_Special`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
