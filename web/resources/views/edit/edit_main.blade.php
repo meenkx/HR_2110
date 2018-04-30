@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    {{--check session--}}
+    <script> console.log("session status = {{ Session::get('authen_type') }}")</script>
+
     <div class="container-fluid">
         <div class="row justify-content-center" style="border-bottom: 1px solid black;padding: 10px 50px">
             <div class="col-md-11" style="display: inline-flex;">

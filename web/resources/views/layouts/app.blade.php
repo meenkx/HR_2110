@@ -493,6 +493,7 @@
                                         <li style="line-height: 30px !important;"><a href="{{ route('admin_salaryEdit') }}"><span><img src="{{ asset('../img/icon/salary.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>salary edit</a></li>
                                     </ul>
 
+                                    {{--@if(Session::has('admin'))--}}
                                     <ul style="padding-left: 15px;border-left: 1px solid;">
                                         <li style="line-height: 30px !important;"><a href="{{ route('admin_profile') }}"><span><img src="{{ asset('../img/icon/user1.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Profile</a></li>
                                         <li style="line-height: 30px !important;"><a href="{{ route('admin_workhistory') }}"><span><img src="{{ asset('../img/icon/time.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work history</a></li>
@@ -506,6 +507,8 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </ul>
+                                    {{--@endif--}}
+
                                 </div>
 
                             </div>

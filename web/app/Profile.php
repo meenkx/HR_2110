@@ -12,7 +12,10 @@ class Profile extends Model implements Authenticatable
     use Notifiable;
     use AuthenticableTrait;
 
+
+
     protected $primaryKey = 'ID_member';
+
     /**
      * The table associated with the model.
      *
@@ -26,7 +29,7 @@ class Profile extends Model implements Authenticatable
      * @var array
      */
     protected $fillable = [
-        'Email', 'password',
+        'Email', 'Password',
     ];
 
     /**
@@ -35,7 +38,7 @@ class Profile extends Model implements Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password'
+        'Password'
     ];
 
     /**
@@ -44,5 +47,16 @@ class Profile extends Model implements Authenticatable
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
 
 }

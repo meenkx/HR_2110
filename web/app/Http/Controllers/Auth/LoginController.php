@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
@@ -24,7 +26,6 @@ class LoginController extends Controller
 
 
 //    config manual
-
     /**
      * Validate the user login request.
      *
@@ -42,12 +43,27 @@ class LoginController extends Controller
     /**
      * Get the needed authorization credentials from the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
+     * @throws ValidationException
      */
     protected function credentials(Request $request)
     {
-        return $request->only($this->username(), 'password');
+//        return $request->only($this->username(), 'password');
+        if (Auth::attempt(['Email' => $request->Email, 'password' => $request->password, 'User_role' => 'admin'])) {
+            // The user is active, not suspended, and exists.
+            Session::put('authen_type', 'admin');
+            return $request->only($this->username(), 'password');
+        }
+        else if (Auth::attempt(['Email' => $request->Email, 'password' => $request->password, 'User_role' => 'user'])) {
+            // The user is active, not suspended, and exists.
+            Session::put('authen_type', 'user');
+            return $request->only($this->username(), 'password');
+        }
+        else{
+            return $this->sendFailedLoginResponse($request);
+        }
+
     }
 
     /**
@@ -85,9 +101,8 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $this->guard()->logout();
-
         $request->session()->invalidate();
-
+        Session::forget('authen_type');
         return redirect('/');
     }
 
@@ -99,6 +114,7 @@ class LoginController extends Controller
      *
      * @var string
      */
+
 //    protected $redirectTo = '/home';
     protected $redirectTo = '/admin_profile';
 

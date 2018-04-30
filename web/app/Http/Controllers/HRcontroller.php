@@ -9,7 +9,9 @@ class HRcontroller extends Controller
     //
     public function __construct()
     {
+
         $this->middleware('auth');
+
     }
 
     public function profile()
@@ -18,6 +20,7 @@ class HRcontroller extends Controller
     }
     public function admin_profile()
     {
+//        dd(session()->all());
         return view('edit.edit_content.admin_profile');
     }
 

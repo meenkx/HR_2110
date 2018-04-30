@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    {{--check session--}}
+    <script> console.log("session status = {{ Session::get('authen_type') }}")</script>
+
 <div class="container">
     <div class="row justify-content-center align-items-center h-100" style="background-color: white">
 
