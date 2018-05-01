@@ -21,16 +21,17 @@ class SearchController extends Controller
             $profiles = DB::table('profiles')
                 ->where('Firstname','LIKE','%'.$request->search."%")
                 ->orWhere('Lastname','LIKE','%'.$request->search."%")
+                ->orWhere('Email','LIKE','%'.$request->search."%")
                 ->get();
 
             if($profiles)
             {
                 foreach ($profiles as $key => $profile) {
-                    $output.='<tr>'.
-                        '<td>'.$profile->ID_member.'</td>'.
-                        '<td>'.$profile->Firstname.'</td>'.
-                        '<td>'.$profile->Lastname.'</td>'.
-                        '<td>'.$profile->Email.'</td>'.
+                    $output.= '<tr onclick="getdata()">' .
+                        '<td id="ID_member">'.$profile->ID_member.'</td>'.
+                        '<td id="Firstname">'.$profile->Firstname.'</td>'.
+                        '<td id="Lastname">'.$profile->Lastname.'</td>'.
+                        '<td id="Email">'.$profile->Email.'</td>'.
                         '</tr>';
                 }
                 return Response($output);

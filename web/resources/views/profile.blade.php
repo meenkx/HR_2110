@@ -8,20 +8,6 @@
                 <span style="font-size: 35px;font-weight: bold;vertical-align: middle;line-height: 85px;padding-left: 10px;padding-right: 50px;">Profile</span>
             </div>
         </div>
-        <div class="row">
-            <table class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
         <div class="row justify-content-center" style="padding: 60px 20px;">
 
             <div class="col-md-4">

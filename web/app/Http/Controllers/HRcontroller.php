@@ -75,4 +75,8 @@ class HRcontroller extends Controller
     public function testex(){
         return view('testex');
     }
+
+    public function testex2(){
+        return view('testex2');
+    }
 }

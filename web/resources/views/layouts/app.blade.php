@@ -26,6 +26,7 @@
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/teamlist.css') }}" rel="stylesheet">
     <link href="{{ asset('css/workhistory.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/popup_search.css') }}" rel="stylesheet">
 
 
     <!-- bootstrap -->
@@ -187,6 +188,9 @@
         .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary
         {
             color: #fff;
+        }
+        .button_hover:hover, .button_hover:focus, .button_hover:active, .button_hover.active, .open>.dropdown-toggle.button_hover {
+            color: #ffc439;
         }
 
         #edit_icon:hover , #edit_icon:focus{
@@ -404,6 +408,25 @@
         @endif
     </style>
 
+    <style>
+        input[type=text]#search:focus + #search_content{
+            display: block !important;
+        }
+
+        #search_content{
+            display: none;
+            background-color: white;
+            border: 1px solid #ffc439;
+            width: 800px;
+            position: fixed;
+            top: 71px;
+            right: 228px;
+            padding: 20px 15px;
+            border-radius: 15px;
+            z-index: 99;
+        }
+    </style>
+
 </head>
 <body class="my-login-page">
     <div id="app_">
@@ -481,9 +504,12 @@
                           </span>
                             </div>
                         </div>
-                        <div class="col-md-5" style="padding: 0px 25px;">
-                            <input type="text" name="search" id="search" class="search" placeholder="Search people">
+                        <div class="col-md-5" style="padding: 0px 25px;padding-left: 365px;">
+                            {{--<input type="text" name="search" id="search" class="search" placeholder="Search people">--}}
+                            <button type="button" class="btn button_hover" name="search" id="search_button" style="width: 100%;text-align: left;background-color: white;border-radius: 30px;padding-left: 20px;vertical-align: middle;height: 45px;margin: 0px">
+                                <img src="img/icon/magnifying-glass.png" alt="" width="20px" height="20px"><span style="padding-left: 15px">Search people</span></button>
                         </div>
+
                         <div class="col-md-1" style="border-left: 1px solid black;margin: 0px 30px;height: 60px;line-height: 60px;">
                             {{--<div class="menu-toggle">--}}
                             {{--<img src="{{ asset('../img/icon/down-arrow.png') }}" alt="" style="width: 40px;">--}}
@@ -529,6 +555,31 @@
             <main class="py-4">
                 @yield('content')
             </main>
+
+            <div id="qnimate" class="off">
+                <div id="search" class="open">
+                    <button data-widget="remove" id="removeClass" class="close" type="button">×</button>
+                    <form action="http://bootsnipp.com/user/snippets/508jR" method="" autocomplete="off">
+                        {{--<input type="text" placeholder="Type search keywords here" value="" name="term" id="term">--}}
+                        <input type="text" name="search" id="searchh" class="searchh" placeholder="Search people" style="border: 1px solid black">
+                        <div style="position: absolute;width: 50%;top: 34%;transform: translateX(50%);">
+                            <table class="table table-bordered table-hover" id="data">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Firstname</th>
+                                    <th scope="col">Lastname</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         @elsedesktop
             <div style="height: 100vh;background: url('{{ asset('img/icon/browser_not_supported.png') }}') no-repeat center center fixed;-webkit-background-size: 100%;-moz-background-size: 100%;-o-background-size: 100%;background-size: 100%;background-color: #96d6f7;"></div>
         @enddesktop
@@ -687,25 +738,7 @@
     </script>
 
     {{--popup--}}
-    <script>
-        var modal = document.querySelector(".modal");
-        var trigger = document.querySelector(".trigger");
-        var closeButton = document.querySelector(".close-button");
-
-        function toggleModal() {
-            modal.classList.toggle("show-modal");
-        }
-
-        function windowOnClick(event) {
-            if (event.target === modal) {
-                toggleModal();
-            }
-        }
-
-        trigger.addEventListener("click", toggleModal);
-        closeButton.addEventListener("click", toggleModal);
-        window.addEventListener("click", windowOnClick);
-    </script>
+    <script src="{{ asset('js/popup.js') }}"></script>
 
     {{--javascript config--}}
     {{--bootstrap--}}
@@ -713,45 +746,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     {{--login--}}
-    <script>
-        $(function() {
-            $("input[type='password'][data-eye]").each(function(i) {
-                var $this = $(this);
-
-                $this.wrap($("<div/>", {
-                    style: 'position:relative'
-                }));
-                $this.css({
-                    paddingRight: 60
-                });
-                $this.after($("<div/>", {
-                    html: 'Show',
-                    class: 'btn btn-warning btn-sm',
-                    id: 'passeye-toggle-'+i,
-                    style: 'position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 7px 7px;font-size:12px;cursor:pointer;width:60px;margin: 0px -5px;'
-                }));
-                $this.after($("<input/>", {
-                    type: 'hidden',
-                    id: 'passeye-' + i
-                }));
-                $this.on("keyup paste", function() {
-                    $("#passeye-"+i).val($(this).val());
-                });
-                $("#passeye-toggle-"+i).on("click", function() {
-                    if($this.hasClass("show")) {
-                        $this.attr('type', 'password');
-                        $this.removeClass("show");
-                        $(this).removeClass("btn-outline-warning");
-                    }else{
-                        $this.attr('type', 'text');
-                        $this.val($("#passeye-"+i).val());
-                        $this.addClass("show");
-                        $(this).addClass("btn-outline-warning");
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="{{ asset('js/login.js') }}"></script>
 
     {{--search script--}}
     <script>
@@ -763,7 +758,7 @@
         });
     </script>
     <script type="text/javascript">
-        $('#search').on('keyup',function(){
+        $('#searchh').on('keyup',function(){
             $value=$(this).val();
             $.ajax({
                 type : 'get',
@@ -771,10 +766,45 @@
                 data:{'search':$value},
                 success:function(data){
                     $('tbody').html(data);
+                    // $('#search_content_zone').html(data);
                     console.log(data);
                 }
             });
         })
+    </script>
+    <script>
+        $(function(){
+            $("#search_button").click(function () {
+                $('#qnimate').addClass('popup-box-on');
+            });
+
+            $("#removeClass").click(function () {
+                $('#qnimate').removeClass('popup-box-on');
+            });
+        })
+
+    </script>
+    <script>
+        function getdata() {
+            var table = document.getElementsByTagName("table")[0];
+            var tbody = table.getElementsByTagName("tbody")[0];
+            tbody.onclick = function (e) {
+                e = e || window.event;
+                var data = [];
+                var target = e.srcElement || e.target;
+                while (target && target.nodeName !== "TR") {
+                    target = target.parentNode;
+                }
+                if (target) {
+                    var cells = target.getElementsByTagName("td");
+                    for (var i = 0; i < cells.length; i++) {
+                        data.push(cells[i].innerHTML);
+                    }
+                }
+                // alert(data[1]);
+                window.location.href = "/profile?profile="+data[1];
+            };
+        }
     </script>
 </body>
 </html>
