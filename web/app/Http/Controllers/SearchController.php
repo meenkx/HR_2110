@@ -18,40 +18,22 @@ class SearchController extends Controller
         if($request->ajax())
         {
             $output="";
-            $profiles_Email = DB::table('profiles')
-                ->where('Email','LIKE','%'.$request->search."%")
-                ->get();
-            $profiles_Firstname = DB::table('profiles')
+            $profiles = DB::table('profiles')
                 ->where('Firstname','LIKE','%'.$request->search."%")
+                ->orWhere('Lastname','LIKE','%'.$request->search."%")
                 ->get();
 
-            if (!$profiles_Email->count() == 0){
-                if($profiles_Email)
-                {
-                    foreach ($profiles_Email as $key => $profile) {
-                        $output.='<tr>'.
-                            '<td>'.$profile->ID_member.'</td>'.
-                            '<td>'.$profile->Firstname.'</td>'.
-                            '<td>'.$profile->Lastname.'</td>'.
-                            '<td>'.$profile->Email.'</td>'.
-                            '</tr>';
-                    }
-                    return Response($output);
+            if($profiles)
+            {
+                foreach ($profiles as $key => $profile) {
+                    $output.='<tr>'.
+                        '<td>'.$profile->ID_member.'</td>'.
+                        '<td>'.$profile->Firstname.'</td>'.
+                        '<td>'.$profile->Lastname.'</td>'.
+                        '<td>'.$profile->Email.'</td>'.
+                        '</tr>';
                 }
-            }
-            else{
-                if($profiles_Firstname)
-                {
-                    foreach ($profiles_Firstname as $key => $profile) {
-                        $output.='<tr>'.
-                            '<td>'.$profile->ID_member.'</td>'.
-                            '<td>'.$profile->Firstname.'</td>'.
-                            '<td>'.$profile->Lastname.'</td>'.
-                            '<td>'.$profile->Email.'</td>'.
-                            '</tr>';
-                    }
-                    return Response($output);
-                }
+                return Response($output);
             }
 
         }
