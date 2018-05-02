@@ -80,7 +80,6 @@ class RegisterController extends Controller
             'Photo' => $data['Photo'],
             'Emergency_Contact' => $data['Emergency_Contact'],
             'Hire_day' => $data['Hire_day'],
-            'End_date' => $data['End_date'],
             'Nationality' => $data['Nationality'],
             'Data_status' => $data['Data_status'],
             'User_role' => $data['User_role'],

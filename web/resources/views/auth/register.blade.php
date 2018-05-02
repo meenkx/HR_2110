@@ -58,10 +58,10 @@
 
                             <div class="col-md-6">
                                 {{--<input id="Gender" type="text" class="form-control{{ $errors->has('Gender') ? ' is-invalid' : '' }}" name="Gender" value="{{ old('Gender') }}" placeholder="ชาย / หญิง" required autofocus>--}}
-                                <select class="form-control{{ $errors->has('Gender') ? ' is-invalid' : '' }}" id="Gender">
+                                <select class="form-control{{ $errors->has('Gender') ? ' is-invalid' : '' }}" id="Gender" name="Gender">
                                     <option>เลือกเพศ</option>
-                                    <option value="ชาย">ชาย</option>
-                                    <option value="หญิง">หญิง</option>
+                                    <option value="male">ชาย</option>
+                                    <option value="female">หญิง</option>
                                 </select>
                                 @if ($errors->has('Gender'))
                                     <span class="invalid-feedback">
@@ -184,7 +184,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Work_type" class="col-md-4 col-form-label text-md-right">{{ __('Work_type') }}</label>
+                            <label for="Work_type" class="col-md-4 col-form-label text-md-right">{{ __('Work type') }}</label>
 
                             <div class="col-md-6">
                                 <input id="Work_type" type="text" class="form-control{{ $errors->has('Work_type') ? ' is-invalid' : '' }}" name="Work_type" value="{{ old('Work_type') }}" placeholder="Parttime / Fulltime" required>
@@ -198,7 +198,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Hire_day" class="col-md-4 col-form-label text-md-right">{{ __('Hire_day') }}</label>
+                            <label for="Hire_day" class="col-md-4 col-form-label text-md-right">{{ __('Hire day') }}</label>
 
                             <div class="col-md-6">
                                 <input id="Hire_day" type="date" class="form-control{{ $errors->has('Hire_day') ? ' is-invalid' : '' }}" name="Hire_day" required>
@@ -206,20 +206,6 @@
                                 @if ($errors->has('Hire_day'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('Hire_day') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="End_date" class="col-md-4 col-form-label text-md-right">{{ __('End_date') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="End_date" type="date" class="form-control{{ $errors->has('End_date') ? ' is-invalid' : '' }}" name="End_date" required>
-
-                                @if ($errors->has('End_date'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('End_date') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -258,7 +244,7 @@
 
                             <div class="col-md-6">
                                 {{--<input id="User_role" type="text" class="form-control{{ $errors->has('User_role') ? ' is-invalid' : '' }}" name="User_role" value="{{ old('Nationality') }}" placeholder="user / admin / hr_admin / head" required>--}}
-                                <select class="form-control{{ $errors->has('User_role') ? ' is-invalid' : '' }}" id="User_role">
+                                <select class="form-control{{ $errors->has('User_role') ? ' is-invalid' : '' }}" id="User_role" name="User_role">
                                     <option>เลือกสิทธิ์ผู้ใช้งาน</option>
                                     <option value="user">USER</option>
                                     <option value="admin">ADMIN</option>

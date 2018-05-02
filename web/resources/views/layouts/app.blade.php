@@ -192,7 +192,10 @@
         .button_hover:hover, .button_hover:focus, .button_hover:active, .button_hover.active, .open>.dropdown-toggle.button_hover {
             color: #ffc439;
         }
-
+        .btn-default{
+            background-color: white;
+            border-color: white; /*set the color you want here*/
+        }
         #edit_icon:hover , #edit_icon:focus{
             box-shadow: 0px 0px 10px 0px black;
             border-radius: 100px;
@@ -504,7 +507,7 @@
                           </span>
                             </div>
                         </div>
-                        <div class="col-md-5" style="padding: 0px 25px;padding-left: 345px;">
+                        <div class="col-md-5" style="padding: 0px 25px;padding-left: 290px;">
                             {{--<input type="text" name="search" id="search" class="search" placeholder="Search people">--}}
                             <button type="button" class="btn button_hover" name="search" id="search_button" style="width: 100%;text-align: left;background-color: white;border-radius: 30px;padding-left: 20px;vertical-align: middle;height: 45px;margin: 0px">
                                 <img src="img/icon/magnifying-glass.png" alt="" width="20px" height="20px"><span style="padding-left: 15px">Search people</span></button>
