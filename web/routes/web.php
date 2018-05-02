@@ -17,14 +17,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-// Registration Routes...
-//Route::get('2110', [
-//    'as' => 'register',
-//    'uses' => 'Auth\RegisterController@showRegistrationForm'
-//]);
-//Route::get('register', function () {
-//    return redirect()->route('login');
-//});
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HRcontroller@profile')->name('profile');

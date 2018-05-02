@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class HRcontroller extends Controller
 {
@@ -25,7 +27,6 @@ class HRcontroller extends Controller
     }
     public function admin_profile()
     {
-//        dd(session()->all());
         return view('edit.edit_content.admin_profile');
     }
 

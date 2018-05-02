@@ -1,7 +1,6 @@
 <?php
 
 use Faker\Generator as Faker;
-use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +14,16 @@ use Illuminate\Support\Facades\Hash;
 */
 
 $factory->define(\App\Profile::class, function (Faker $faker) {
+
     $gender = $faker->randomElement(['male','female']);
     $Marital_status = $faker->randomElement(['single', 'Married', 'divorced', 'widowed']);
-    $Job_ID = $faker->randomElement(['1', '2', '3', '4']);
+    $Job_ID = $faker->randomElement([
+        '1','2','3','4','5','6','7','8','9','10',
+        '11','12','13','14','15','16','17','18','19','20',
+        '21','22','23','24','25','26','27','28','29','30',
+        '31','32','33','34','35','36','37','38','39','40',
+        '41','42','43','44','45','46','47','48','49','50'
+        ]);
     $Social_link = $faker->randomElement(['-']);
     $Work_type = $faker->randomElement(['Part time','Full time']);
     $Education = $faker->randomElement(['KMUTT','KMUNB','KMUIT']);
@@ -28,19 +34,19 @@ $factory->define(\App\Profile::class, function (Faker $faker) {
     static $password;
     return array(
         //
-        'Firstname' => $faker->firstNameMale,
+        'Firstname' => $faker->firstNameFemale,
         'Lastname' => $faker->lastName,
-        'DOB' => date('Y-m-d'),
+        'DOB' => date('Y-m-d', strtotime( '+'.mt_rand(0,30).' days'.'+'.mt_rand(1,12).' month'.'+'.mt_rand(-40,-20).' year') ),
         'Gender' => $gender,
         'Marital_status' => $Marital_status,
-        'Email' => $faker->unique()->safeEmail,
-        'Tel' => '08'.$faker->numberBetween($min = 100000, $max = 99999999),
+        'Email' => $faker->unique()->freeEmail,
+        'Tel' => '08'.$faker->numberBetween($min = 10000000, $max = 99999999),
         'Job_ID' => $Job_ID,
         'Social_link' => $Social_link,
         'Work_type' => $Work_type,
         'Education' => $Education,
         'Photo' => $Photo,
-        'Emergency_Contact' => '09'.$faker->numberBetween($min = 100000, $max = 99999999),
+        'Emergency_Contact' => '09'.$faker->numberBetween($min = 10000000, $max = 99999999),
         'Hire_day' => date('Y-m-d'),
         'Nationality' => $Nationality,
         'Data_status' => $Data_status,
