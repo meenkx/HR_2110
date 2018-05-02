@@ -29,7 +29,7 @@
     transition: all 3s; /*Change the opacity to all*/
 }
 #search .close {
-    color: #be5254;
+    color: #ffc439;
     font-size: 100px;
     opacity: 1;
     padding: 10px 17px;

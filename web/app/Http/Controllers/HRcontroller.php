@@ -14,9 +14,14 @@ class HRcontroller extends Controller
 
     }
 
-    public function profile()
+    public function profile(Request $request)
     {
-        return view('profile');
+        $profileid = $request->query('profile');
+        if ($profileid == null){
+            return redirect()->route('admin_profile');
+        }else{
+            return view('profile');
+        }
     }
     public function admin_profile()
     {

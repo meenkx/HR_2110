@@ -504,7 +504,7 @@
                           </span>
                             </div>
                         </div>
-                        <div class="col-md-5" style="padding: 0px 25px;padding-left: 365px;">
+                        <div class="col-md-5" style="padding: 0px 25px;padding-left: 345px;">
                             {{--<input type="text" name="search" id="search" class="search" placeholder="Search people">--}}
                             <button type="button" class="btn button_hover" name="search" id="search_button" style="width: 100%;text-align: left;background-color: white;border-radius: 30px;padding-left: 20px;vertical-align: middle;height: 45px;margin: 0px">
                                 <img src="img/icon/magnifying-glass.png" alt="" width="20px" height="20px"><span style="padding-left: 15px">Search people</span></button>
@@ -562,7 +562,7 @@
                     <form action="http://bootsnipp.com/user/snippets/508jR" method="" autocomplete="off">
                         {{--<input type="text" placeholder="Type search keywords here" value="" name="term" id="term">--}}
                         <input type="text" name="search" id="searchh" class="searchh" placeholder="Search people" style="border: 1px solid black">
-                        <div style="position: absolute;width: 50%;top: 34%;transform: translateX(50%);">
+                        <div style="position: absolute;width: 50%;top: 40%;transform: translateX(50%);">
                             <table class="table table-bordered table-hover" id="data">
                                 <thead>
                                 <tr>
@@ -785,6 +785,7 @@
 
     </script>
     <script>
+        console.log("looppp row");
         function getdata() {
             var table = document.getElementsByTagName("table")[0];
             var tbody = table.getElementsByTagName("tbody")[0];

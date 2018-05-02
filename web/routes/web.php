@@ -49,3 +49,5 @@ Route::get('/testex2', 'HRcontroller@testex2')->name('testex2');
 //search
 Route::get('/ss','SearchController@index')->name('ssearch');
 Route::get('/search','SearchController@search')->name('search');
+//calender
+Route::get('/calender_eiei','CalenderController@calender')->name('calender_eiei');
