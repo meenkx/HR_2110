@@ -17,14 +17,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/2110', function () {
-//    return view('welcome');
-    return redirect()->route('register');
-});
-
+// Registration Routes...
+Route::get('2110', [
+    'as' => 'register',
+    'uses' => 'Auth\RegisterController@showRegistrationForm'
+]);
 Route::get('register', function () {
-//    return view('welcome');
     return redirect()->route('login');
 });
 
