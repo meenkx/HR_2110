@@ -16,13 +16,14 @@ class CalenderController extends Controller
 //            dd($request->Calender);
             $output="";
             $Calenders = DB::table('activity')
-                ->where('Date','LIKE','%'.$request->Calender."%")
+                ->where('Date',$request->Calender)
                 ->get();
             if($Calenders)
             {
                 foreach ($Calenders as $key => $calender) {
-                    $output.= $calender->Activity_name;
+                    $output = $calender->Activity_name;
                 }
+
                 return Response($output);
             }
 

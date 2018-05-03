@@ -24,6 +24,9 @@ $factory->define(\App\Profile::class, function (Faker $faker) {
         '31','32','33','34','35','36','37','38','39','40',
         '41','42','43','44','45','46','47','48','49','50'
         ]);
+    $Job_ID2 = $faker->randomElement([
+        '1','2'
+    ]);
     $Social_link = $faker->randomElement(['-']);
     $Work_type = $faker->randomElement(['Part time','Full time']);
     $Education = $faker->randomElement(['KMUTT','KMUNB','KMUIT']);
@@ -41,7 +44,7 @@ $factory->define(\App\Profile::class, function (Faker $faker) {
         'Marital_status' => $Marital_status,
         'Email' => $faker->unique()->freeEmail,
         'Tel' => '08'.$faker->numberBetween($min = 10000000, $max = 99999999),
-        'Job_ID' => $Job_ID,
+        'Job_ID' => $Job_ID2,
         'Social_link' => $Social_link,
         'Work_type' => $Work_type,
         'Education' => $Education,
