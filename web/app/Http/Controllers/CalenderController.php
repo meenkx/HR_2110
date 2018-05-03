@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 class CalenderController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function calender(Request $request)
     {
 

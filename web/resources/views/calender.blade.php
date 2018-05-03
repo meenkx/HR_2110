@@ -55,40 +55,53 @@
         </div>
     </div>
 
-
+{{--    {{ $Depart_ID }}--}}
     <script src="{{ asset('js/calender/datepickk.js') }}" type="text/javascript"></script>
     <script>
 
-        var highlight = {
-            start: new Date(2018,4,1),
-            end: new Date(2018,4,10),
-            backgroundColor: '#87bde7',
-            color: '#ffffff',
-            legend: 'CSS Conf.'
-        };
-
-        var highlight2 = {
-            dates: [
-            {
-                start: new Date(2018,4,12),
-                end: new Date(2018,4,15)
-            },
-            {
-                start: new Date(2018,4,29),
-                end: new Date(2018,4,30)
-            }
-            ],
-            backgroundColor: '#ffc439',
-            color: '#ffffff',
-            legend: 'Holidays'
-        };
-
+        var type = {!! json_encode($type) !!};
+        var Depart_ID = {!! json_encode($Depart_ID) !!};
+        type = '';
+        Depart_ID = '';
+        if ( type = 'Low')
+        {
+            var low = {
+                start: new Date(2018,4,1),
+                end: new Date(2018,4,11),
+                backgroundColor: '#87bde7',
+                color: '#ffffff',
+                legend: 'CSS Conf.'
+            };
+        }
+        else if (type = 'medium'){
+            var medium = {
+                dates: [
+                    {start: new Date(2018,4,12), end: new Date(2018,4,15)},
+                ],
+                backgroundColor: '#ffc439',
+                color: '#ffffff',
+                legend: 'Holidays'
+            };
+        }
+        else if (type = 'high'){
+            var high = {
+                dates: [
+                    {start: new Date(2018,4,12), end: new Date(2018,4,15)},
+                ],
+                // backgroundColor: '#ffc439',
+                backgroundColor: '#ff3939',
+                color: '#ffffff',
+                legend: 'Holidays'
+            };
+        }
+        console.log(type);
+        console.log(Depart_ID);
         var datepicker = new Datepickk({
             container: document.querySelector('#datepicker'),
             inline: true,
             range: false,
             maxSelections: 1,
-            highlight: [highlight,highlight2]
+            highlight: [low,medium,high]
         });
 
         datepicker.setDate = Date.now();
@@ -126,7 +139,7 @@
                     // $('tbody').html(data);
                     // $('#search_content_zone').html(data);
                     console.log("data is - " + data);
-                    if(data != ""){
+                    if(data !== ""){
                         $('.title').html(data);
                     }
                     else{

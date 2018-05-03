@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -11,9 +12,7 @@ class HRcontroller extends Controller
     //
     public function __construct()
     {
-
         $this->middleware('auth');
-
     }
 
     public function profile(Request $request)
@@ -31,7 +30,18 @@ class HRcontroller extends Controller
     }
 
     public function calender(){
-        return view('calender');
+        $users = DB::table('activity_status')
+            ->join('activity_department', 'activity_status.ID_listActivity', '=', 'activity_department.ID_listActivity')
+            ->join('activity', 'activity.Activity_ID', '=', 'activity_department.Activity_ID')
+            ->select('activity_status.*', 'activity.Activity_name', 'activity.Type','activity_department.Depart_ID')
+            ->get();
+        foreach ($users as $key => $user) {
+            $users_Type = $user->Type;
+            $users_Depart_ID = $user->Depart_ID;
+
+        }
+//        dd($users);
+        return view('calender',['type' => $users_Type ,'Depart_ID' => $users_Depart_ID ]);
     }
 
     public function admin_workhistory(){
