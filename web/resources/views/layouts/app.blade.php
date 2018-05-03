@@ -40,10 +40,6 @@
         }
     </style>
 
-
-    {{--Calendar--}}
-    <link href="{{ asset('css/calender/helloWeek.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://maurovieirareis.github.io/hello-week/demos/css/demo.css">
     {{--dropdown--}}
     {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>--}}
     <link rel="stylesheet" href="{{ asset('css/dropdown/dropdown.css') }}">
@@ -486,7 +482,7 @@
                         <div class="col-md-6">
                             <div style="padding-bottom: 3px;">
                                 <span class="topbartext1">Ms. Nayika Srinian</span>
-                                <button type="button" class="btn btn-default topbarbutton1" style="outline: none">
+                                <button type="button" class="btn btn-default topbarbutton1" style="outline: none;width: 155px !important;">
                                     @if( Session::get('authen_type') == 'user' )
                                         <span style="color: #39a938;width: 150px !important;text-transform: uppercase">employee</span>
                                     @elseif( Session::get('authen_type') == 'admin' )
