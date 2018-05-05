@@ -30,18 +30,25 @@ class HRcontroller extends Controller
     }
 
     public function calender(){
-        $users = DB::table('activity_status')
-            ->join('activity_department', 'activity_status.ID_listActivity', '=', 'activity_department.ID_listActivity')
+        $depart = DB::table('job')->select('Depart_ID')->where('Job_ID',Auth::user()->Job_ID)->get();
+        foreach ($depart as $key => $depart) {
+            $deparID = $depart->Depart_ID;
+        }
+        $users = DB::table('department')
+            ->join('activity_department', 'department.Depart_ID', '=', 'activity_department.Depart_ID')
             ->join('activity', 'activity.Activity_ID', '=', 'activity_department.Activity_ID')
-            ->select('activity_status.*', 'activity.Activity_name', 'activity.Type','activity_department.Depart_ID')
+            ->where('department.Depart_ID',$deparID)
+            ->select('activity.*','department.*')
             ->get();
         foreach ($users as $key => $user) {
             $users_Type = $user->Type;
-            $users_Depart_ID = $user->Depart_ID;
-
+            $users_Activity_name = $user->Activity_name;
+            $users_Date = $user->Date;
+            $users_End_Date = $user->End_Date;
         }
-//        dd($users);
-        return view('calender',['type' => $users_Type ,'Depart_ID' => $users_Depart_ID ]);
+        dd($users);
+//        return view('calender',['type' => $users_Type ,'ActivityName' => $users_Activity_name ,'Datee' => $users_Date , 'EndDate' => $users_End_Date]);
+        return view('calender',['type' => $users ]);
     }
 
     public function admin_workhistory(){

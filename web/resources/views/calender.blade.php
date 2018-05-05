@@ -55,38 +55,53 @@
         </div>
     </div>
 
-{{--    {{ $Depart_ID }}--}}
+{{--{{ $type }}--}}
+
     <script src="{{ asset('js/calender/datepickk.js') }}" type="text/javascript"></script>
     <script>
 
-        var type = {!! json_encode($type) !!};
-        var Depart_ID = {!! json_encode($Depart_ID) !!};
-        type = '';
-        Depart_ID = '';
-        if ( type = 'Low')
-        {
-            var low = {
-                start: new Date(2018,4,1),
-                end: new Date(2018,4,11),
-                backgroundColor: '#87bde7',
-                color: '#ffffff',
-                legend: 'CSS Conf.'
-            };
-        }
-        else if (type = 'medium'){
-            var medium = {
-                dates: [
-                    {start: new Date(2018,4,12), end: new Date(2018,4,15)},
-                ],
-                backgroundColor: '#ffc439',
-                color: '#ffffff',
-                legend: 'Holidays'
-            };
-        }
-        else if (type = 'high'){
+        {{--var type = '{{ $type }}' ;--}}
+        {{--var ActivityName = '{{ $ActivityName }}';--}}
+        {{--var Datee = '{{ $Datee }}';--}}
+        {{--var EndDate = '{{ $EndDate }}';--}}
+        {{--var dateeConvert = Datee.split('-');--}}
+        {{--var EndDateConvert = EndDate.split('-');--}}
+        // if ( type == 'Low')
+        // {
+        //     var low = {
+        //         start: new Date(dateeConvert[0],dateeConvert[1]-1,dateeConvert[2]),
+        //         end: new Date(EndDateConvert[0],EndDateConvert[1]-1,EndDateConvert[2]),
+        //         backgroundColor: '#87bde7',
+        //         color: '#ffffff',
+        //         legend: 'CSS Conf.'
+        //     };
+        // }
+        // else if (type == 'Medium'){
+        //     var medium = {
+        //         dates: [
+        //             {start: new Date(dateeConvert[0],dateeConvert[1]-1,dateeConvert[2]), end: new Date(EndDateConvert[0],EndDateConvert[1]-1,EndDateConvert[2])},
+        //         ],
+        //         backgroundColor: '#ffc439',
+        //         color: '#ffffff',
+        //         legend: 'Holidays'
+        //     };
+        // }
+        // else
+        {{--@foreach($type as $key => $types)--}}
+{{--            console.log(new Date('{{ date('Y', strtotime($types->Date)) }}','{{ date('m', strtotime($types->Date))-1 }}','{{ date('d', strtotime($types->Date)) }}'),new Date('{{ date('Y', strtotime($types->End_Date)) }}','{{ date('m', strtotime($types->End_Date))-1 }}','{{ date('m', strtotime($types->End_Date)) }}'));--}}
+            {{--console.log(new Date('2018','4','31'),new Date('2018','5','3'));--}}
+
+        {{--@endforeach--}}
+            var type = 'High';
+            if (type == 'High'){
             var high = {
                 dates: [
-                    {start: new Date(2018,4,12), end: new Date(2018,4,15)},
+                    @foreach($type as $key => $types)
+                    {
+                        start: new Date('{{ date('Y', strtotime($types->Date)) }}','{{ date('m', strtotime($types->Date))-1 }}','{{ date('d', strtotime($types->Date)) }}'),
+                        end: new Date('{{ date('Y', strtotime($types->End_Date)) }}','{{ date('m', strtotime($types->End_Date))-1 }}','{{ date('m', strtotime($types->End_Date)) }}')
+                    },
+                    @endforeach
                 ],
                 // backgroundColor: '#ffc439',
                 backgroundColor: '#ff3939',
@@ -94,14 +109,14 @@
                 legend: 'Holidays'
             };
         }
-        console.log(type);
-        console.log(Depart_ID);
+
         var datepicker = new Datepickk({
             container: document.querySelector('#datepicker'),
             inline: true,
             range: false,
             maxSelections: 1,
-            highlight: [low,medium,high]
+            // highlight: [low,medium,high]
+            highlight: [high]
         });
 
         datepicker.setDate = Date.now();

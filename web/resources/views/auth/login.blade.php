@@ -26,7 +26,7 @@
 
                                         <div class="form-group">
                                             <label for="Email" style="text-align: left">E-mail</label>
-                                            <input id="Email" type="text" class="form-control" name="Email" value="123@123.com" required autofocus>
+                                            <input id="Email" type="text" class="form-control" name="Email" value="teeraphatmychin@gmail.com" required autofocus>
                                         </div>
 
                                         <div class="form-group">
