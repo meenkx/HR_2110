@@ -55,10 +55,34 @@
         </div>
     </div>
 
-{{--{{ $type }}--}}
+{{ $type }}
 
     <script src="{{ asset('js/calender/datepickk.js') }}" type="text/javascript"></script>
     <script>
+
+            var type = '{{ $type }}';
+            function  date($type) {
+                @foreach($type as $key => $types)
+                    $startDateY = '{{ date('Y', strtotime($types->Date)) }}'
+                    $startDateM = '{{ date('m', strtotime($types->Date))-1 }}'
+                    $startDateD = '{{ date('d', strtotime($types->Date)) }}'
+                    $endDateY = '{{ date('Y', strtotime($types->End_Date)) }}'
+                    $endDateM = '{{ date('m', strtotime($types->End_Date))-1 }}'
+                    $endDateD = '{{ date('d', strtotime($types->End_Date)) }}'
+
+                    $output =''
+                    // $output += '{'+'start: new Date('+$startDateY+','+$startDateM+','+$startDateD+'),'+'end: new Date('+$endDateY+','+$endDateM+','+$endDateD+')},'
+                    // $output += '{'+'start: new Date('+'2018'+','+'4'+','+'25'+'),'+'end: new Date('+'2018'+','+'4'+','+''+')},'
+
+                    var text = "";
+                    var x;
+                    for (x in $startDateY) {
+                        $output += $startDateY[x] + "";
+                    }
+                    // console.log(text);
+                @endforeach
+                return $output;
+            };
 
         {{--var type = '{{ $type }}' ;--}}
         {{--var ActivityName = '{{ $ActivityName }}';--}}
@@ -92,32 +116,43 @@
             {{--console.log(new Date('2018','4','31'),new Date('2018','5','3'));--}}
 
         {{--@endforeach--}}
-            var type = 'High';
-            if (type == 'High'){
-            var high = {
-                dates: [
-                    @foreach($type as $key => $types)
-                    {
-                        start: new Date('{{ date('Y', strtotime($types->Date)) }}','{{ date('m', strtotime($types->Date))-1 }}','{{ date('d', strtotime($types->Date)) }}'),
-                        end: new Date('{{ date('Y', strtotime($types->End_Date)) }}','{{ date('m', strtotime($types->End_Date))-1 }}','{{ date('m', strtotime($types->End_Date)) }}')
-                    },
-                    @endforeach
-                ],
-                // backgroundColor: '#ffc439',
-                backgroundColor: '#ff3939',
-                color: '#ffffff',
-                legend: 'Holidays'
-            };
-        }
 
-        var datepicker = new Datepickk({
-            container: document.querySelector('#datepicker'),
-            inline: true,
-            range: false,
-            maxSelections: 1,
-            // highlight: [low,medium,high]
-            highlight: [high]
-        });
+
+
+
+
+            var str = '{start: new Date(2015,6,13),end: new Date(2015,6,19),backgroundColor: \'#3faa56\',color: \'#ffffff\',legend: \'CSS Conf.\'//this is optional};'
+
+            var ee = {start: new Date(2018,6,13),end: new Date(2018,6,19),backgroundColor: '#3faa56',color: '#ffffff',legend: 'CSS Conf.'};
+            var eiei = 'High'
+             if (eiei === 'High'){
+             var ee = {
+                 dates: [
+                     {
+                         start: new Date(2018,4,6),
+                         end: new Date(2018,4,7)
+                     },
+                     {
+                         start: new Date(2018,4,22),
+                         end: new Date(2018,4,23)
+                     }
+                 ],
+                 // backgroundColor: '#ffc439',
+                 backgroundColor: '#ff3939',
+                 color: '#ffffff',
+                 legend: 'Holidays'
+             };
+             }
+
+         var datepicker = new Datepickk({
+             container: document.querySelector('#datepicker'),
+             inline: true,
+             range: false,
+             maxSelections: 1,
+             // highlight: [low,medium,high]
+             highlight: [ee]
+         });
+         console.log('data - '+date(type));
 
         datepicker.setDate = Date.now();
 

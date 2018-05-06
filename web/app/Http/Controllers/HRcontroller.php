@@ -46,7 +46,7 @@ class HRcontroller extends Controller
             $users_Date = $user->Date;
             $users_End_Date = $user->End_Date;
         }
-        dd($users);
+//        dd($users);
 //        return view('calender',['type' => $users_Type ,'ActivityName' => $users_Activity_name ,'Datee' => $users_Date , 'EndDate' => $users_End_Date]);
         return view('calender',['type' => $users ]);
     }

@@ -27,8 +27,7 @@ class SearchController extends Controller
             if($profiles)
             {
                 foreach ($profiles as $key => $profile) {
-                    $output.= '<tr onclick="getdata()">' .
-                        '<td id="ID_member">'.$profile->ID_member.'</td>'.
+                    $output.= '<tr onclick="getdata()">' . '<td id="ID_member">'.$profile->ID_member.'</td>'.
                         '<td id="Firstname">'.$profile->Firstname.'</td>'.
                         '<td id="Lastname">'.$profile->Lastname.'</td>'.
                         '<td id="Email">'.$profile->Email.'</td>'.
