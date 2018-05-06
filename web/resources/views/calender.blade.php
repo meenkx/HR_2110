@@ -10,11 +10,6 @@
             font-family: 'Kanit', sans-serif;
             overflow-x: hidden;
         }
-        #datepicker {
-            /*max-width: 500px;*/
-            height: 500px;
-            width: 100%;
-        }
         .dot_green {
             height: 17px;
             width: 17px;
@@ -25,23 +20,21 @@
         }
     </style>
 
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css"/>
 
     {{--content--}}
     <div class="container" style="margin-top: 30px;">
         <div class="row" style="display: inline-flex;width: 100%">
-            <div class="wd5" style="width: 50%"><div id="datepicker"></div></div>
-            <div class="wt5" style="width: 50%;border-left: 0.5px solid #808080;margin-left: 30px;padding: 0px 30px;">
-                <div class="row" style="display: inline-flex;height: 90px;">
-                    <div class="col-1" style="position: relative;top: -10px;">
-                        <span style="font-size: 100px;color: #808080" class="demo-today">03</span>
-                    </div>
-                    <div class="col-11" style="border-left: 0.5px solid #808080;border-left-width: 5px;margin-left: 15px;padding-left: 15px;vertical-align: middle;color: #808080">
-                        <div>
-                            <p style="margin-top: 0px;margin-bottom: 0px"><span style="font-size: 42px;line-height: 1;color: #808080" class="month">May</span></p>
-                            <p style="margin-bottom: 0px;margin-top: 4px"><span style="font-size: 42px;line-height: 1;color: #808080" class="year">2018</span></p>
-                        </div>
+            <div class="wd5" style="width: 50%">
+                <div class="row">
+                    <div class="panel-body">
+                        {!! $calendar->calendar() !!}
+                        {{--{{ $calendar->calendar() }}--}}
                     </div>
                 </div>
+            </div>
+            <div class="wt5" style="width: 50%;border-left: 0.5px solid #808080;margin-left: 30px;padding: 0px 30px;">
                 <div class="row" style="margin-top: 30px">
                     <div>
                         <span style="vertical-align: middle;line-height: 25px;padding-left: 15px;font-size: 20px;"><span class="dot_green"></span>Activity / Detail / date</span>
@@ -55,121 +48,13 @@
         </div>
     </div>
 
-{{ $type }}
 
-    <script src="{{ asset('js/calender/datepickk.js') }}" type="text/javascript"></script>
-    <script>
+    {{--script--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
 
-            var type = '{{ $type }}';
-            function  date($type) {
-                @foreach($type as $key => $types)
-                    $startDateY = '{{ date('Y', strtotime($types->Date)) }}'
-                    $startDateM = '{{ date('m', strtotime($types->Date))-1 }}'
-                    $startDateD = '{{ date('d', strtotime($types->Date)) }}'
-                    $endDateY = '{{ date('Y', strtotime($types->End_Date)) }}'
-                    $endDateM = '{{ date('m', strtotime($types->End_Date))-1 }}'
-                    $endDateD = '{{ date('d', strtotime($types->End_Date)) }}'
-
-                    $output =''
-                    // $output += '{'+'start: new Date('+$startDateY+','+$startDateM+','+$startDateD+'),'+'end: new Date('+$endDateY+','+$endDateM+','+$endDateD+')},'
-                    // $output += '{'+'start: new Date('+'2018'+','+'4'+','+'25'+'),'+'end: new Date('+'2018'+','+'4'+','+''+')},'
-
-                    var text = "";
-                    var x;
-                    for (x in $startDateY) {
-                        $output += $startDateY[x] + "";
-                    }
-                    // console.log(text);
-                @endforeach
-                return $output;
-            };
-
-        {{--var type = '{{ $type }}' ;--}}
-        {{--var ActivityName = '{{ $ActivityName }}';--}}
-        {{--var Datee = '{{ $Datee }}';--}}
-        {{--var EndDate = '{{ $EndDate }}';--}}
-        {{--var dateeConvert = Datee.split('-');--}}
-        {{--var EndDateConvert = EndDate.split('-');--}}
-        // if ( type == 'Low')
-        // {
-        //     var low = {
-        //         start: new Date(dateeConvert[0],dateeConvert[1]-1,dateeConvert[2]),
-        //         end: new Date(EndDateConvert[0],EndDateConvert[1]-1,EndDateConvert[2]),
-        //         backgroundColor: '#87bde7',
-        //         color: '#ffffff',
-        //         legend: 'CSS Conf.'
-        //     };
-        // }
-        // else if (type == 'Medium'){
-        //     var medium = {
-        //         dates: [
-        //             {start: new Date(dateeConvert[0],dateeConvert[1]-1,dateeConvert[2]), end: new Date(EndDateConvert[0],EndDateConvert[1]-1,EndDateConvert[2])},
-        //         ],
-        //         backgroundColor: '#ffc439',
-        //         color: '#ffffff',
-        //         legend: 'Holidays'
-        //     };
-        // }
-        // else
-        {{--@foreach($type as $key => $types)--}}
-{{--            console.log(new Date('{{ date('Y', strtotime($types->Date)) }}','{{ date('m', strtotime($types->Date))-1 }}','{{ date('d', strtotime($types->Date)) }}'),new Date('{{ date('Y', strtotime($types->End_Date)) }}','{{ date('m', strtotime($types->End_Date))-1 }}','{{ date('m', strtotime($types->End_Date)) }}'));--}}
-            {{--console.log(new Date('2018','4','31'),new Date('2018','5','3'));--}}
-
-        {{--@endforeach--}}
-
-
-
-
-
-            var str = '{start: new Date(2015,6,13),end: new Date(2015,6,19),backgroundColor: \'#3faa56\',color: \'#ffffff\',legend: \'CSS Conf.\'//this is optional};'
-
-            var ee = {start: new Date(2018,6,13),end: new Date(2018,6,19),backgroundColor: '#3faa56',color: '#ffffff',legend: 'CSS Conf.'};
-            var eiei = 'High'
-             if (eiei === 'High'){
-             var ee = {
-                 dates: [
-                     {
-                         start: new Date(2018,4,6),
-                         end: new Date(2018,4,7)
-                     },
-                     {
-                         start: new Date(2018,4,22),
-                         end: new Date(2018,4,23)
-                     }
-                 ],
-                 // backgroundColor: '#ffc439',
-                 backgroundColor: '#ff3939',
-                 color: '#ffffff',
-                 legend: 'Holidays'
-             };
-             }
-
-         var datepicker = new Datepickk({
-             container: document.querySelector('#datepicker'),
-             inline: true,
-             range: false,
-             maxSelections: 1,
-             // highlight: [low,medium,high]
-             highlight: [ee]
-         });
-         console.log('data - '+date(type));
-
-        datepicker.setDate = Date.now();
-
-        datepicker.onSelect = function(checked){
-            var state = (checked)?'selected':'unselected';
-            // alert(this.toLocaleDateString() + ' ' + state)
-            console.log(this.toLocaleDateString())
-            var date = this.toLocaleDateString().split('/');
-            var date_convert = date[2]+'-'+date[0]+'-'+date[1];
-            console.log(date_convert);
-            sendDate(date_convert);
-            document.getElementsByClassName("demo-today")[0].innerHTML = date[1];
-            document.getElementsByClassName("month")[0].innerHTML = date[0];
-            document.getElementsByClassName("year")[0].innerHTML = date[2];
-        };
-
-    </script>
+    {!! $calendar->script() !!}
     <script>
         $.ajaxSetup({
             headers: {

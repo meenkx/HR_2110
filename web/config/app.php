@@ -161,7 +161,10 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // mobile check
-        Riverskies\Laravel\MobileDetect\MobileDetectServiceProvider::class
+        Riverskies\Laravel\MobileDetect\MobileDetectServiceProvider::class,
+        //calendar
+        MaddHatter\LaravelFullcalendar\ServiceProvider::class,
+
     ],
 
     /*
@@ -212,6 +215,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //mobile check
         'MobileDetect' => Riverskies\Laravel\MobileDetect\Facades\MobileDetect::class,
+        //calendar
+        'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
     ],
 
 ];
