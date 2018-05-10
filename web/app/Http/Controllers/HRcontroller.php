@@ -43,8 +43,8 @@ class HRcontroller extends Controller
         foreach ($users as $key => $user) {
             $users_Type = $user->Type;
             $users_Activity_name = $user->Activity_name;
-            $users_Date = $user->Date;
-            $users_End_Date = $user->End_Date;
+            $users_Date = $user->start_date;
+            $users_End_Date = $user->end_date;
         }
 //        dd($users);
 //        return view('calender',['type' => $users_Type ,'ActivityName' => $users_Activity_name ,'Datee' => $users_Date , 'EndDate' => $users_End_Date]);

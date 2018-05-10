@@ -21,7 +21,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HRcontroller@profile')->name('profile');
 Route::get('/admin_profile', 'HRcontroller@admin_profile')->name('admin_profile');
-Route::get('/calender', 'HRcontroller@calender')->name('calender');
+//Route::get('/calender', 'HRcontroller@calender')->name('calender');
+Route::get('/calender', 'EventController@index')->name('calender');
 Route::get('/admin_workhistory', 'HRcontroller@admin_workhistory')->name('admin_workhistory');
 Route::get('/admin_kpi', 'HRcontroller@admin_kpi')->name('admin_kpi');
 Route::get('/admin_calender', 'HRcontroller@admin_calender')->name('admin_calender');
@@ -34,7 +35,8 @@ Route::get('/admin_salaryEdit', 'HRcontroller@admin_salaryEdit')->name('admin_sa
 Route::get('/edit', 'HRcontroller@edit')->name('edit');
 Route::get('/leave', 'HRcontroller@leave')->name('leave');
 Route::get('/testex', 'HRcontroller@testex')->name('testex');
-Route::get('/testex2', 'HRcontroller@testex2')->name('testex2');
+//Route::get('/testex2', 'HRcontroller@testex2')->name('testex2');
+Route::get('/testex2', 'EventController@index')->name('testex2');
 
 //search
 Route::get('/ss','SearchController@index')->name('ssearch');
@@ -43,4 +45,7 @@ Route::get('/search','SearchController@search')->name('search');
 Route::get('/calender_eiei','CalenderController@calender')->name('calender_eiei');
 
 //fullcalendar
-Route::resource('tasks', 'TasksController');
+Route::get('events', 'EventController@index');
+
+//edit
+Route::get('/edit/{id}', 'EventController@edit')->name('calender_edit');

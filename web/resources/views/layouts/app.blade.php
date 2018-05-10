@@ -425,7 +425,7 @@
             z-index: 99;
         }
     </style>
-
+    @yield('style')
 </head>
 <body class="my-login-page">
     <div id="app_">
@@ -586,6 +586,7 @@
     </div>
 
     {{--script zone--}}
+    @yield('script')
     <script>
         $(document).ready(function(){
             var theToggle = document.getElementById('toggle');
