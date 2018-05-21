@@ -41,7 +41,7 @@
     </style>
 
     {{--dropdown--}}
-    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>--}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/dropdown/dropdown.css') }}">
     <script src="{{ asset('js/dropdown/dropdown.js') }}"></script>
     <script type="text/javascript">
@@ -51,7 +51,7 @@
             $('#dropdown_month').stbDropdown();
             $('#dropdown_year').stbDropdown();
             $('#dropdown_department').stbDropdown();
-            $('#dropdown_department_kpi').stbDropdown();
+            $('#dropdown_admindepartment_kpi').stbDropdown();
             $('#dropdown_month_workhistory').stbDropdown();
             $('#dropdown_year_workhistory').stbDropdown();
             $('#dropdown_department_workhistory').stbDropdown();
@@ -505,8 +505,8 @@
                         </div>
                         <div class="col-md-5" style="padding: 0px 25px;padding-left: 290px;">
                             {{--<input type="text" name="search" id="search" class="search" placeholder="Search people">--}}
-                            <button type="button" class="btn button_hover" name="search" id="search_button" style="width: 100%;text-align: left;background-color: white;border-radius: 30px;padding-left: 20px;vertical-align: middle;height: 45px;margin: 0px">
-                                <img src="img/icon/magnifying-glass.png" alt="" width="20px" height="20px"><span style="padding-left: 15px">Search people</span></button>
+                            <button type="button" class="btn button_hover" name="search" id="search_button" style="width: 100%;text-align: left;background-color: white;border-radius: 30px;padding-left: 20px;vertical-align: middle;height: 45px;margin: 0px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">
+                                <img src="img/icon/magnifying-glass.png" alt="" width="20px" height="20px"><span style="padding-left: 15px;">Search people</span></button>
                         </div>
 
                         <div class="col-md-1" style="border-left: 1px solid black;margin: 0px 30px;height: 60px;line-height: 60px;">
@@ -551,10 +551,6 @@
             </nav>
             @endif
 
-            <main class="py-4">
-                @yield('content')
-            </main>
-
             <div id="qnimate" class="off">
                 <div id="search" class="open">
                     <button data-widget="remove" id="removeClass" class="close" type="button">×</button>
@@ -578,6 +574,10 @@
                     </form>
                 </div>
             </div>
+
+            <main class="py-4">
+                @yield('content')
+            </main>
 
         @elsedesktop
             <div style="height: 100vh;background: url('{{ asset('img/icon/browser_not_supported.png') }}') no-repeat center center fixed;-webkit-background-size: 100%;-moz-background-size: 100%;-o-background-size: 100%;background-size: 100%;background-color: #96d6f7;"></div>
