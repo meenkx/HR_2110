@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Forms_Evidence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -49,6 +50,31 @@ class HRcontroller extends Controller
 //        dd($users);
 //        return view('calender',['type' => $users_Type ,'ActivityName' => $users_Activity_name ,'Datee' => $users_Date , 'EndDate' => $users_End_Date]);
         return view('calender',['type' => $users ]);
+    }
+
+//    form evident
+    public function saveFormEvident(Request $request)
+    {
+//
+        $saveFm = Forms_Evidence::where('ID_Evidence','=',Auth::user()->ID_member."_".date("dmY"))->get();
+        if($saveFm->isEmpty())
+        {
+            $saveFMs = new Forms_Evidence();
+            $saveFMs->ID_member = Auth::user()->ID_member;
+            $saveFMs->ID_Evidence = Auth::user()->ID_member."_".date("dmY");
+            $saveFMs->Date = $request->input('date');
+            $saveFMs->Reason = $request->input('reason');
+            $saveFMs->save();
+        }
+        else{
+            $saveFmc = Forms_Evidence::where('ID_Evidence','=',Auth::user()->ID_member."_".date("dmY"))->get();
+            foreach ($saveFmc as $saveFmcs){
+                $saveFmcs->Date = $request->input('date');
+                $saveFmcs->Reason = $request->input('reason');
+                $saveFmcs->save();
+            }
+        }
+
     }
 
     public function admin_workhistory(){

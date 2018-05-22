@@ -35,8 +35,19 @@ Route::get('/admin_salaryEdit', 'HRcontroller@admin_salaryEdit')->name('admin_sa
 Route::get('/edit', 'HRcontroller@edit')->name('edit');
 Route::get('/leave', 'HRcontroller@leave')->name('leave');
 Route::get('/testex', 'HRcontroller@testex')->name('testex');
+//form evident
+Route::post('/saveFormEv', 'HRcontroller@saveFormEvident')->name('saveFormEvident');
 //Route::get('/testex2', 'HRcontroller@testex2')->name('testex2');
 Route::get('/testex2', 'EventController@index')->name('testex2');
+
+//uploadfile
+Route::post('/uploadfile','UploadFileController@UploadFileEvidence')->name('uploadfile');
+Route::post('/storeImage','UploadFileController@storeImage')->name('storeImage');
+Route::get('/allImages','UploadFileController@allImages')->name('allImages');
+Route::delete('/deleteImage/{id}','UploadFileController@deleteImage')->name('deleteImage');
+
+//delete file
+Route::get('/deleteFile','UploadFileController@deleteFIle')->name('deleteFIle');
 
 //search
 Route::get('/ss','SearchController@index')->name('ssearch');

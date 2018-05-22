@@ -118,7 +118,7 @@
                                                         </div>
                                                         <div class="form-group" style="display: inline-flex;margin-left: 40px;">
                                                             <label for="Mobile" >Mobile :</label>
-                                                            <input type="tel" class="form-control" id="Mobile" style="margin: 5px 15px;margin-left: 110px">
+                                                            <input type="tel" class="form-control" id="Mobile" style="width: 195px;margin-left: 105px;">
                                                         </div>
                                                     </div>
                                                     <div style="display: inline-flex;">
@@ -128,7 +128,7 @@
                                                         </div>
                                                         <div class="form-group" style="display: inline-flex;margin-left: 40px;">
                                                             <label for="Emergency_Contact" >Emergency Contact :</label>
-                                                            <input type="text" class="form-control" id="Emergency_Contact" style="margin: 5px 15px;">
+                                                            <input type="text" class="form-control" id="Emergency_Contact" style="margin: 5px 15px;width: 195px">
                                                         </div>
                                                     </div>
                                                 </form>

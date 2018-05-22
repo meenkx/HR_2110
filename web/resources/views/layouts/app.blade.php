@@ -65,61 +65,13 @@
         });
     </script>
     {{--dropzone--}}
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css'>
-    <style>
-        #actions {
-            margin: 2em 0;
-        }
-
-        /* Mimic table appearance */
-        div.table {
-            display: table;
-        }
-
-        div.table .file-row {
-            display: table-row;
-        }
-
-        div.table .file-row > div {
-            display: table-cell;
-            vertical-align: top;
-            border-top: 1px solid #ddd;
-            padding: 8px;
-            vertical-align: middle;
-        }
-
-        div.table .file-row:nth-child(odd) {
-            background: #f9f9f9;
-        }
-
-        /* The total progress gets shown by event listeners */
-        #total-progress {
-            opacity: 0;
-            transition: opacity 0.3s linear;
-        }
-
-        /* Hide the progress bar when finished */
-        #previews .file-row.dz-success .progress {
-            opacity: 0;
-            transition: opacity 0.3s linear;
-        }
-
-        /* Hide the delete button initially */
-        #previews .file-row .delete {
-            display: none;
-        }
-
-        /* Hide the start and cancel buttons and show the delete button */
-        #previews .file-row.dz-success .start,
-        #previews .file-row.dz-success .cancel {
-            display: none;
-        }
-
-        #previews .file-row.dz-success .delete {
-            display: block;
-        }
-
+    {{--<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css'>--}}
+    <link href="{{ asset('css/dropzone.css') }}" rel="stylesheet">
+    <style type="text/css">
+        .removeImage {  position: absolute; right: 15px; top: 10px; border-radius: 50%; padding: 5px; cursor: pointer; }
+        .upldPhoto{ text-align: center; margin-bottom: 20px; }
     </style>
+
     {{--config--}}
     <style>
         html,body{
@@ -586,6 +538,11 @@
     </div>
 
     {{--script zone--}}
+    {{--dropzone--}}
+    {{--<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>--}}
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>--}}
+    <script async src="{{ asset('js/dropzone.js') }}"></script>
+
     @yield('script')
     <script>
         $(document).ready(function(){
@@ -673,68 +630,8 @@
                         $list.css("top", -top);
                     });
             }
+
         });
-    </script>
-
-    {{--dropzone--}}
-    {{--<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>--}}
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js'></script>
-    <script>
-        window.onload = function(){
-
-
-            // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-            var previewNode = document.querySelector("#template");
-            previewNode.id = "";
-            var previewTemplate = previewNode.parentNode.innerHTML;
-            previewNode.parentNode.removeChild(previewNode);
-
-            var myDropzone = new Dropzone(".container", { // Make the whole body a dropzone
-            url: "/upload", // Set the url
-            thumbnailWidth: 80,
-            thumbnailHeight: 80,
-            parallelUploads: 20,
-            previewTemplate: previewTemplate,
-            autoQueue: false, // Make sure the files aren't queued until manually added
-            previewsContainer: "#previews", // Define the container to display the previews
-            clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-            });
-
-            myDropzone.on("addedfile", function (file) {
-            // Hookup the start button
-            file.previewElement.querySelector(".start").onclick = function () {
-            myDropzone.enqueueFile(file);
-            };
-            });
-
-            // Update the total progress bar
-            myDropzone.on("totaluploadprogress", function (progress) {
-            document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
-            });
-
-            myDropzone.on("sending", function (file) {
-            // Show the total progress bar when upload starts
-            document.querySelector("#total-progress").style.opacity = "1";
-            // And disable the start button
-            file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
-            });
-
-            // Hide the total progress bar when nothing's uploading anymore
-            myDropzone.on("queuecomplete", function (progress) {
-            document.querySelector("#total-progress").style.opacity = "0";
-            });
-
-            // Setup the buttons for all transfers
-            // The "add files" button doesn't need to be setup because the config
-            // `clickable` has already been specified.
-            document.querySelector("#actions .start").onclick = function () {
-            myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
-            };
-            document.querySelector("#actions .cancel").onclick = function () {
-            myDropzone.removeAllFiles(true);
-            };
-
-        };
     </script>
 
     {{--popup--}}
@@ -744,7 +641,7 @@
     {{--bootstrap--}}
     {{--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
     {{--login--}}
     <script src="{{ asset('js/login.js') }}"></script>
 
@@ -807,5 +704,7 @@
             };
         }
     </script>
+    {{--form evident--}}
+    <script src="{{ asset('js/formEvidentSubmit.js') }}"></script>
 </body>
 </html>
