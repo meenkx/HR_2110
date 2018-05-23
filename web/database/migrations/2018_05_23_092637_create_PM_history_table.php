@@ -7,7 +7,7 @@ class CreatePMHistoryTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('PM__history', function(Blueprint $table) {
+		Schema::create('PM_history', function(Blueprint $table) {
 			$table->integer('PM_ID')->unsigned();
 			$table->string('Month', 20);
 			$table->string('Year', 20);
@@ -17,6 +17,6 @@ class CreatePMHistoryTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('PM__history');
+		Schema::drop('PM_history');
 	}
 }
