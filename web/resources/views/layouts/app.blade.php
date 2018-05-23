@@ -111,6 +111,20 @@
             background-color: #555;
         }
 
+        /*modal center*/
+        .modal-dialog {
+            min-height: calc(100vh - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: auto;
+        }
+        @media(max-width: 768px) {
+            .modal-dialog {
+                min-height: calc(100vh - 20px);
+            }
+        }
+
         /*bootstrap button*/
         .btn:focus, .btn:active {
             outline: none !important;
@@ -706,5 +720,7 @@
     </script>
     {{--form evident--}}
     <script src="{{ asset('js/formEvidentSubmit.js') }}"></script>
+    {{--kpi--}}
+    <script src="{{ asset('js/kpi.js') }}"></script>
 </body>
 </html>
