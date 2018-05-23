@@ -3,9 +3,21 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: May 23, 2018 at 05:33 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
+=======
+<<<<<<< HEAD
+-- Generation Time: May 23, 2018 at 04:15 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
+=======
+-- Generation Time: May 03, 2018 at 07:02 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.4
+>>>>>>> 216d8a737ed38368883465624cb86530f05ae7df
+>>>>>>> 114c0455558502dfb527e01356ef250f53fa2f26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -170,8 +182,17 @@ CREATE TABLE `education_history` (
 
 CREATE TABLE `forms_evidence` (
   `ID_member` int(10) UNSIGNED NOT NULL,
+<<<<<<< HEAD
   `ID_Evidence` int(10) UNSIGNED NOT NULL,
   `Form_evi_upload` varchar(190) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+=======
+<<<<<<< HEAD
+  `ID_Evidence` int(10) UNSIGNED NOT NULL,
+  `Form_evi_upload` varchar(190) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+=======
+  `ID_Evidence` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+>>>>>>> 216d8a737ed38368883465624cb86530f05ae7df
+>>>>>>> 114c0455558502dfb527e01356ef250f53fa2f26
   `Date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -738,6 +759,15 @@ ALTER TABLE `forms_evidence`
   MODIFY `ID_Evidence` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+<<<<<<< HEAD
+-- AUTO_INCREMENT for table `forms_evidence`
+--
+ALTER TABLE `forms_evidence`
+  MODIFY `ID_Evidence` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+=======
+>>>>>>> 216d8a737ed38368883465624cb86530f05ae7df
 -- AUTO_INCREMENT for table `history_work`
 --
 ALTER TABLE `history_work`
