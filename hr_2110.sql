@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2018 at 02:16 PM
+-- Generation Time: May 23, 2018 at 04:15 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -170,13 +170,20 @@ CREATE TABLE `education_history` (
 CREATE TABLE `forms_evidence` (
   `ID_member` int(10) UNSIGNED NOT NULL,
   `ID_Evidence` int(10) UNSIGNED NOT NULL,
-  `Form_evi_upload` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Form_evi_upload` varchar(190) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `Reason` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Confirm` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `forms_evidence`
+--
+
+INSERT INTO `forms_evidence` (`ID_member`, `ID_Evidence`, `Form_evi_upload`, `Date`, `created_at`, `updated_at`, `Reason`, `Confirm`) VALUES
+(2, 1, 'ธีรภัทร_ดวงกองเงิน-30052018.pdf', '2018-05-30', '2018-05-23 05:21:06', '2018-05-23 05:23:17', 'ccvvv', NULL);
 
 -- --------------------------------------------------------
 
@@ -693,7 +700,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `forms_evidence`
 --
 ALTER TABLE `forms_evidence`
-  MODIFY `ID_Evidence` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Evidence` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `history_work`
