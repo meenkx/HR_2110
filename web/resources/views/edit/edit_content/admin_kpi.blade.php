@@ -14,31 +14,24 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
+                        <th>Key_Result_Areas</th>
+                        <th>Key_Performance_Indicators</th>
+                        <th>Weight_of_KPIs</th>
+                        <th>Target</th>
                         <th>Control</th>
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($performance_measurement as $performance_measurements)
                     <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
+                        <td>{{ $performance_measurements->Key_Result_Areas }}</td>
+                        <td>{{ $performance_measurements->Key_Performance_Indicators }}</td>
+                        <td>{{ $performance_measurements->Weight_of_KPIs }}</td>
+                        <td>{{ $performance_measurements->Target }}</td>
                         <td><button type="button" class="btn btn-default" style="border: 1px solid red;color: red;width: 100px;" data-toggle="modal" data-target="#profile">Edit</button></td>
                     </tr>
-                    <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                        <td><button type="button" class="btn btn-default" style="border: 1px solid red;color: red;width: 100px;" data-toggle="modal" data-target="#profile">Edit</button></td>
-                    </tr>
-                    <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                        <td><button type="button" class="btn btn-default" style="border: 1px solid red;color: red;width: 100px;" data-toggle="modal" data-target="#profile">Edit</button></td>
-                    </tr>
+                    @endforeach
+
                     </tbody>
                 </table>
             </div>

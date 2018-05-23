@@ -82,7 +82,8 @@ class HRcontroller extends Controller
     }
 
     public function admin_kpi(){
-        return view('edit.edit_content.admin_kpi');
+        $results = DB::select( DB::raw("SELECT Key_Result_Areas,Key_Performance_Indicators,Weight_of_KPIs,Target FROM performance_measurement") );
+        return view('edit.edit_content.admin_kpi',['performance_measurement' => $results]);
     }
 
     public function admin_calender(){
