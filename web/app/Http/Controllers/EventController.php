@@ -32,7 +32,6 @@ class EventController extends Controller
             }
         }
         $calendar = Calendar::addEvents($events);
-//        dd($calendar);
         return view('calender', compact('calendar'));
     }
 

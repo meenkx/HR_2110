@@ -21,7 +21,7 @@ class Profile extends Model implements Authenticatable
      *
      * @var string
      */
-    protected $table = 'Profile';
+    protected $table = 'profiles';
 
     /**
      * The attributes that are mass assignable.
