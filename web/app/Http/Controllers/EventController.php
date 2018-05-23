@@ -19,8 +19,8 @@ class EventController extends Controller
                 $events[] = Calendar::event(
                     $value->Activity_name,
                     true,
-                    new \DateTime($value->start_date),
-                    new \DateTime($value->end_date.' +1 day'),
+                    new \DateTime($value->Start_date),
+                    new \DateTime($value->End_date.' +1 day'),
                     null,
                     // Add color and link on event
                     [

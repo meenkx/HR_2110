@@ -9,8 +9,13 @@ class CreatePerformanceMeasurementTable extends Migration {
 	{
 		Schema::create('Performance_measurement', function(Blueprint $table) {
 			$table->increments('KPI_Code');
-			$table->string('Indicators', 20);
-			$table->string('MC', 20);
+			$table->string('Key_Result_Areas', 190);
+			$table->string('Key_Performance_Indicators', 190);
+			$table->string('Weight_of_KPIs', 190);
+			$table->string('Target', 190)->nullable();
+			$table->integer('Actual')->nullable();
+			$table->integer('Score')->nullable();
+			$table->integer('Final_score')->nullable();
 		});
 	}
 

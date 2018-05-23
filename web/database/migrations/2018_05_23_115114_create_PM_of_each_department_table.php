@@ -11,6 +11,9 @@ class CreatePMOfEachDepartmentTable extends Migration {
 			$table->increments('PM_ID');
 			$table->integer('Depart_ID')->unsigned();
 			$table->integer('KPI_CODE')->unsigned();
+			$table->integer('Month');
+			$table->integer('Year');
+			$table->string('Value', 190)->nullable();
 		});
 	}
 

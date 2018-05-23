@@ -73,11 +73,6 @@ class CreateForeignKeys extends Migration {
 						->onDelete('cascade')
 						->onUpdate('cascade');
 		});
-		Schema::table('PM__history', function(Blueprint $table) {
-			$table->foreign('PM_ID')->references('PM_ID')->on('PM_of_each_department')
-						->onDelete('cascade')
-						->onUpdate('cascade');
-		});
 		Schema::table('Activity_Department', function(Blueprint $table) {
 			$table->foreign('Depart_ID')->references('Depart_ID')->on('Department')
 						->onDelete('cascade')
@@ -140,9 +135,6 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('PM_of_each_department', function(Blueprint $table) {
 			$table->dropForeign('PM_of_each_department_KPI_CODE_foreign');
-		});
-		Schema::table('PM__history', function(Blueprint $table) {
-			$table->dropForeign('PM__history_PM_ID_foreign');
 		});
 		Schema::table('Activity_Department', function(Blueprint $table) {
 			$table->dropForeign('Activity_Department_Depart_ID_foreign');

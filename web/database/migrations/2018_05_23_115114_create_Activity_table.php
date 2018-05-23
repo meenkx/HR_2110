@@ -13,7 +13,8 @@ class CreateActivityTable extends Migration {
 			$table->string('Objective', 20);
 			$table->string('Type', 20);
 			$table->string('Detail', 20);
-			$table->date('Date');
+			$table->date('Start_date');
+			$table->date('End_date');
 		});
 	}
 

@@ -14,7 +14,7 @@ class CreateFormsEvidenceTable extends Migration {
 			$table->date('Date');
 			$table->timestamps();
 			$table->string('Reason', 20);
-			$table->string('Confirm', 20);
+			$table->string('Confirm', 20)->nullable();
 		});
 	}
 
