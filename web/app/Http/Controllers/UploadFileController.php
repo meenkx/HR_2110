@@ -31,35 +31,28 @@ class UploadFileController extends Controller
 //        }
 
 
+        $backupDate = $request->input('dateEvident2');
+        $datee = explode("-",$request->input('dateEvident2'));
+        $dateConvert = $datee[2].$datee[1].$datee[0];
+
         $image = $request->file('file');
 //        $imageName = Auth::user()->Email."_EvidentImage_".$image->getClientOriginalName();
         if($image->getClientOriginalExtension() == "jpeg" || $image->getClientOriginalExtension() == "jpg" || $image->getClientOriginalExtension() == "png"){
 //            $imageName = Auth::user()->Email."_EvidentImage.".$image->getClientOriginalExtension();
-            $imageName = Auth::user()->ID_member."_".date("dmY").".".$image->getClientOriginalExtension();
+            $imageName = Auth::user()->Firstname."_".Auth::user()->Lastname."-".$dateConvert.".".$image->getClientOriginalExtension();
         }
         else if ($image->getClientOriginalExtension() == "pdf"){
 //            $imageName = Auth::user()->Email."_EvidentFile.".$image->getClientOriginalExtension();
-            $imageName = Auth::user()->ID_member."_".date("dmY").".".$image->getClientOriginalExtension();
+            $imageName = Auth::user()->Firstname."_".Auth::user()->Lastname."-".$dateConvert.".".$image->getClientOriginalExtension();
         }
 
         $upload_success = $image->move(public_path('/uploads'),$imageName);
 
         if ($upload_success) {
-            $saveFm = Forms_Evidence::where('ID_Evidence','=',Auth::user()->ID_member."_".date("dmY"))->get();
-            if($saveFm->isEmpty())
-            {
-                $imageUpload = new Forms_Evidence();
-                $imageUpload->Form_evi_upload = $imageName;
-                $imageUpload->ID_member = Auth::user()->ID_member;
-                $imageUpload->ID_Evidence = Auth::user()->ID_member."_".date("dmY");
-                $imageUpload->save();
-            }
-            else{
-                $saveFmc = Forms_Evidence::where('ID_Evidence','=',Auth::user()->ID_member."_".date("dmY"))->get();
-                foreach ($saveFmc as $saveFmcs){
-                    $saveFmcs->Form_evi_upload = $imageName;
-                    $saveFmcs->save();
-                }
+            $saveFmc = Forms_Evidence::where('Date','=',$backupDate)->get();
+            foreach ($saveFmc as $saveFmcs){
+                $saveFmcs->Form_evi_upload = $imageName;
+                $saveFmcs->save();
             }
             return response()->json($upload_success, 200);
         }
@@ -69,15 +62,17 @@ class UploadFileController extends Controller
         }
     }
 
-    public function deleteFIle()
+    public function deleteFIle(Request $request)
     {
-        $delImg = Forms_Evidence::where('ID_Evidence', '=', Auth::user()->ID_member."_".date("dmY"))->get();
+        $delImg = Forms_Evidence::where('Date', '=',$request->input('dateEvident2'))->get();
 
         foreach ($delImg as $delImgs){
             $delImgs->Form_evi_upload = "";
             $delImgs->save();
         }
-        $imageName = Auth::user()->ID_member."_".date("dmY").".pdf";
+        $datee = explode("-",$request->input('dateEvident2'));
+        $dateConvert = $datee[2].$datee[1].$datee[0];
+        $imageName = Auth::user()->Firstname."_".Auth::user()->Lastname."-".$dateConvert.".pdf";
         unlink(public_path('/uploads/'.$imageName));
 
     }

@@ -35,12 +35,21 @@
                     <span style="font-size: 20px;font-weight: bold">Upload evidence:</span>
                     {{--dropzone bootstrap--}}
                     <div class="container" style="background-color: #f5f6fa;width: 100%;padding: 20px;border-radius: 15px;margin-top: 15px;">
-                        <form method="POST" action="{{ route('storeImage') }}" class="dropzone" id="my-awesome-dropzone" style="border-radius: 10px;">
+
+                        {{--check text zone--}}
+                        <div id="textZone" style="text-align: center;font-size: 20px;width: 100%;height: 180px;vertical-align: middle;line-height: 15px;padding: 80px 0px;">
+                            <p style="font-size: 20px">โปรดกรอกวันที่และเหตุผลในการลาก่อน</p><p style="font-size: 20px"><code>หน้าอัพโหลดเอกสารถึงจะแสดง</code></p>
+                        </div>
+
+                        {{--upload zone--}}
+                        <form id="dropzoneUpload" method="POST" action="{{ route('storeImage') }}" class="dropzone" id="my-awesome-dropzone" style="border-radius: 10px;">
                             @csrf
                             <div class="fallback">
                                 <input name="file" type="file" />
                             </div>
+                            <input id="dateEvident2" type="hidden" name="dateEvident2" class="form-control" style="margin-left: 20px;margin-right: 10px">
                         </form>
+
                     </div>
                 </div>
 

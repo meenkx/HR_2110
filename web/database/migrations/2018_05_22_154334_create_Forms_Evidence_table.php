@@ -9,7 +9,8 @@ class CreateFormsEvidenceTable extends Migration {
 	{
 		Schema::create('Forms_Evidence', function(Blueprint $table) {
 			$table->integer('ID_member')->unsigned();
-			$table->string('ID_Evidence', 20);
+			$table->increments('ID_Evidence');
+			$table->string('Form_evi_upload', 190);
 			$table->date('Date');
 			$table->timestamps();
 			$table->string('Reason', 20);

@@ -682,7 +682,7 @@
 
     </script>
     <script>
-        console.log("looppp row");
+        // console.log("looppp row");
         function getdata() {
             var table = document.getElementsByTagName("table")[0];
             var tbody = table.getElementsByTagName("tbody")[0];

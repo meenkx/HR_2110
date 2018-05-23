@@ -22,7 +22,7 @@ class CreateLocationTable extends Migration {
 			$table->string('District_Area', 20);
 			$table->string('Province', 20);
 			$table->string('Postal_Code', 20);
-			$table->integer('Tel');
+			$table->string('Tel', 11);
 			$table->integer('Tax');
 		});
 	}

@@ -56,18 +56,18 @@ class HRcontroller extends Controller
     public function saveFormEvident(Request $request)
     {
 //
-        $saveFm = Forms_Evidence::where('ID_Evidence','=',Auth::user()->ID_member."_".date("dmY"))->get();
+        $saveFm = Forms_Evidence::where('Date','=',$request->input('date'))->get();
         if($saveFm->isEmpty())
         {
             $saveFMs = new Forms_Evidence();
             $saveFMs->ID_member = Auth::user()->ID_member;
-            $saveFMs->ID_Evidence = Auth::user()->ID_member."_".date("dmY");
+//            $saveFMs->ID_Evidence = Auth::user()->ID_member."_".date("dmY");
             $saveFMs->Date = $request->input('date');
             $saveFMs->Reason = $request->input('reason');
             $saveFMs->save();
         }
         else{
-            $saveFmc = Forms_Evidence::where('ID_Evidence','=',Auth::user()->ID_member."_".date("dmY"))->get();
+            $saveFmc = Forms_Evidence::where('Date','=',$request->input('date'))->get();
             foreach ($saveFmc as $saveFmcs){
                 $saveFmcs->Date = $request->input('date');
                 $saveFmcs->Reason = $request->input('reason');

@@ -9,9 +9,9 @@ class CreateDepartmentTable extends Migration {
 	{
 		Schema::create('Department', function(Blueprint $table) {
 			$table->increments('Depart_ID');
-			$table->string('Depart_name', 20);
-			$table->string('Head_ID', 20);
-			$table->integer('Tel');
+			$table->string('Depart_name', 100);
+			$table->string('Head_ID', 100)->nullable();
+			$table->string('Tel', 11);
 			$table->integer('Location_ID')->unsigned();
 		});
 	}
