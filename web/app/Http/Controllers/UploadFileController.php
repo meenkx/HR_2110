@@ -49,7 +49,7 @@ class UploadFileController extends Controller
         $upload_success = $image->move(public_path('/uploads'),$imageName);
 
         if ($upload_success) {
-            $saveFmc = Forms_Evidence::where('Date','=',$backupDate)->get();
+            $saveFmc = Forms_Evidence::where('Date','=',$backupDate)->orWhere('ID_member','=',Auth::user()->ID_member)->get();
             foreach ($saveFmc as $saveFmcs){
                 $saveFmcs->Form_evi_upload = $imageName;
                 $saveFmcs->save();
@@ -64,7 +64,7 @@ class UploadFileController extends Controller
 
     public function deleteFIle(Request $request)
     {
-        $delImg = Forms_Evidence::where('Date', '=',$request->input('dateEvident2'))->get();
+        $delImg = Forms_Evidence::where('Date', '=',$request->input('dateEvident2'))->orWhere('ID_member','=',Auth::user()->ID_member)->get();
 
         foreach ($delImg as $delImgs){
             $delImgs->Form_evi_upload = "";
