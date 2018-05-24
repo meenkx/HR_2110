@@ -37,7 +37,6 @@ class EventController extends Controller
     }
 
     public function edit($id){
-//        dd($id);
         return view('calender_edit');
     }
 }
