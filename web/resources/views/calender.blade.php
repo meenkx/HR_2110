@@ -42,7 +42,14 @@
                     </div>
                 </div>
                 <div class="row" style="background-color: aliceblue;margin-top: 20px;padding: 20px 15px;">
-                    <div class="title">- ไม่มีกิจกรรม</div>
+                    {{--no date--}}
+                    <div class="title" id="NoDate">- ไม่มีกิจกรรม</div>
+                    {{--have date--}}
+                    {{--<div class="row justify-content-center" style="padding: 0px 50px;" id="HaveDate">--}}
+                        {{--<div class="embed-responsive embed-responsive-16by9">--}}
+                            {{--<iframe class="embed-responsive-item" src="{{ route('calender_edit') }}"></iframe>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>

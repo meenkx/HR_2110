@@ -88,11 +88,12 @@ class HRcontroller extends Controller
 
     public function calKPI(Request $request){
         $kpi = $request->input('kpi');
-        $Score = $request->input('Target') / $request->input('Actual') * 100 ;
+        $target = $request->input('Target');
+        $Score = $target / $request->input('Actual') * 100 ;
         $TotalScore = $Score * $request->input('Weight_of_KPIs') / 100 ;
         $results = DB::select( DB::raw("UPDATE performance_measurement SET Score = '$Score' , Final_score = '$TotalScore' WHERE KPI_Code = '$kpi' ") );
 //        $results->save();
-//        return view('edit.edit_content.admin_kpi',['performance_measurement' => $results]);
+        return redirect()->route('admin_kpi');
     }
 
 

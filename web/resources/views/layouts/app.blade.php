@@ -725,5 +725,7 @@
     <script src="{{ asset('js/formEvidentSubmit.js') }}"></script>
     {{--kpi--}}
     <script src="{{ asset('js/kpi.js') }}"></script>
+    {{--date--}}
+    <script src="{{ asset('js/date.js') }}"></script>
 </body>
 </html>

@@ -32,11 +32,12 @@ class EventController extends Controller
             }
         }
         $calendar = Calendar::addEvents($events);
+//        dd($calendar);
         return view('calender', compact('calendar'));
     }
 
     public function edit($id){
-        dd($id);
+//        dd($id);
         return view('calender_edit');
     }
 }
