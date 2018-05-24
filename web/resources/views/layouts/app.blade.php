@@ -124,6 +124,9 @@
                 min-height: calc(100vh - 20px);
             }
         }
+        .modal-md {
+            max-width: 60%;
+        }
 
         /*bootstrap button*/
         .btn:focus, .btn:active {

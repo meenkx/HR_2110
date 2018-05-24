@@ -82,9 +82,19 @@ class HRcontroller extends Controller
     }
 
     public function admin_kpi(){
-        $results = DB::select( DB::raw("SELECT Kpi_code,Key_Result_Areas,Key_Performance_Indicators,Weight_of_KPIs,Target FROM performance_measurement") );
+        $results = DB::select( DB::raw("SELECT KPI_Code,Key_Result_Areas,Key_Performance_Indicators,Weight_of_KPIs,Target FROM performance_measurement") );
         return view('edit.edit_content.admin_kpi',['performance_measurement' => $results]);
     }
+
+    public function calKPI(Request $request){
+        $kpi = $request->input('kpi');
+        $Score = $request->input('Target') / $request->input('Actual') * 100 ;
+        $TotalScore = $Score * $request->input('Weight_of_KPIs') / 100 ;
+        $results = DB::select( DB::raw("UPDATE performance_measurement SET Score = '$Score' , Final_score = '$TotalScore' WHERE KPI_Code = '$kpi' ") );
+//        $results->save();
+//        return view('edit.edit_content.admin_kpi',['performance_measurement' => $results]);
+    }
+
 
     public function admin_calender(){
         return view('edit.edit_content.admin_calender');

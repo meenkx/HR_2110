@@ -37,6 +37,8 @@ Route::get('/leave', 'HRcontroller@leave')->name('leave');
 Route::get('/testex', 'HRcontroller@testex')->name('testex');
 //form evident
 Route::post('/saveFormEv', 'HRcontroller@saveFormEvident')->name('saveFormEvident');
+//kpi
+Route::post('/calKPI', 'HRcontroller@calKPI')->name('calKPI');
 //Route::get('/testex2', 'HRcontroller@testex2')->name('testex2');
 Route::get('/testex2', 'EventController@index')->name('testex2');
 

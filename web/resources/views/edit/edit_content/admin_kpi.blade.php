@@ -28,7 +28,7 @@
                         <td>{{ $performance_measurements->Key_Performance_Indicators }}</td>
                         <td>{{ $performance_measurements->Weight_of_KPIs }}</td>
                         <td>{{ $performance_measurements->Target }}</td>
-                        <td><button type="button" class="btn btn-default load-form-modal" style="border: 1px solid red;color: red;width: 100px;" data-toggle="modal" data-target="#profile">Edit</button></td>
+                        <td><button type="button" class="btn btn-default load-form-modal" style="border: 1px solid red;color: red;width: 100px;" data-id="{{ $performance_measurements->KPI_Code }}" data-toggle="modal" data-target="#profile" >Edit</button></td>
                     </tr>
                     @endforeach
 
@@ -40,24 +40,70 @@
 
     <!-- The Modal -->
     <div class="modal" id="profile">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
+                    <h4 class="modal-title" id="titleModal">Modal Heading</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
+
                 <div class="modal-body">
-                    Modal body..
+                    <form action="{{ route('calKPI') }}" method="POST">
+                        @csrf
+                        <input type="hidden" class="form-control" id="kpi" name="kpi">
+                        <div class="form-group row">
+                            <label for="Key_Result_Areas" class="col-sm-4 col-form-label">Key_Result_Areas</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control" id="Key_Result_Areas">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Key_Performance_Indicators" class="col-sm-4 col-form-label">Key_Performance_Indicators</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control" id="Key_Performance_Indicators">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Weight_of_KPIs" class="col-sm-4 col-form-label">Weight_of_KPIs</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control" id="Weight_of_KPIs" name="Weight_of_KPIs">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Target" class="col-sm-4 col-form-label">Target</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control" id="Target" name="Target">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Actual" class="col-sm-4 col-form-label">Actual</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" id="Actual" name="Actual">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-4 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-warning" style="width: 100%;">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
+
 
             </div>
         </div>
