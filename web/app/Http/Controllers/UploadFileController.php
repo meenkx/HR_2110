@@ -36,13 +36,10 @@ class UploadFileController extends Controller
         $dateConvert = $datee[2].$datee[1].$datee[0];
 
         $image = $request->file('file');
-//        $imageName = Auth::user()->Email."_EvidentImage_".$image->getClientOriginalName();
         if($image->getClientOriginalExtension() == "jpeg" || $image->getClientOriginalExtension() == "jpg" || $image->getClientOriginalExtension() == "png"){
-//            $imageName = Auth::user()->Email."_EvidentImage.".$image->getClientOriginalExtension();
             $imageName = Auth::user()->Firstname."_".Auth::user()->Lastname."-".$dateConvert.".".$image->getClientOriginalExtension();
         }
         else if ($image->getClientOriginalExtension() == "pdf"){
-//            $imageName = Auth::user()->Email."_EvidentFile.".$image->getClientOriginalExtension();
             $imageName = Auth::user()->Firstname."_".Auth::user()->Lastname."-".$dateConvert.".".$image->getClientOriginalExtension();
         }
 
