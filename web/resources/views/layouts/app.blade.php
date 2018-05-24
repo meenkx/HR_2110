@@ -560,7 +560,7 @@
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>--}}
     <script async src="{{ asset('js/dropzone.js') }}"></script>
 
-    @yield('script')
+
     <script>
         $(document).ready(function(){
             var theToggle = document.getElementById('toggle');
@@ -725,7 +725,5 @@
     <script src="{{ asset('js/formEvidentSubmit.js') }}"></script>
     {{--kpi--}}
     <script src="{{ asset('js/kpi.js') }}"></script>
-    {{--date--}}
-    <script src="{{ asset('js/date.js') }}"></script>
 </body>
 </html>

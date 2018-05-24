@@ -26,30 +26,12 @@
     {{--content--}}
     <div class="container" style="margin-top: 30px;">
         <div class="row" style="display: inline-flex;width: 100%">
-            <div class="wd5" style="width: 50%">
+            <div class="wd5" style="width: 100%">
                 <div class="row">
                     <div class="panel-body">
                         {!! $calendar->calendar() !!}
                         {{--{{ $calendar->calendar() }}--}}
                     </div>
-                </div>
-            </div>
-            <div class="wt5" style="width: 50%;border-left: 0.5px solid #808080;margin-left: 30px;padding: 0px 30px;">
-                <div class="row" style="margin-top: 30px">
-                    <div>
-                        <span style="vertical-align: middle;line-height: 25px;padding-left: 15px;font-size: 20px;"><span class="dot_green"></span>Activity / Detail / date</span>
-                        <span><button type="button" class="btn btn-default open-popup" style="    border: 1px solid red;color: red;width: 100px;background-color: white;padding: 10px;border-radius: 15px;margin-left: 10px;" data-toggle="modal" data-target="#profile">Edit</button></span>
-                    </div>
-                </div>
-                <div class="row" style="background-color: aliceblue;margin-top: 20px;padding: 20px 15px;">
-                    {{--no date--}}
-                    <div class="title" id="NoDate">- ไม่มีกิจกรรม</div>
-                    {{--have date--}}
-                    {{--<div class="row justify-content-center" style="padding: 0px 50px;" id="HaveDate">--}}
-                        {{--<div class="embed-responsive embed-responsive-16by9">--}}
-                            {{--<iframe class="embed-responsive-item" src="{{ route('calender_edit') }}"></iframe>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
                 </div>
             </div>
         </div>
@@ -72,7 +54,7 @@
     <script>
         function sendDate(data) {
             $value=data;
-            console.log("loop senddata - " + $value);
+            // console.log("loop senddata - " + $value);
             $.ajax({
                 type : 'get',
                 url : '{{ route('calender_eiei') }}',

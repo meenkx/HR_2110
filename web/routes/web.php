@@ -58,7 +58,8 @@ Route::get('/search','SearchController@search')->name('search');
 Route::get('/calender_eiei','CalenderController@calender')->name('calender_eiei');
 
 //fullcalendar
-Route::get('events', 'EventController@index');
+Route::get('events', 'EventController@index')->name('events');
 
 //edit
 Route::get('/edit/{id}', 'EventController@edit')->name('calender_edit');
+Route::post('/editSave', 'EventController@editSave')->name('calender_editSave');

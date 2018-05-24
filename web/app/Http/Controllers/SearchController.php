@@ -18,7 +18,7 @@ class SearchController extends Controller
         if($request->ajax())
         {
             $output=" NO DATA";
-            $profiles = DB::table('profiles')
+            $profiles = DB::table('profile')
                 ->where('Firstname','LIKE','%'.$request->search."%")
                 ->orWhere('Lastname','LIKE','%'.$request->search."%")
                 ->orWhere('Email','LIKE','%'.$request->search."%")
