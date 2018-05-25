@@ -1,34 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: May 23, 2018 at 05:33 PM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
-=======
-<<<<<<< HEAD
--- Generation Time: May 23, 2018 at 04:15 PM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
-=======
--- Generation Time: May 03, 2018 at 07:02 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
->>>>>>> 216d8a737ed38368883465624cb86530f05ae7df
->>>>>>> 114c0455558502dfb527e01356ef250f53fa2f26
+-- Host: localhost:3306
+-- Generation Time: May 25, 2018 at 06:06 AM
+-- Server version: 5.6.38
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `hr_2110`
@@ -78,7 +58,8 @@ CREATE TABLE `activity_department` (
 INSERT INTO `activity_department` (`Depart_ID`, `Activity_ID`, `ID_listActivity`) VALUES
 (2, 2, 1),
 (5, 3, 2),
-(4, 1, 3);
+(4, 1, 3),
+(1, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -87,6 +68,7 @@ INSERT INTO `activity_department` (`Depart_ID`, `Activity_ID`, `ID_listActivity`
 --
 
 CREATE TABLE `activity_status` (
+  `ID_Activity_status` int(11) NOT NULL,
   `ID_listActivity` int(10) UNSIGNED NOT NULL,
   `ID_member` int(11) NOT NULL,
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
@@ -96,8 +78,9 @@ CREATE TABLE `activity_status` (
 -- Dumping data for table `activity_status`
 --
 
-INSERT INTO `activity_status` (`ID_listActivity`, `ID_member`, `status`) VALUES
-(1, 1, 'เข้าร่วม');
+INSERT INTO `activity_status` (`ID_Activity_status`, `ID_listActivity`, `ID_member`, `status`) VALUES
+(1, 4, 2, 'เข้าร่วม'),
+(2, 4, 2, 'เข้าร่วม');
 
 -- --------------------------------------------------------
 
@@ -182,17 +165,8 @@ CREATE TABLE `education_history` (
 
 CREATE TABLE `forms_evidence` (
   `ID_member` int(10) UNSIGNED NOT NULL,
-<<<<<<< HEAD
   `ID_Evidence` int(10) UNSIGNED NOT NULL,
   `Form_evi_upload` varchar(190) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-=======
-<<<<<<< HEAD
-  `ID_Evidence` int(10) UNSIGNED NOT NULL,
-  `Form_evi_upload` varchar(190) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-=======
-  `ID_Evidence` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
->>>>>>> 216d8a737ed38368883465624cb86530f05ae7df
->>>>>>> 114c0455558502dfb527e01356ef250f53fa2f26
   `Date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -205,7 +179,8 @@ CREATE TABLE `forms_evidence` (
 --
 
 INSERT INTO `forms_evidence` (`ID_member`, `ID_Evidence`, `Form_evi_upload`, `Date`, `created_at`, `updated_at`, `Reason`, `Confirm`) VALUES
-(2, 1, 'ธีรภัทร_ดวงกองเงิน-30052018.pdf', '2018-05-30', '2018-05-23 05:21:06', '2018-05-23 05:23:17', 'ccvvv', NULL);
+(2, 1, 'ธีรภัทร_ดวงกองเงิน-31052018.pdf', '2018-05-30', '2018-05-23 05:21:06', '2018-05-24 22:11:22', 'asdasdasd', NULL),
+(2, 2, 'ธีรภัทร_ดวงกองเงิน-31052018.pdf', '2018-05-31', '2018-05-24 22:10:50', '2018-05-24 22:11:22', 'asd', NULL);
 
 -- --------------------------------------------------------
 
@@ -435,7 +410,7 @@ CREATE TABLE `performance_measurement` (
 
 INSERT INTO `performance_measurement` (`KPI_Code`, `Key_Result_Areas`, `Key_Performance_Indicators`, `Weight_of_KPIs`, `Target`, `Actual`, `Score`, `Final_score`) VALUES
 (1, 'Recruitment', 'Average lead time to recruit employees ', '15', '60 calendar days', NULL, NULL, NULL),
-(2, 'Recruitment', 'Performance score of new employees within 6 months', '15', '80', NULL, NULL, NULL),
+(2, 'Recruitment', 'Performance score of new employees within 6 months', '15', '80', NULL, 800, 120),
 (3, 'Training and Development', 'Training hours per Employee/Year', '10', '40 hours/year', NULL, NULL, NULL),
 (4, 'Training and Development', '% difference in the rate of productivity before and after training (for selected training programs)', '10', '50 %', NULL, NULL, NULL),
 (5, 'Performance and Career Management', '% of employees that fully execute their Individual Development Plan', '10', '90 %', NULL, NULL, NULL),
@@ -508,7 +483,7 @@ CREATE TABLE `profile` (
 
 INSERT INTO `profile` (`ID_member`, `Firstname`, `Lastname`, `DOB`, `Gender`, `Marital_status`, `Email`, `Tel`, `Job_ID`, `Social_link`, `Work_type`, `Education`, `Photo`, `Emergency_Contact`, `Hire_day`, `End_date`, `Nationality`, `Data_status`, `User_role`, `password`, `remember_token`) VALUES
 (1, 'พงศธร', 'จุ่งรุ่งเรือง', '1997-02-12', 'male', 'โสดเว้ย', 'fangc24h@gmail.com', '0922480725', 8, 'https://www.youtube.com/watch?v=qBIxl_6tFfo', 'Fulltime', 'KMUTT', '-', '1669', '2018-05-01', '2018-05-17', 'Thai', 'ทำอยู่เว้ย', 'user', '$2y$10$cJ18RKQrYe8uUVAtLHIn0OLKa1M6dZ4//wE3G8iDJXYpNg10hOvAO', 'b0mfcwaUPZ8lhTeBSZ9wIsZa5ezKxoVprLOrBpl3'),
-(2, 'ธีรภัทร', 'ดวงกองเงิน', '2018-05-11', 'male', 'โสด', 'teeraphatmychin@gmail.com', '0837507839', 1, '-', 'parttime', '-', '-', '-', '2018-05-31', '2018-05-06', 'thai', 'ยังทำงานอยู่', 'user', '$2y$10$ECZIwxs/cbtJvxl4EjqJXu6bXhsR2WtP80dvew7UhNaNCmEOQl3fO', 'gZGKIhXEC4yo28jecH3Qz25AY7xotLBL3WLSyusopqSYKx48uiAlpAPVZuYh'),
+(2, 'ธีรภัทร', 'ดวงกองเงิน', '2018-05-11', 'male', 'โสด', 'teeraphatmychin@gmail.com', '0837507839', 1, '-', 'parttime', '-', '-', '-', '2018-05-31', '2018-05-06', 'thai', 'ยังทำงานอยู่', 'user', '$2y$10$ECZIwxs/cbtJvxl4EjqJXu6bXhsR2WtP80dvew7UhNaNCmEOQl3fO', 'b0uVRGYefiqErU2JVj3k3c09kkytoj0XcLKEL8o2Q3a8i5PxbqatTqnTrKBC'),
 (3, 'Velva', 'Prohaska', '1992-06-26', 'female', 'divorced', 'kenya39@yahoo.com', '0837119248', 8, '-', 'Full time', 'KMUIT', 'https://scontent.fbkk1-5.fna.fbcdn.net/v/t31.0-8/21082938_1634507129915520_7935661447298751260_o.jpg?_nc_cat=0&oh=e2b25e36c5f51fd0c01a004159a6ddf2&oe=5B4FF5A0', '0994587261', '2018-05-02', NULL, 'English', 'ทำงานอยู่', 'hr_admin', '$2y$10$pRPdbJk//ZcSXVv06bMxku9E28DxwYQLFc8FsEiru.JfNn5SfuziK', 'M8uD8GXVyH'),
 (4, 'Kaia', 'Hamill', '1990-03-04', 'female', 'widowed', 'kayli.marquardt@yahoo.com', '0833005966', 1, '-', 'Part time', 'KMUTT', 'https://scontent.fbkk1-1.fna.fbcdn.net/v/t1.0-9/19554300_1405999659476969_400778324058538746_n.jpg?_nc_fx=fbkk1-5&_nc_cat=0&oh=3f8c5cfbd608c645a70c77253ee64ecb&oe=5B9D9C97', '0984343965', '2018-05-02', NULL, 'English', 'ทำงานอยู่', 'admin', '$2y$10$pRPdbJk//ZcSXVv06bMxku9E28DxwYQLFc8FsEiru.JfNn5SfuziK', 'gaCeIjRJVX'),
 (5, 'Lori', 'Davis', '1979-06-12', 'male', 'single', 'elaina.grimes@yahoo.com', '0891334821', 5, '-', 'Full time', 'KMUTT', 'https://scontent.fbkk1-1.fna.fbcdn.net/v/t1.0-9/19554300_1405999659476969_400778324058538746_n.jpg?_nc_fx=fbkk1-5&_nc_cat=0&oh=3f8c5cfbd608c645a70c77253ee64ecb&oe=5B9D9C97', '0938221288', '2018-05-02', NULL, 'English', 'ทำงานอยู่', 'admin', '$2y$10$pRPdbJk//ZcSXVv06bMxku9E28DxwYQLFc8FsEiru.JfNn5SfuziK', 'vegvCbKe7B'),
@@ -614,6 +589,7 @@ ALTER TABLE `activity_department`
 -- Indexes for table `activity_status`
 --
 ALTER TABLE `activity_status`
+  ADD PRIMARY KEY (`ID_Activity_status`),
   ADD KEY `activity_status_id_listactivity_foreign` (`ID_listActivity`);
 
 --
@@ -738,7 +714,13 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `activity_department`
 --
 ALTER TABLE `activity_department`
-  MODIFY `ID_listActivity` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_listActivity` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `activity_status`
+--
+ALTER TABLE `activity_status`
+  MODIFY `ID_Activity_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `address`
@@ -756,18 +738,9 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `forms_evidence`
 --
 ALTER TABLE `forms_evidence`
-  MODIFY `ID_Evidence` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Evidence` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
-<<<<<<< HEAD
--- AUTO_INCREMENT for table `forms_evidence`
---
-ALTER TABLE `forms_evidence`
-  MODIFY `ID_Evidence` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
-=======
->>>>>>> 216d8a737ed38368883465624cb86530f05ae7df
 -- AUTO_INCREMENT for table `history_work`
 --
 ALTER TABLE `history_work`
@@ -918,8 +891,3 @@ ALTER TABLE `status_work`
 ALTER TABLE `transection_peyment`
   ADD CONSTRAINT `transection_peyment_id_member_foreign` FOREIGN KEY (`ID_member`) REFERENCES `profile` (`ID_member`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transection_peyment_id_payment_special_foreign` FOREIGN KEY (`ID_payment_special`) REFERENCES `payment_special` (`ID_Payment_Special`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
