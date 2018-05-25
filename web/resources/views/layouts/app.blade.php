@@ -450,7 +450,7 @@
                         {{--</a>--}}
                         <div class="col-md-6">
                             <div style="padding-bottom: 3px;">
-                                <span class="topbartext1">Ms. Nayika Srinian</span>
+                                <span class="topbartext1">{{ Auth::user()->Firstname }} {{ Auth::user()->Lastname }}</span>
                                 <button type="button" class="btn btn-default topbarbutton1" style="outline: none;width: 155px !important;">
                                     @if( Session::get('authen_type') == 'user' )
                                         <span style="color: #39a938;width: 150px !important;text-transform: uppercase">employee</span>
@@ -468,7 +468,7 @@
                               <span style="font-weight: bold">ID : </span>
                               <span>590701027</span>
                               <span style="font-weight: bold">Department : </span>
-                              <span>Introduction International</span>
+                              <span>{{ Auth::user()->Job_ID }}</span>
                           </span>
                             </div>
                         </div>

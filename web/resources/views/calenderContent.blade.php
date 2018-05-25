@@ -88,25 +88,42 @@
                         <input class="form-control" type="date" readonly value="{{ $resultss->End_date }}">
                     </div>
                 </div>
-
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-2 col-form-label">Status</label>
-                    <div class="col-9">
-                        <select class="form-control" id="status" name="status">
-                            <option value="">สถานะการเข้าร่วม</option>
-                            <option value="เข้าร่วม">เข้าร่วม</option>
-                            <option value="ไม่เข้าร่วม">ไม่เข้าร่วม</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="" class="col-2 col-form-label"></label>
-                    <div class="col-9">
-                        <button type="submit" class="btn btn-warning" style="width: 100%;">Edit</button>
-                    </div>
-                </div>
             @endforeach
+
+            @if(empty($status))
+                <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Status</label>
+                        <div class="col-9">
+                            <select class="form-control" id="status" name="status" required>
+                                <option value="">สถานะการเข้าร่วม</option>
+                                <option value="เข้าร่วม">เข้าร่วม</option>
+                                <option value="ไม่เข้าร่วม">ไม่เข้าร่วม</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="form-group row">
+                        <label for="" class="col-2 col-form-label"></label>
+                        <div class="col-9">
+                            <button type="submit" class="btn btn-warning" style="width: 100%;">Edit</button>
+                        </div>
+                </div>
+            @else
+                @foreach($status as $statuss)
+                    <div class="form-group row">
+                            <label for="example-text-input" class="col-2 col-form-label">Status</label>
+                            <div class="col-9">
+                                <input class="form-control" type="text" readonly value="{{ $statuss->status }}">
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-2 col-form-label"></label>
+                        <div class="col-9">
+                            <button type="button" class="btn btn-success" style="width: 100%;">กรอกข้อมูลเรียบร้อย</button>
+                        </div>
+                    </div>
+                @endforeach
+
+            @endif
         </form>
     </div>
 </div>
