@@ -62,5 +62,5 @@ Route::get('/calender_eiei','CalenderController@calender')->name('calender_eiei'
 Route::get('events', 'EventController@index')->name('events');
 
 //edit
-Route::get('/edit/{id}', 'EventController@edit')->name('calender_edit');
-Route::post('/editSave', 'EventController@editSave')->name('calender_editSave');
+Route::get('/edit/{Activity_ID}/auth_idMember/{idMember}', 'EventController@edit')->name('calender_edit');
+Route::post('/editSave/{idMember}', 'EventController@editSave')->name('calender_editSave');

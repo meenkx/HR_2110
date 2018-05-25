@@ -41,7 +41,7 @@ class EventController extends Controller
                     // Add color and link on event
                     [
                         'color' => '#f05050',
-                        'url' => 'http://127.0.0.1:8000/'.'edit/'.$value->Activity_ID,
+                        'url' => 'http://127.0.0.1:8000/'.'edit/'.$value->Activity_ID.'/auth_idMember/'.Auth::user()->ID_member,
                     ]
                 );
             }
@@ -58,26 +58,26 @@ class EventController extends Controller
         return view('calender', compact('calendar'));
     }
 
-    public function edit($id){
-
+    public function edit($Activity_ID,$idMember){
 //        $id_member = Auth::user()->ID_member;
-        $id_member = Auth::user();
-        dd($id_member);
-        $results = DB::select( DB::raw("SELECT adm.ID_listActivity , p.ID_member , av.Activity_ID, av.Activity_name , av.Objective , av.Type , av.Detail , av.Start_date , av.End_date FROM profile p, job j, department dm, activity_department adm, activity av WHERE p.Job_ID = j.Job_ID AND j.Depart_ID = dm.Depart_ID AND dm.Depart_ID = adm.Depart_ID AND adm.Activity_ID = av.Activity_ID AND av.Activity_ID = ? AND p.ID_member = ? " , [$id,$id_member]) );
+//        dd(Auth::user()->Job_ID);
+
+        $results = DB::select( DB::raw("SELECT adm.ID_listActivity , p.ID_member , av.Activity_ID, av.Activity_name , av.Objective , av.Type , av.Detail , av.Start_date , av.End_date FROM profile p, job j, department dm, activity_department adm, activity av WHERE p.Job_ID = j.Job_ID AND j.Depart_ID = dm.Depart_ID AND dm.Depart_ID = adm.Depart_ID AND adm.Activity_ID = av.Activity_ID AND av.Activity_ID = $Activity_ID AND p.ID_member = $idMember ") );
         foreach ($results as $resultss){
-                $status = DB::select(DB::raw("SELECT status FROM activity_status WHERE ID_listActivity = $resultss->ID_listActivity AND ID_member = $id_member"));
+                $status = DB::select(DB::raw("SELECT status FROM activity_status WHERE ID_listActivity = $resultss->ID_listActivity AND ID_member = $idMember"));
         }
-        return view('calenderContent')->with( compact('results'))->with( compact('status'));
+
+        return view('calenderContent')->with( compact('results'))->with( compact('status'))->with( compact('idMember'));
     }
 
-    public function editSave(Request $request)
+    public function editSave(Request $request,$idMember)
     {
 
         $saveEvent = new Activity_status();
         $saveEvent->ID_listActivity = $request->input('ID_listActivity');
-        $saveEvent->ID_member = Auth::user()->ID_member;
+        $saveEvent->ID_member = $idMember;
         $saveEvent->status = $request->input('status');
         $saveEvent->save();
-        return redirect()->route('events');
+        return redirect()->back();
     }
 }

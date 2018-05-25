@@ -24,7 +24,6 @@
     }
 </style>
 
-
 {{--content--}}
 <div class="wt5" style="width: 100%;border-left: 0.5px solid #808080;margin-left: 30px;padding: 0px 30px;">
     <div class="row" style="margin-top: 30px">
@@ -36,7 +35,8 @@
     <div class="row" style="background-color: aliceblue;margin-top: 20px;padding: 20px 15px;">
         {{--no date--}}
         {{--<div class="title" id="NoDate">- ไม่มีกิจกรรม</div>--}}
-        <form action="{{ route('calender_editSave') }}" method="post" style="width: 100%;padding: 10px 50px;">
+
+        <form action="{{ route('calender_editSave', ['idMember' => $idMember ] ) }}" method="post" style="width: 100%;padding: 10px 50px;">
             @csrf
             @foreach($results as $resultss )
                 <input type="hidden" value="{{ $resultss->ID_listActivity }}" id="ID_listActivity" name="ID_listActivity">
