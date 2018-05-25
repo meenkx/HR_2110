@@ -29,6 +29,7 @@ class Profile extends Model implements Authenticatable
      * @var array
      */
     protected $fillable = [
+        'ID_member' ,
         'Firstname' ,
         'Lastname' ,
         'DOB' ,
