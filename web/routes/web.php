@@ -20,11 +20,16 @@ Route::get('/payment', function () {
     return view('payment');
 });
 
+Route::get('/timestamp', function () {
+    return view('timestamp');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/print', 'HRcontroller@print')->name('print');
+//Route::get('/print', 'HRcontroller@print')->name('print');
 Route::get('/profile', 'HRcontroller@profile')->name('profile');
+
 Route::get('/admin_profile', 'HRcontroller@admin_profile')->name('admin_profile');
 //Route::get('/calender', 'HRcontroller@calender')->name('calender');
 Route::get('/calender', 'EventController@index')->name('calender');
