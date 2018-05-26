@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Forms_Evidence;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +30,11 @@ class HRcontroller extends Controller
     {
         return view('edit.edit_content.admin_profile');
     }
+
+    public function print()
+    {
+        $pdf = PDF::loadView('payment');
+        return $pdf->download('invoice.pdf');    }
 
     public function calender(){
         $depart = DB::table('job')->select('Depart_ID')->where('Job_ID',Auth::user()->Job_ID)->get();

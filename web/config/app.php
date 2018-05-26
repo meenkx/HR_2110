@@ -164,6 +164,9 @@ return [
         Riverskies\Laravel\MobileDetect\MobileDetectServiceProvider::class,
         //calendar
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
+        //pdf
+        Barryvdh\Snappy\ServiceProvider::class,
+
 
     ],
 
@@ -217,6 +220,10 @@ return [
         'MobileDetect' => Riverskies\Laravel\MobileDetect\Facades\MobileDetect::class,
         //calendar
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
+        //pdf
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+
     ],
 
 ];

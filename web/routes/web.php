@@ -16,10 +16,14 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('/payment', function () {
+    return view('payment');
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/print', 'HRcontroller@print')->name('print');
 Route::get('/profile', 'HRcontroller@profile')->name('profile');
 Route::get('/admin_profile', 'HRcontroller@admin_profile')->name('admin_profile');
 //Route::get('/calender', 'HRcontroller@calender')->name('calender');
