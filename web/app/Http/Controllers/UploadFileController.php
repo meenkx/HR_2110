@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Forms_Evidence;
+use App\Value_of_Each_Certificate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -72,5 +73,51 @@ class UploadFileController extends Controller
         $imageName = Auth::user()->Firstname."_".Auth::user()->Lastname."-".$dateConvert.".pdf";
         unlink(public_path('/uploads/'.$imageName));
 
+    }
+
+    public function cerAdd()
+    {
+        return view('edit.edit_content.certificate_editAdd');
+    }
+
+    public function storeImageCer(Request $request){
+
+        $image = $request->file('file');
+        if($image->getClientOriginalExtension() == "jpg"){
+            $imageName = $request->input('CertificateName2')."_Certificate".".".$image->getClientOriginalExtension();
+        }
+
+        $upload_success = $image->move(public_path('/certificate'),$imageName);
+
+        if ($upload_success) {
+            $saveFmc = Value_of_Each_Certificate::where('Certificate_name','=',$request->input('CertificateName2'))->get();
+            foreach ($saveFmc as $saveFmcs){
+                $saveFmcs->Certificate_picture = $imageName;
+                $saveFmcs->save();
+            }
+            return response()->json($upload_success, 200);
+        }
+        // Else, return error 400
+        else {
+            return response()->json('error', 400);
+        }
+    }
+
+    public function deleteFIleCer(Request $request)
+    {
+        $delImg = Value_of_Each_Certificate::where('Certificate_name','=',$request->input('CertificateName2'))->get();
+
+        foreach ($delImg as $delImgs){
+            $delImgs->Certificate_picture = "";
+            $delImgs->save();
+        }
+        $imageName = $request->input('CertificateName2')."_Certificate".".jpg";
+        unlink(public_path('/uploads/'.$imageName));
+
+    }
+
+    public function cerEdit()
+    {
+        return view('edit.edit_content.certificate_edit');
     }
 }

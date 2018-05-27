@@ -396,7 +396,7 @@
     </style>
     @yield('style')
 </head>
-<body class="my-login-page" onload="startTime();">
+<body class="my-login-page">
     <div id="app_">
 
         @desktop
@@ -440,33 +440,9 @@
     {{--dropzone--}}
     {{--<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>--}}
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>--}}
-    <script async src="{{ asset('js/dropzone.js') }}"></script>
-    <script>
-
-            {{--if('{{ Auth::user()->Job_ID }}' != ""){--}}
-                {{--var dataArray={--}}
-                    {{--// job:$('#dateEvident').val(),--}}
-                    {{--job:'{{ Auth::user()->Job_ID }}',--}}
-                {{--};--}}
-                {{--$.ajax({--}}
-                    {{--headers: {--}}
-                        {{--'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-                    {{--},--}}
-                    {{--type: 'POST',--}}
-                    {{--url: '/checkProfile',--}}
-                    {{--data: dataArray,--}}
-                    {{--sucess: function(data){--}}
-                        {{--// console.log('save data Form Evident success [job]: ' + data.job);--}}
-                        {{--console.log("asdasd" + data);--}}
-                        {{--// document.getElementById("DepartmentID").innerHTML = "asdasdadad";--}}
-                    {{--},--}}
-                    {{--error: function() {--}}
-                        {{--console.log("There was an error. Try again please!");--}}
-                    {{--}--}}
-                {{--});--}}
-            {{--}--}}
-
-    </script>
+    {{--<script>--}}
+        {{--console.log(window.location.pathname);--}}
+    {{--</script>--}}
     <script>
         $(document).ready(function(){
             var theToggle = document.getElementById('toggle');
@@ -627,9 +603,195 @@
             };
         }
     </script>
-    {{--form evident--}}
-    <script src="{{ asset('js/formEvidentSubmit.js') }}"></script>
+
     {{--kpi--}}
     <script src="{{ asset('js/kpi.js') }}"></script>
+
+    {{--dropzone--}}
+    <script>
+        @if(Route::getCurrentRoute()->uri() == 'leave')
+        document.writeln("<script type='text/javascript' src='{{ asset('js/dropzone.js') }}'><" + "/script>");
+        document.writeln("<script type='text/javascript' src='{{ asset('js/formEvidentSubmit.js') }}'><" + "/script>");
+        @elseif(Route::getCurrentRoute()->uri() == 'cerAdd')
+        document.writeln("<script type='text/javascript' src='{{ asset('js/dropzoneCer.js') }}'><" + "/script>");
+        document.writeln("<script type='text/javascript' src='{{ asset('js/certificate.js') }}'><" + "/script>");
+        @endif
+    </script>
+    <script>
+        @if(Route::getCurrentRoute()->uri() == 'leave')
+        document.getElementById("dropzoneUpload").style.display = "none";
+
+        var timer;
+
+        //Start a timer on keyup event
+        $('#Annotation').on('keyup', function () {
+            //add loading indicator
+            // $('#textZone').html("<img src='loading.gif'>");
+            clearTimeout(timer);       // clear timer
+            timer = setTimeout(pesquisar, 500);
+        });
+
+
+        $('#Annotation').on('keydown', function () {
+            clearTimeout(timer);       // clear timer if user pressed key again
+        });
+
+        $('#dateEvident').on('keyup', function () {
+            //add loading indicator
+            // $('#textZone').html("<img src='loading.gif'>");
+            clearTimeout(timer);       // clear timer
+            timer = setTimeout(pesquisar, 500);
+        });
+
+
+        $('#dateEvident').on('keydown', function () {
+            clearTimeout(timer);       // clear timer if user pressed key again
+        });
+
+        //call ajax function when user finished typing
+        function pesquisar(value) {
+            // console.log("sdsdsd");
+            // $("#Annotation").show();
+            var date = $('#dateEvident').val();
+            var Annotation = $('#Annotation').val();
+            if(date !== "" || Annotation !== ""){
+                document.getElementById("dropzoneUpload").style.display = "block";
+                document.getElementById("textZone").style.display = "none";
+                document.getElementById("dateEvident2").value = $('#dateEvident').val();
+                var dataArray={
+                    date:$('#dateEvident').val(),
+                    reason:$('#Annotation').val()
+                };
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'POST',
+                    url: '/saveFormEv',
+                    data: dataArray,
+                    sucess: function(data){
+                        console.log('save data Form Evident success: ' + data);
+                    }
+                });
+            }else{
+                console.log("Please fill complete again !!");
+            }
+        };
+
+        function formEvidentSubmit() {
+
+            var dataArray={
+                date:$('#dateEvident').val(),
+                reason:$('#Annotation').val()
+            };
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                url: '/saveFormEv',
+                data: dataArray,
+                sucess: function(data){
+                    console.log('save data Form Evident success: ' + data);
+                }
+            });
+            window.location.href = "/admin_profile";
+        }
+        @elseif(Route::getCurrentRoute()->uri() == 'cerAdd')
+        document.getElementById("dropzoneUploadCer").style.display = "none";
+
+        var timer;
+
+        //Start a timer on keyup event
+        $('#CertificateFrom').on('keyup', function () {
+            //add loading indicator
+            // $('#textZoneCer').html("<img src='loading.gif'>");
+            clearTimeout(timer);       // clear timer
+            timer = setTimeout(pesquisar, 500);
+        });
+
+
+        $('#CertificateFrom').on('keydown', function () {
+            clearTimeout(timer);       // clear timer if user pressed key again
+        });
+
+        $('#CertificateName').on('keyup', function () {
+            //add loading indicator
+            // $('#textZoneCer').html("<img src='loading.gif'>");
+            clearTimeout(timer);       // clear timer
+            timer = setTimeout(pesquisar, 500);
+        });
+
+
+        $('#CertificateName').on('keydown', function () {
+            clearTimeout(timer);       // clear timer if user pressed key again
+        });
+
+        $('#CertificateValue').on('keyup', function () {
+            //add loading indicator
+            // $('#textZoneCer').html("<img src='loading.gif'>");
+            clearTimeout(timer);       // clear timer
+            timer = setTimeout(pesquisar, 500);
+        });
+
+
+        $('#CertificateValue').on('keydown', function () {
+            clearTimeout(timer);       // clear timer if user pressed key again
+        });
+
+        //call ajax function when user finished typing
+        function pesquisar(value) {
+            // console.log("sdsdsd");
+            // $("#CertificateFrom").show();
+            var date = $('#CertificateName').val();
+            var CertificateFrom = $('#CertificateFrom').val();
+            if(date !== "" || CertificateFrom !== "" || CertificateValue !== ""){
+                document.getElementById("dropzoneUploadCer").style.display = "block";
+                document.getElementById("textZoneCer").style.display = "none";
+                document.getElementById("CertificateName2").value = $('#CertificateName').val();
+                var dataArray={
+                    CertificateName:$('#CertificateName').val(),
+                    CertificateFrom:$('#CertificateFrom').val(),
+                    CertificateValue:$('#CertificateValue').val()
+                };
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'POST',
+                    url: '/saveFormCer',
+                    data: dataArray,
+                    sucess: function(data){
+                        console.log('save data Form Evident success: ' + data);
+                    }
+                });
+            }else{
+                console.log("Please fill complete again !!");
+            }
+        };
+
+        function formEvidentSubmit() {
+
+            var dataArray={
+                CertificateName:$('#CertificateName').val(),
+                CertificateFrom:$('#CertificateFrom').val(),
+                CertificateValue:$('#CertificateValue').val()
+            };
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                url: '/saveFormCer',
+                data: dataArray,
+                sucess: function(data){
+                    console.log('save data Form Evident success: ' + data);
+                }
+            });
+            window.location.href = "/admin_profile";
+
+        }
+        @endif
+    </script>
 </body>
 </html>

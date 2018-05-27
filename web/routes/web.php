@@ -24,6 +24,11 @@ Route::get('/timestamp', function () {
     return view('timestamp');
 });
 
+Route::get('/session', function () {
+    dd(session()->all());
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -36,9 +41,15 @@ Route::get('/calender', 'EventController@index')->name('calender');
 Route::get('/admin_workhistory', 'HRcontroller@admin_workhistory')->name('admin_workhistory');
 Route::get('/admin_kpi', 'HRcontroller@admin_kpi')->name('admin_kpi');
 Route::get('/admin_calender', 'HRcontroller@admin_calender')->name('admin_calender');
+
 Route::get('/admin_notifications', 'HRcontroller@noti')->name('noti');
+Route::post('/sameNotiCon', 'HRcontroller@sameNotiCon')->name('sameNotiCon');
+
 Route::get('/admin_salary', 'HRcontroller@admin_salary')->name('salary');
+
 Route::get('/admin_branchLocation', 'HRcontroller@admin_branchLocation')->name('admin_branchLocation');
+Route::post('/saveDepartment', 'HRcontroller@saveDepartment')->name('saveDepartment');
+
 Route::get('/admin_certificate', 'HRcontroller@admin_certificate')->name('admin_certificate');
 Route::get('/admin_payment', 'HRcontroller@admin_payment')->name('admin_payment');
 Route::get('/admin_salaryEdit', 'HRcontroller@admin_salaryEdit')->name('admin_salaryEdit');
@@ -47,6 +58,9 @@ Route::get('/leave', 'HRcontroller@leave')->name('leave');
 Route::get('/testex', 'HRcontroller@testex')->name('testex');
 //form evident
 Route::post('/saveFormEv', 'HRcontroller@saveFormEvident')->name('saveFormEvident');
+//form Certificate
+Route::post('/saveFormCer', 'HRcontroller@saveFormCertificate')->name('saveFormCer');
+Route::get('/showPicCer', 'HRcontroller@showPicCer')->name('showPicCer');
 //kpi
 Route::post('/calKPI', 'HRcontroller@calKPI')->name('calKPI');
 //Route::get('/testex2', 'HRcontroller@testex2')->name('testex2');
@@ -55,8 +69,14 @@ Route::get('/testex2', 'EventController@index')->name('testex2');
 //uploadfile
 Route::post('/uploadfile','UploadFileController@UploadFileEvidence')->name('uploadfile');
 Route::post('/storeImage','UploadFileController@storeImage')->name('storeImage');
-Route::get('/allImages','UploadFileController@allImages')->name('allImages');
-Route::delete('/deleteImage/{id}','UploadFileController@deleteImage')->name('deleteImage');
+//Route::get('/allImages','UploadFileController@allImages')->name('allImages');
+//Route::delete('/deleteImage/{id}','UploadFileController@deleteImage')->name('deleteImage');
+
+//certificate
+Route::get('/cerAdd','UploadFileController@cerAdd')->name('cerAdd');
+Route::get('/cerEdit','UploadFileController@cerEdit')->name('cerEdit');
+Route::post('/storeImageCer','UploadFileController@storeImageCer')->name('storeImageCer');
+Route::get('/deleteFIleCer','UploadFileController@deleteFIleCer')->name('deleteFIleCer');
 
 //delete file
 Route::get('/deleteFile','UploadFileController@deleteFIle')->name('deleteFIle');
@@ -73,3 +93,10 @@ Route::get('events', 'EventController@index')->name('events');
 //edit
 Route::get('/edit/{Activity_ID}/auth_idMember/{idMember}', 'EventController@edit')->name('calender_edit');
 Route::post('/editSave/{idMember}', 'EventController@editSave')->name('calender_editSave');
+
+
+//timestamp
+Route::get('/tt', function () {
+    return view('check.CheckMain');
+});
+Route::post('/workin', 'HRcontroller@workin')->name('workin');

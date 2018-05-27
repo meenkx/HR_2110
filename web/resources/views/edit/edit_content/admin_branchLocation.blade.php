@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        #listLocation:hover , #listLocation:focus{
+            box-shadow: 0px 0px 10px 0px black;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all .2s ease-out;
+            animation: pulse 5s infinite;
+        }
+    </style>
     <div class="container-fluid">
         <div class="row justify-content-center" style="border-bottom: 1px solid black;padding: 10px 50px">
             <div class="col-md-11" style="display: inline-flex;">
@@ -29,7 +38,7 @@
             </div>
             <div class="col-md-1">
                 <span>
-                    <img src="{{ asset('img/icon/plus.png') }}" alt="" style="width: 85px;" data-toggle="modal" data-target="#list">
+                    <img src="{{ asset('img/icon/plus.png') }}" alt="" style="width: 85px;" data-toggle="modal" data-target="#list" id="listLocation">
                 </span>
             </div>
         </div>
@@ -38,24 +47,100 @@
                 <table class="table table-bordered" style="text-align: center">
                     <thead class="thead-light">
                     <tr>
-                        <th scope="col">Firstname</th>
-                        <th scope="col">Lastname</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Control</th>
+                        <th scope="col">Department Name</th>
+                        <th scope="col">Total Job</th>
+                        {{--<th scope="col">Control</th>--}}
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row" style="vertical-align: middle"><img src="{{ asset('img/icon/June_2017_BNK48_Nayika_Srinian.jpg') }}" alt="" class="pic_intable"></th>
-                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
-                        <td style="vertical-align: middle">sasdasdasd</td>
-                        <td style="vertical-align: middle">
-                            <button type="button" class="btn btn-default open-popup" style="border: 1px solid red;color: red;width: 100px;" >Edit</button>
-                        </td>
-                    </tr>
+                    @foreach($brance as $brances)
+                        <tr>
+                            <td style="vertical-align: middle">{{ $brances->Depart_name }}</td>
+                            <td style="vertical-align: middle">{{ $brances->Total_Job }}</td>
+                            {{--<td style="vertical-align: middle">--}}
+                                {{--<button type="button" class="btn btn-default open-popup" style="border: 1px solid red;color: red;width: 100px;" >Edit</button>--}}
+                            {{--</td>--}}
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+    {{--modal zone--}}
+    <div class="modal fade" id="list" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" style="display: initial;">
+                        {{--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>--}}
+                        <h4 class="modal-title" id="myModalLabel">Add department</h4>
+                    </div>
+
+                        <div class="modal-body">
+                            <div class="col-md-12">
+                                <div class="content_zone" style="text-align: center">
+                                    <div style="text-align: left;padding: 20px 0px;">
+                                            <div class="form-group">
+                                                <label for="exampleInputDepartment">Department name</label>
+                                                <input type="text" class="form-control" id="DepartmentName" name="DepartmentName" placeholder="โปรดใส่ชื่อแผนก" required>
+                                                <small id="DepartmentName" class="form-text text-muted">โปรดใส่ชื่อแผนกที่คุณต้องการ</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputTel">Tel</label>
+                                                <input type="text" class="form-control" id="DepartmentTel" name="DepartmentTel" placeholder="โปรดใส่ชื่อเบอร์โทรศัพท์แผนก" required>
+                                                <small id="DepartmentTel" class="form-text text-muted">โปรดใส่เบอร์โทรศัพท์แผนกที่คุณต้องการ</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputLocation">Location</label>
+                                                <select class="form-control" id="LocationID" name="LocationID" required>
+                                                    <option selected disabled="disabled"> -- สถานที่ของบริษัท --</option>
+                                                    @foreach($location as $locations)
+                                                        <option value="{{ $locations->Location_ID }}">{{ $locations->Location_ID }} - {{ $locations->Location_name  }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <small id="LocationID" class="form-text text-muted">โปรดใส่สถานที่ของบริษัทที่แผนกของคุณ</small>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="reset" class="btn btn-danger" data-dismiss="modal" style="width: 100px">Close</button>
+                                <button type="submit" class="btn btn-primary" style="width: 175px" onclick="sentDepart()">Save changes</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{--script--}}
+    <script>
+        function sentDepart() {
+            var dataArray={
+                DepartmentName:$('#DepartmentName').val(),
+                DepartmentTel:$('#DepartmentTel').val(),
+                LocationID:$('#LocationID').val()
+            };
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                url: '/saveDepartment',
+                data: dataArray,
+                sucess: function(data){
+                    console.log('save data Form Depart success: ' + data);
+                }
+            });
+            $(".modal").removeClass("in");
+            $(".modal-backdrop").remove();
+            $('body').removeClass('modal-open');
+            $('body').css('padding-right', '');
+            $(".modal").hide();
+            $("#list").modal('hide');
+        }
+
+    </script>
 @endsection

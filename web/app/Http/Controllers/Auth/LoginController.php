@@ -135,6 +135,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         Session::forget('authen_type');
         Session::forget('authen_job_id');
+        Session::forget('CertificatePic');
         return redirect('/');
     }
 
