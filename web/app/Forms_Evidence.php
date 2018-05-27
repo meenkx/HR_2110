@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Forms_Evidence extends Model
 {
 
-    protected $table = 'Forms_Evidence';
+    protected $table = 'forms_evidence';
     protected $primaryKey = 'ID_Evidence';
     protected $fillable = [
         'ID_member', 'ID_Evidence', 'Form_evi_upload'

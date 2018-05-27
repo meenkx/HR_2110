@@ -165,7 +165,6 @@ return [
         //calendar
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
         //pdf
-        Barryvdh\Snappy\ServiceProvider::class,
 
 
     ],
@@ -221,8 +220,7 @@ return [
         //calendar
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
         //pdf
-        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
-        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+
 
     ],
 

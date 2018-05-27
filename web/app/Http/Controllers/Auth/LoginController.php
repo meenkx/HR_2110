@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 
@@ -47,24 +48,47 @@ class LoginController extends Controller
      * @return array
      * @throws ValidationException
      */
+    public function checkProfile($job,$idMember)
+    {
+        $user = DB::select(DB::raw("SELECT p.Firstname , p.Lastname , j.Job_name , dm.Depart_name FROM profile p, job j , department dm WHERE  p.Job_ID = j.Job_ID AND j.Depart_ID = dm.Depart_ID AND j.Job_id = '$job' AND p.ID_member = '$idMember'"));
+        foreach ($user as $users){
+            Session::put('Department', $users->Depart_name);
+            Session::put('Job', $users->Job_name);
+        }
+//        return $user;
+    }
+
     protected function credentials(Request $request)
     {
 //        return $request->only($this->username(), 'password');
+
         if (Auth::attempt(['Email' => $request->Email, 'password' => $request->password, 'User_role' => 'admin'])) {
             // The user is active, not suspended, and exists.
+            Session::forget('authen_job_id');
             Session::put('authen_type', 'admin');
+            Session::put('authen_job_id', Auth::user()->Job_ID);
+            $this->checkProfile(Auth::user()->Job_ID,Auth::user()->ID_member);
             return $request->only($this->username(), 'password');
         }
         else if (Auth::attempt(['Email' => $request->Email, 'password' => $request->password, 'User_role' => 'user'])) {
+            Session::forget('authen_job_id');
             Session::put('authen_type', 'user');
+            Session::put('authen_job_id', Auth::user()->Job_ID);
+            $this->checkProfile(Auth::user()->Job_ID,Auth::user()->ID_member);
             return $request->only($this->username(), 'password');
         }
         else if (Auth::attempt(['Email' => $request->Email, 'password' => $request->password, 'User_role' => 'head'])) {
+            Session::forget('authen_job_id');
             Session::put('authen_type', 'head');
+            Session::put('authen_job_id', Auth::user()->Job_ID);
+            $this->checkProfile(Auth::user()->Job_ID,Auth::user()->ID_member);
             return $request->only($this->username(), 'password');
         }
         else if (Auth::attempt(['Email' => $request->Email, 'password' => $request->password, 'User_role' => 'hr_admin'])) {
+            Session::forget('authen_job_id');
             Session::put('authen_type', 'hr_admin');
+            Session::put('authen_job_id', Auth::user()->Job_ID);
+            $this->checkProfile(Auth::user()->Job_ID,Auth::user()->ID_member);
             return $request->only($this->username(), 'password');
         }
         else{
@@ -110,6 +134,8 @@ class LoginController extends Controller
         $this->guard()->logout();
         $request->session()->invalidate();
         Session::forget('authen_type');
+        Session::forget('authen_job_id');
+        Session::forget('CertificatePic');
         return redirect('/');
     }
 
@@ -134,4 +160,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
 }

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Certificate;
+use App\Department;
 use App\Forms_Evidence;
-use PDF;
+use App\Value_of_Each_Certificate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 
 class HRcontroller extends Controller
@@ -28,13 +31,9 @@ class HRcontroller extends Controller
     }
     public function admin_profile()
     {
+//        dd(session()->all());
         return view('edit.edit_content.admin_profile');
     }
-
-    public function print()
-    {
-        $pdf = PDF::loadView('payment');
-        return $pdf->download('invoice.pdf');    }
 
     public function calender(){
         $depart = DB::table('job')->select('Depart_ID')->where('Job_ID',Auth::user()->Job_ID)->get();
@@ -70,6 +69,7 @@ class HRcontroller extends Controller
 //            $saveFMs->ID_Evidence = Auth::user()->ID_member."_".date("dmY");
             $saveFMs->Date = $request->input('date');
             $saveFMs->Reason = $request->input('reason');
+            $saveFMs->Confirm = "ไม่อนุมัติ";
             $saveFMs->save();
         }
         else{
@@ -78,6 +78,30 @@ class HRcontroller extends Controller
                 $saveFmcs->Date = $request->input('date');
                 $saveFmcs->Reason = $request->input('reason');
                 $saveFmcs->save();
+            }
+        }
+
+    }
+
+//    form certificate
+    public function saveFormCertificate(Request $request)
+    {
+//
+        $saveFmCer = Value_of_Each_Certificate::where('Certificate_name','=',$request->input('CertificateName'))->get();
+        if($saveFmCer->isEmpty())
+        {
+            $saveFMsCer = new Value_of_Each_Certificate();
+            $saveFMsCer->Certificate_name = $request->input('CertificateName');
+            $saveFMsCer->Value_Certificate = $request->input('CertificateValue');
+            $saveFMsCer->Certificate_from = $request->input('CertificateFrom');
+            $saveFMsCer->save();
+        }
+        else{
+            $saveFmcCer = Value_of_Each_Certificate::where('Certificate_name','=',$request->input('CertificateName'))->get();
+            foreach ($saveFmcCer as $saveFmcCers){
+                $saveFmcCers->Value_Certificate = $request->input('CertificateValue');
+                $saveFmcCers->Certificate_from = $request->input('CertificateFrom');
+                $saveFmcCers->save();
             }
         }
 
@@ -116,11 +140,50 @@ class HRcontroller extends Controller
     }
 
     public function admin_branchLocation(){
-        return view('edit.edit_content.admin_branchLocation');
+        $jobid = Session::get('authen_job_id');
+        $locationid = DB::select(DB::raw("SELECT DISTINCT l.Location_name , l.Location_ID FROM profile p , job j ,department d , location l WHERE p.Job_ID = j.Job_ID AND j.Depart_ID = d.Depart_ID and d.Location_ID = l.Location_ID AND p.Job_ID = '$jobid'"));
+        foreach ($locationid as $locationids){
+            $locationids_get = $locationids->Location_ID;
+        }
+        $brance = DB::select(DB::raw("SELECT  dm.Depart_name , COUNT(dm.Depart_ID) AS Total_Job FROM job j, department dm, location l WHERE  j.Depart_ID = dm.Depart_ID AND dm.Location_ID = l.Location_ID AND l.Location_ID = '$locationids_get' GROUP BY dm.Depart_name"));
+        $location = DB::select(DB::raw("SELECT Location_ID , Location_name FROM location"));
+        return view('edit.edit_content.admin_branchLocation',compact(['brance','location']));
+    }
+
+    public function saveDepartment(Request $request){
+        $DepartmentName = $request->input('DepartmentName');
+        $DepartmentTel = $request->input('DepartmentTel');
+        $LocationID = $request->input('LocationID');
+        DB::table('department')->insert([
+            [
+                'Depart_name' => $DepartmentName,
+                'Tel' => $DepartmentTel,
+                'Location_ID' => $LocationID,
+            ],
+        ]);
     }
 
     public function admin_certificate(){
-        return view('edit.edit_content.admin_certificate');
+        $listCertificate = DB::table('value_of_each_certificate')->select('Certificate_name', 'Certificate_from','ID_Certificate')->get();
+        return view('edit.edit_content.certificate_edit',compact('listCertificate'));
+    }
+
+    public function showPicCer(Request $request){
+
+        $id = $request->input('ID_Certificate');
+        $resultss = DB::select( DB::raw("SELECT Certificate_picture FROM value_of_each_certificate WHERE ID_Certificate = '$id'") );
+
+        if ($resultss) {
+            foreach ($resultss as $resultsss){
+                Session::put('CertificatePic',asset('/certificate')."/".$resultsss->Certificate_picture);
+            }
+//            return response()->json(['status'=>'Hooray']);
+            return response()->json($resultss, 200);
+        }
+        // Else, return error 400
+        else {
+            return response()->json('error', 400);
+        }
     }
 
     public function admin_payment(){
@@ -128,10 +191,25 @@ class HRcontroller extends Controller
     }
     
     public function noti(){
-        return view('edit.edit_content.admin_notifications');
+        $id = Auth::user()->Job_ID;
+        $formNoti = DB::select(DB::raw("SELECT p.Firstname , p.Lastname , fe.Date , fe.Reason , fe.Form_evi_upload , p.ID_member FROM profile p, forms_evidence fe , department dm , job j WHERE fe.ID_member = p.ID_member AND p.Job_ID = j.Job_ID AND j.Depart_ID = dm.Depart_ID AND p.Job_ID = '$id' AND fe.Confirm NOT LIKE 'อนุมัติ%' "));
+        return view('edit.edit_content.admin_notifications',compact('formNoti'));
+    }
+
+    public function sameNotiCon(Request $request){
+
+        $idMember = $request->input('idMember');
+        $Date = $request->input('Date');
+        $ConfirmFE = $request->input('ConfirmFE');
+        $formNoti = DB::select(DB::raw( "UPDATE forms_evidence SET Confirm = '$ConfirmFE' WHERE ID_member = '$idMember' AND Date = '$Date' "));
     }
     
     public function edit(){
+        return view('edit.edit_main');
+    }
+
+    public function workin(){
+        
         return view('edit.edit_main');
     }
 

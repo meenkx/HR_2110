@@ -31,7 +31,7 @@
 
                                         <div class="form-group">
                                             <label for="password" style="text-align: left">Password
-                                                <a href="forgot.html" class="float-right">
+                                                <a href="{{ route('password.request') }}" class="float-right">
                                                     Forgot Password?
                                                 </a>
                                             </label>

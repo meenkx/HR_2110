@@ -33,7 +33,7 @@ function pesquisar(value) {
     // $("#Annotation").show();
     var date = $('#dateEvident').val();
     var Annotation = $('#Annotation').val();
-    if(date !== "" || Annotation !== ""){
+    if(date !== "" && Annotation !== ""){
         document.getElementById("dropzoneUpload").style.display = "block";
         document.getElementById("textZone").style.display = "none";
         document.getElementById("dateEvident2").value = $('#dateEvident').val();
@@ -59,21 +59,23 @@ function pesquisar(value) {
 
 function formEvidentSubmit() {
 
-    var dataArray={
-        date:$('#dateEvident').val(),
-        reason:$('#Annotation').val()
-    };
-    $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        type: 'POST',
-        url: '/saveFormEv',
-        data: dataArray,
-        sucess: function(data){
-            console.log('save data Form Evident success: ' + data);
-        }
-    });
-    window.location.href = "/admin_profile";
+        var dataArray={
+            date:$('#dateEvident').val(),
+            reason:$('#Annotation').val()
+        };
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/saveFormEv',
+            data: dataArray,
+            sucess: function(data){
+                console.log('save data Form Evident success: ' + data);
+            }
+        });
+        window.location.href = "/admin_profile";
+
+
 
 }

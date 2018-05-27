@@ -16,7 +16,7 @@
                             <span style="font-size: 20px;">Date:</span>
                         </label>
                         <div class="row" style="margin: 0px;margin-right: 7px">
-                            <input id="dateEvident" type="date" name="dateEvident" class="form-control" style="margin-left: 20px;margin-right: 10px">
+                            <input id="dateEvident" type="date" min="{{ date('Y-m-d', strtotime('+1 day')) }}" name="dateEvident" class="form-control" style="margin-left: 20px;margin-right: 10px">
                         </div>
 
 
@@ -45,7 +45,7 @@
                         <form id="dropzoneUpload" method="POST" action="{{ route('storeImage') }}" class="dropzone" id="my-awesome-dropzone" style="border-radius: 10px;">
                             @csrf
                             <div class="fallback">
-                                <input name="file" type="file" />
+                                <input name="file" type="file" required id="fileLeave"/>
                             </div>
                             <input id="dateEvident2" type="hidden" name="dateEvident2" class="form-control" style="margin-left: 20px;margin-right: 10px">
                         </form>
