@@ -16,10 +16,6 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/payment', function () {
-    return view('payment');
-});
-
 Route::get('/timestamp', function () {
     return view('timestamp');
 });
@@ -96,7 +92,25 @@ Route::post('/editSave/{idMember}', 'EventController@editSave')->name('calender_
 
 
 //timestamp
-Route::get('/tt', function () {
-    return view('check.CheckMain');
-});
-Route::post('/workin', 'HRcontroller@workin')->name('workin');
+Route::get('/tt', 'AnonymousController@tt')->name('timestamp');
+
+Route::post('/workin', 'AnonymousController@workin')->name('workin');
+Route::post('/workout', 'AnonymousController@workout')->name('workout');
+Route::post('/OTin', 'AnonymousController@OTin')->name('OTin');
+Route::post('/OTOut', 'AnonymousController@OTOut')->name('OTOut');
+Route::get('/checkLogin', 'AnonymousController@checkLogin')->name('checkLogin');
+
+//teamlist
+Route::get('/teamlist','HRcontroller@teamlist')->name('teamlist');
+
+//payment
+Route::get('/payment', 'HRcontroller@payment')->name('payment');
+
+
+//profile
+Route::get('/profileindex', 'HRcontroller@profileindex')->name('profileindex');
+//add profile
+Route::post('/storeImageAddprofile','UploadFileController@storeImageAddprofile')->name('storeImageAddprofile');
+Route::get('/deleteFIleAdd','UploadFileController@deleteFIleAdd')->name('deleteFIleAdd');
+Route::post('/addNameFirstBeforePic','UploadFileController@addNameFirstBeforePic')->name('addNameFirstBeforePic');
+Route::post('/profileAdd', 'HRcontroller@profileAdd')->name('profileAdd');

@@ -18,7 +18,9 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Kanit:300,700" rel="stylesheet">
-
+    {{--moment--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/locale/th.js"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
@@ -615,6 +617,9 @@
         @elseif(Route::getCurrentRoute()->uri() == 'cerAdd')
         document.writeln("<script type='text/javascript' src='{{ asset('js/dropzoneCer.js') }}'><" + "/script>");
         document.writeln("<script type='text/javascript' src='{{ asset('js/certificate.js') }}'><" + "/script>");
+        @elseif(Route::getCurrentRoute()->uri() == 'profileindex')
+        document.writeln("<script type='text/javascript' src='{{ asset('js/dropzoneADDprofile.js') }}'><" + "/script>");
+        document.writeln("<script type='text/javascript' src='{{ asset('js/uppicAddprofile.js') }}'><" + "/script>");
         @endif
     </script>
     <script>

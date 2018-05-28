@@ -56,7 +56,7 @@
                         @elseif( Session::get('authen_type') == 'admin' )
                             <span style="color: #e22222;width: 150px !important;text-transform: uppercase">administrator</span>
                         @elseif( Session::get('authen_type') == 'head' )
-                            <span style="color: #7914dd;width: 150px !important;text-transform: uppercase">head</span>
+                            <span style="color: #7914dd;width: 150px !important;text-transform: uppercase">supervisor</span>
                         @elseif( Session::get('authen_type') == 'hr_admin' )
                             <span style="color: black;width: 150px !important;text-transform: uppercase">hr admin</span>
                         @endif
@@ -101,7 +101,7 @@
                             <li style="line-height: 30px !important;"><a href="{{ route('admin_calender') }}"><span><img src="{{ asset('../img/icon/calendar.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Work calendar</a></li>
                             {{--<li style="line-height: 30px !important;"><a href="#about"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notifications</a></li>--}}
                             <li style="line-height: 30px !important;"><a href="{{ asset('leave') }}"><span><img src="{{ asset('../img/icon/copy.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Leave</a></li>
-                            <li style="line-height: 30px !important;"><a href="#contact"><span><img src="{{ asset('../img/icon/followers.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Team</a></li>
+                            <li style="line-height: 30px !important;"><a href="{{ route('teamlist') }}"><span><img src="{{ asset('../img/icon/followers.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Team</a></li>
                             <li style="line-height: 30px !important;"><a href="{{ route('salary') }}"><span><img src="{{ asset('../img/icon/money.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Salary</a></li>
                             <li style="line-height: 30px !important;"><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span><img src="{{ asset('../img/icon/logout.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Log out</a></li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -6,6 +6,7 @@ use App\Forms_Evidence;
 use App\Value_of_Each_Certificate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UploadFileController extends Controller
 {
@@ -75,9 +76,37 @@ class UploadFileController extends Controller
 
     }
 
-    public function cerAdd()
+
+    public function storeImageAddprofile(Request $request){
+        $image = $request->file('file');
+        if($image->getClientOriginalExtension() == "jpg" || $image->getClientOriginalExtension() == "png"){
+            $imageName = $request->input('ffirstname')."_".$request->input('llastname')."_Profile".".".$image->getClientOriginalExtension();
+        }
+
+        $upload_success = $image->move(public_path('/User_Profile'),$imageName);
+
+        if ($upload_success) {
+            DB::table('profile')
+                ->where('Firstname', '=', $request->input('ffirstname'))
+                ->Where('Lastname', '=',$request->input('llastname'))
+                ->update(['Photo' => $imageName]);
+            return response()->json($upload_success, 200);
+        }
+        // Else, return error 400
+        else {
+            return response()->json('error', 400);
+        }
+    }
+
+    public function deleteFIleAdd(Request $request)
     {
-        return view('edit.edit_content.certificate_editAdd');
+        DB::table('profile')
+            ->where('Firstname', '=', $request->input('ffirstname'))
+            ->Where('Lastname', '=',$request->input('llastname'))
+            ->update(['Photo' => ""]);
+
+        $imageName = $request->input('ffirstname')."_".$request->input('llastname')."_Profile".".jpg";
+        unlink(public_path('/User_Profile/'.$imageName));
     }
 
     public function storeImageCer(Request $request){
@@ -103,6 +132,11 @@ class UploadFileController extends Controller
         }
     }
 
+    public function cerAdd()
+    {
+        return view('edit.edit_content.certificate_editAdd');
+    }
+
     public function deleteFIleCer(Request $request)
     {
         $delImg = Value_of_Each_Certificate::where('Certificate_name','=',$request->input('CertificateName2'))->get();
@@ -119,5 +153,14 @@ class UploadFileController extends Controller
     public function cerEdit()
     {
         return view('edit.edit_content.certificate_edit');
+    }
+
+    public function addNameFirstBeforePic(Request $request){
+        DB::table('profile')->insert(
+            [
+                'Firstname' => $request->input('Firstname'),
+                'Lastname' => $request->input('Lastname'),
+            ]
+        );
     }
 }

@@ -3,12 +3,12 @@
     <div class="row justify-content-center" style="padding: 0px 50px;">
         <div class="col-md-12" style="padding: 20px 0px;">
             <div class="col-md-12" style="margin-top: 10px;margin-bottom: 20px">
-                <select id="dropdown_admindepartment_kpi">
-                    <option value disabled selected>Select department</option>
-                    <option value="january">aa</option>
-                    <option value="febuary">bb</option>
-                    <option value="march">cc</option>
-                </select>
+                {{--<select id="dropdown_admindepartment_kpi">--}}
+                    {{--<option value disabled selected>Select department</option>--}}
+                    {{--<option value="january">aa</option>--}}
+                    {{--<option value="febuary">bb</option>--}}
+                    {{--<option value="march">cc</option>--}}
+                {{--</select>--}}
             </div>
             <div class="col-md-12">
                 <table class="table table-striped">

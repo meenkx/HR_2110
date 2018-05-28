@@ -2,9 +2,9 @@
 @section('edit')
     <div class="row justify-content-center" style="padding: 0px 50px;">
         <div class="col-md-12">
-            <div style="padding: 30px 0px">
-                <input type="text" name="search" class="search" placeholder="Search edit people">
-            </div>
+            {{--<div style="padding: 30px 0px">--}}
+                {{--<input type="text" name="search" class="search" placeholder="Search edit people">--}}
+            {{--</div>--}}
 
             <div class="row justify-content-center" style="padding: 60px 20px;margin: 0px;">
 

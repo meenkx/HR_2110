@@ -58,29 +58,29 @@
         <div class="col-sm">
             <div class="row">
                 <div class="col-sm">รหัสพนักงาน (EMP.NO.)</div>
-                <div class="col-sm" style="font-weight: bold">asdasd</div>
+                <div class="col-sm" style="font-weight: bold">{{ $ID }}</div>
             </div>
             <div class="row" style="margin-top: 10px">
                 <div class="col-sm">ชื่อ (NAME)</div>
-                <div class="col-sm" style="font-weight: bold">asdasd</div>
+                <div class="col-sm" style="font-weight: bold">{{ $Firstname }} {{ $Lastname }}</div>
             </div>
             <div class="row" style="margin-top: 10px">
                 <div class="col-sm">สังกัด (SECT/DEPT.)</div>
-                <div class="col-sm" style="font-weight: bold">asdasd</div>
+                <div class="col-sm" style="font-weight: bold">{{ $Depart_ID }}</div>
             </div>
         </div>
         <div class="col-sm">
             <div class="row">
-                <div class="col-sm">ตำแหน่ง (POSITION)</div>
-                <div class="col-sm" style="font-weight: bold">asdasd</div>
+                <div class="col-sm">ตำแหน่ง (JOB)</div>
+                <div class="col-sm" style="font-weight: bold">{{ $Job_ID }}</div>
             </div>
             <div class="row" style="margin-top: 10px">
                 <div class="col-sm">ประจำงวด (FOR PERIOD)</div>
-                <div class="col-sm" style="font-weight: bold">asdasd</div>
+                <div class="col-sm" style="font-weight: bold">{{date("Y/m/d")}}</div>
             </div>
             <div class="row" style="margin-top: 10px">
                 <div class="col-sm">เลขบัญชี</div>
-                <div class="col-sm" style="font-weight: bold">asdasd</div>
+                <div class="col-sm" style="font-weight: bold">{{ $Book_Account_No }}</div>
             </div>
         </div>
     </div>
@@ -106,14 +106,14 @@
             <tr>
                 <td>
                     <div class="row">
-                        <div class="col-sm">ค่าแรง/เงินเดือน (Wage/Salary)</div>
-                        <div class="col-sm" style="text-align: right">10</div>
+                        <div class="col-sm">Certificate</div>
+                        <div class="col-sm" style="text-align: right">{{ $ttValueSkill }}</div>
                     </div>
                 </td>
                 <td>
                     <div class="row">
                         <div class="col-sm">ขาดงาน (Absent)</div>
-                        <div class="col-sm" style="text-align: right">10 บาท</div>
+                        <div class="col-sm" style="text-align: right">{{ $Absent }} ครั้ง</div>
                     </div>
                 </td>
             </tr>
@@ -121,13 +121,13 @@
                 <td>
                     <div class="row">
                         <div class="col-sm">ค่าล่วงเวลา (Over Time)</div>
-                        <div class="col-sm" style="text-align: right">10</div>
+                        <div class="col-sm" style="text-align: right">{{ $VOTtotal }}</div>
                     </div>
                 </td>
                 <td>
                     <div class="row">
                         <div class="col-sm">สาย (Late)</div>
-                        <div class="col-sm" style="text-align: right">10 บาท</div>
+                        <div class="col-sm" style="text-align: right">{{ $Late }} ครั้ง</div>
                     </div>
                 </td>
             </tr>
@@ -135,41 +135,13 @@
                 <td>
                     <div class="row">
                         <div class="col-sm">ค่าตำแหน่ง (Position Allowance)</div>
-                        <div class="col-sm" style="text-align: right">10</div>
+                        <div class="col-sm" style="text-align: right">{{ $Salary }}</div>
                     </div>
                 </td>
                 <td>
                     <div class="row">
-                        <div class="col-sm">ภาษี (Tax)</div>
-                        <div class="col-sm" style="text-align: right">10 บาท</div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="row">
-                        <div class="col-sm">ค่ากะ/เบี้ยเลี้ยง (Shift)</div>
-                        <div class="col-sm" style="text-align: right">10</div>
-                    </div>
-                </td>
-                <td>
-                    <div class="row">
-                        <div class="col-sm">ประกันสังคม (Social Security Fund)</div>
-                        <div class="col-sm" style="text-align: right">10 บาท</div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="row">
-                        <div class="col-sm">เบี้ยขยัน (Attendance Reward)</div>
-                        <div class="col-sm" style="text-align: right">10</div>
-                    </div>
-                </td>
-                <td>
-                    <div class="row">
-                        <div class="col-sm"></div>
-                        <div class="col-sm" style="text-align: right"></div>
+                        <div class="col-sm">ลา (Leave)</div>
+                        <div class="col-sm" style="text-align: right">{{ $Leave }} ครั้ง</div>
                     </div>
                 </td>
             </tr>
@@ -177,13 +149,27 @@
                 <td>
                     <div class="row">
                         <div class="col-sm">โบนัส (Bonus)</div>
-                        <div class="col-sm" style="text-align: right">10</div>
+                        <div class="col-sm" style="text-align: right">{{ $Bonus }}</div>
                     </div>
                 </td>
                 <td>
                     <div class="row">
-                        <div class="col-sm">เบิกล่วงหน้า (Cash)</div>
-                        <div class="col-sm" style="text-align: right">10</div>
+                        <div class="col-sm">ภาษี (Tax)</div>
+                        <div class="col-sm" style="text-align: right">7 %</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="row">
+                        <div class="col-sm">Payment Special</div>
+                        <div class="col-sm" style="text-align: right">{{ $payspe }}</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="row">
+                        <div class="col-sm">ประกันสังคม (Social Security Fund)</div>
+                        <div class="col-sm" style="text-align: right">{{ $SocialSecurityFund }} บาท</div>
                     </div>
                 </td>
             </tr>
@@ -193,13 +179,13 @@
                 <th scope="col">
                     <div class="row">
                         <div class="col-sm">รวมรายได้ (TOTAL INCOME)</div>
-                        <div class="col-sm" style="text-align: right">11 <span>บาท (Bath)</span></div>
+                        <div class="col-sm" style="text-align: right">{{ $Totalincome }} <span>บาท (Bath)</span></div>
                     </div>
                 </th>
                 <th scope="col">
                     <div class="row">
                         <div class="col-sm">รวมรายการหัก (TOTAL DEDUCTION)</div>
-                        <div class="col-sm" style="text-align: right">11 <span>บาท (Bath)</span></div>
+                        <div class="col-sm" style="text-align: right">{{ $TOTALDEDUCTION }} <span>บาท (Bath)</span></div>
                     </div>
                 </th>
             </tr>
@@ -209,10 +195,9 @@
                 <th scope="col">
                     <div class="row">
                         <div class="col-sm">รายได้สุทธิ (NET INCOME)</div>
-                        <div class="col-sm" style="text-align: right">11 <span>บาท (Bath)</span></div>
+                        <div class="col-sm" style="text-align: right">{{ $NETINCOME }} <span>บาท (Bath)</span></div>
                     </div>
                 </th>
-
             </tr>
             </thead>
         </table>

@@ -23,26 +23,10 @@
         <div class="row justify-content-center" style="padding: 50px 50px;">
             <div class="col-md-12">
 
-                <table class="table table-bordered" style="text-align: center">
-                    <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Firstname</th>
-                        <th scope="col">Lastname</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Control</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row" style="vertical-align: middle"><img src="{{ asset('img/icon/June_2017_BNK48_Nayika_Srinian.jpg') }}" alt="" class="pic_intable"></th>
-                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
-                        <td style="vertical-align: middle">sasdasdasd</td>
-                        <td style="vertical-align: middle">
-                            <button type="button" class="btn btn-default open-popup" style="border: 1px solid red;color: red;width: 100px;" >Edit</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="{{ route('payment') }}"></iframe>
+                </div>
+
             </div>
         </div>
     </div>
