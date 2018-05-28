@@ -548,7 +548,6 @@
 
     {{--search script--}}
     <script>
-        {{--$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });--}}
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -583,7 +582,6 @@
 
     </script>
     <script>
-        // console.log("looppp row");
         function getdata() {
             var table = document.getElementsByTagName("table")[0];
             var tbody = table.getElementsByTagName("tbody")[0];

@@ -34,7 +34,12 @@ Route::get('/profile', 'HRcontroller@profile')->name('profile');
 Route::get('/admin_profile', 'HRcontroller@admin_profile')->name('admin_profile');
 //Route::get('/calender', 'HRcontroller@calender')->name('calender');
 Route::get('/calender', 'EventController@index')->name('calender');
+
+//work history
 Route::get('/admin_workhistory', 'HRcontroller@admin_workhistory')->name('admin_workhistory');
+Route::post('/workedit', 'HRcontroller@workedit')->name('workedit');
+Route::post('/workdelete', 'HRcontroller@workdelete')->name('workdelete');
+
 Route::get('/admin_kpi', 'HRcontroller@admin_kpi')->name('admin_kpi');
 Route::get('/admin_calender', 'HRcontroller@admin_calender')->name('admin_calender');
 
@@ -48,7 +53,10 @@ Route::post('/saveDepartment', 'HRcontroller@saveDepartment')->name('saveDepartm
 
 Route::get('/admin_certificate', 'HRcontroller@admin_certificate')->name('admin_certificate');
 Route::get('/admin_payment', 'HRcontroller@admin_payment')->name('admin_payment');
+//salaryEdit
 Route::get('/admin_salaryEdit', 'HRcontroller@admin_salaryEdit')->name('admin_salaryEdit');
+Route::post('/salaryEdit', 'HRcontroller@salaryEdit')->name('salaryEdit');
+
 Route::get('/edit', 'HRcontroller@edit')->name('edit');
 Route::get('/leave', 'HRcontroller@leave')->name('leave');
 Route::get('/testex', 'HRcontroller@testex')->name('testex');
@@ -61,6 +69,8 @@ Route::get('/showPicCer', 'HRcontroller@showPicCer')->name('showPicCer');
 Route::post('/calKPI', 'HRcontroller@calKPI')->name('calKPI');
 //Route::get('/testex2', 'HRcontroller@testex2')->name('testex2');
 Route::get('/testex2', 'EventController@index')->name('testex2');
+//holiday
+Route::get('/holiday', 'EventController@holiday')->name('holiday');
 
 //uploadfile
 Route::post('/uploadfile','UploadFileController@UploadFileEvidence')->name('uploadfile');

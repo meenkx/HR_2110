@@ -85,28 +85,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm" style="background-color: #f7f7f7;padding: 10px 100px;border-radius: 10px;height: 350px;">
-                <table class="table borderless" style="height: 100%;">
-                    <tbody>
-                    <tr>
-                        <th scope="col">Work IN</th>
-                        <th scope="col"><input type="text" class="form-control" readonly id="workin"></th>
-                    </tr>
-                    <tr>
-                        <th scope="col">Work OUT</th>
-                        <th scope="col"><input type="text" class="form-control" readonly id="workout"></th>
-                    </tr>
-                    <tr>
-                        <th scope="col">Ot IN</th>
-                        <th scope="col"><input type="text" class="form-control" readonly id="otin"></th>
-                    </tr>
-                    <tr>
-                        <th scope="col">Ot OUT</th>
-                        <th scope="col"><input type="text" class="form-control" readonly id="ouout"></th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            {{--<div class="col-sm" style="background-color: #f7f7f7;padding: 10px 100px;border-radius: 10px;height: 350px;">--}}
+                {{--<table class="table borderless" style="height: 100%;">--}}
+                    {{--<tbody>--}}
+                    {{--<tr>--}}
+                        {{--<th scope="col">Work IN</th>--}}
+                        {{--<th scope="col"><input type="text" class="form-control" readonly id="workin"></th>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<th scope="col">Work OUT</th>--}}
+                        {{--<th scope="col"><input type="text" class="form-control" readonly id="workout"></th>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<th scope="col">Ot IN</th>--}}
+                        {{--<th scope="col"><input type="text" class="form-control" readonly id="otin"></th>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<th scope="col">Ot OUT</th>--}}
+                        {{--<th scope="col"><input type="text" class="form-control" readonly id="ouout"></th>--}}
+                    {{--</tr>--}}
+                    {{--</tbody>--}}
+                {{--</table>--}}
+            {{--</div>--}}
         </div>
 
     </div>
@@ -126,8 +126,8 @@
         var timee = moment().format('h:mm:ss');
         var a = moment().format('a');
 
-        timee = "09:00:00";
-        a = "ก่อนเที่ยง";
+        // timee = "09:00:00";
+        // a = "ก่อนเที่ยง";
         var Work_status = "";
         if(timee<"08:00:00" && a == "ก่อนเที่ยง"){
             Work_status = "OnTime";
@@ -170,11 +170,9 @@
 
         function workOut() {
             var dataArray={
-                id:$('#loginIDD').val(),
+                idd:$('#loginIDD').val(),
                 dates:datee,
                 times:timee,
-                timesa:a,
-                Work_status:Work_status
             };
             $.ajax({
                 headers: {
@@ -191,7 +189,7 @@
 
         function OTIn() {
             var dataArray={
-                id:$('#loginIDD').val(),
+                idd:$('#loginIDD').val(),
                 dates:datee,
                 times:timee,
                 timesa:a,
@@ -212,7 +210,7 @@
 
         function OTOut() {
             var dataArray={
-                id:$('#loginIDD').val(),
+                idd:$('#loginIDD').val(),
                 dates:datee,
                 times:timee,
                 timesa:a,

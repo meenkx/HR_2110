@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Activity;
 use App\Activity_status;
+use App\Payment_Special;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -79,5 +80,37 @@ class EventController extends Controller
         $saveEvent->status = $request->input('status');
         $saveEvent->save();
         return redirect()->back();
+    }
+
+    public function holiday(){
+        $events = [];
+        $data = Payment_Special::all();
+
+        if($data->count()) {
+            foreach ($data as $key => $value) {
+                $events[] = Calendar::event(
+                    $value->Detail,
+                    true,
+                    new \DateTime($value->Start_date),
+                    new \DateTime($value->End_date.' +1 day'),
+                    null,
+                    // Add color and link on event
+                    [
+                        'color' => '#00008B'
+//                        'url' => 'http://127.0.0.1:8000/'.'edit/'.$value->Activity_ID.'/auth_idMember/'.Auth::user()->ID_member,
+                    ]
+                );
+            }
+        }
+        $holiday = Calendar::addEvents($events)
+            ->setOptions([ //set fullcalendar options
+                'firstDay' => 1,
+                'height' => '100px',
+                'themeSystem' => 'bootstrap3',
+                'columnHeader' => false,
+                'aspectRatio' => 2.5
+            ]);
+
+        return view('holiday.holidaymain', compact('holiday'));
     }
 }

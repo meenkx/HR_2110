@@ -33,7 +33,24 @@ class HRcontroller extends Controller
     public function admin_profile()
     {
 //        dd(session()->all());
-        return view('edit.edit_content.admin_profile');
+        $jobid = Auth::user()->Job_ID;
+        $IDmember = Auth::user()->ID_member;
+        $profile = DB::select(DB::raw("SELECT * FROM profile WHERE ID_member = '$IDmember'"));
+        $eduhist = DB::select(DB::raw("SELECT * FROM education_history WHERE ID_mamber = '$IDmember'"));
+        $hstwork = DB::select(DB::raw("SELECT * FROM history_work WHERE ID_member = '$IDmember'"));
+        $jobinfo = DB::select(DB::raw("SELECT p.Hire_day,p.Firstname,d.Depart_name,j.Job_name,l.Location_name, l.Apartment, l.Building, l.Floor, l.House_No, l.Village, l.Village_No, l.Street, l.Sub_district_Sub_area, l.Alley_Lane, l.District_Area, l.Province, l.Postal_Code, l.Tel, l.Tax FROM profile p,job j,department d,location l WHERE p.Job_ID = j.Job_ID AND j.Depart_ID = d.Depart_ID AND d.Location_ID = l.Location_ID AND ID_member='$IDmember'"));
+        $eduhis = DB::select(DB::raw("SELECT eh.Faculty,eh.Department,eh.Academy,eh.Degree,eh.Year FROM profile p, education_history eh WHERE p.ID_member = eh.ID_mamber AND p.ID_member='$IDmember'"));
+        $add = DB::select(DB::raw("SELECT * FROM address WHERE ID_member = '$IDmember'"));
+
+
+        return view('edit.edit_content.admin_profile')
+            ->with(compact('profile'))
+            ->with(compact('eduhist'))
+            ->with(compact('hstwork'))
+            ->with(compact('add'))
+            ->with(compact('jobinfo'))
+            ->with(compact('$eduhis'))
+            ;
     }
 
     public function calender(){
@@ -114,6 +131,18 @@ class HRcontroller extends Controller
         return view('edit.edit_content.admin_workhistory',compact('adwork'));
     }
 
+    public function workedit(Request $request){
+        $Work_Date = $request->input('Work_Date');
+        $Status_Work = $request->input('Status_Work');
+        DB::raw(DB::select("UPDATE status_work SET Work_status = '$Status_Work' WHERE Work_date = '$Work_Date'"));
+    }
+
+    public function workdelete(Request $request){
+        $Work_Date = $request->input('Work_Date');
+        $id = Auth::user()->ID_member;
+        DB::raw(DB::select("DELETE FROM status_work WHERE Work_date = '$Work_Date' AND ID_member = '$id'"));
+    }
+
     public function admin_kpi(){
         $results = DB::select( DB::raw("SELECT KPI_Code,Key_Result_Areas,Key_Performance_Indicators,Weight_of_KPIs,Target FROM performance_measurement") );
         return view('edit.edit_content.admin_kpi',['performance_measurement' => $results]);
@@ -147,7 +176,15 @@ class HRcontroller extends Controller
     }
 
     public function admin_salaryEdit(){
-        return view('edit.edit_content.admin_salaryEdit');
+        $job_salaray = DB::select(DB::raw("SELECT Job_ID,Job_name,Salary,OT_Rate FROM job"));
+        return view('edit.edit_content.admin_salaryEdit',compact('job_salaray'));
+    }
+
+    public function salaryEdit(Request $request){
+        $Job_name = $request->input('Jobname');
+        $Salary = $request->input('Salary');
+        $OT_Rate = $request->input('OT_Rate');
+        DB::select(DB::raw("UPDATE job SET Salary = '$Salary' , OT_Rate = '$OT_Rate' WHERE Job_name = '$Job_name'"));
     }
 
     public function admin_branchLocation(){
@@ -361,20 +398,21 @@ class HRcontroller extends Controller
             $salary = $sss->SALARY;
         }
         //bonus
-        $bonus = DB::select(DB::raw("SELECT SUM(Final_score) AS SUMbonus FROM performance_measurement WHERE "));
+        $bonus = DB::select(DB::raw("SELECT SUM(per.Final_score) AS SUMbonuseiei FROM department dm, pm_of_each_department pd , performance_measurement per WHERE dm.Depart_ID = pd.Depart_ID AND pd.KPI_CODE = per.KPI_Code AND dm.Depart_ID = '$Depart_ID'"));
         foreach ($bonus AS $bonuss){
-            $SUMBONUS = $bonuss->SUMbonus;
+            $SUMBONUS1 = $bonuss->SUMbonuseiei;
         }
-        if ($SUMBONUS > 80){
-            $SUMBONUS = $salary*5/100;
+
+        if ($SUMBONUS1 > 80){
+            $SUMBONUSs = $salary*5/100;
         }else{
-            $SUMBONUS = 0 ;
+            $SUMBONUSs = 0 ;
         }
 
         $socialSecurityFund = "1000";
 
         $payspe = ($songkranassum + $happynewsum + $rangsum + $ddddsum + $eeeesum)*500;
-        $TOTALINCOME = $ttValueSkill + $VOTtotal + $salary + $SUMBONUS + $payspe;
+        $TOTALINCOME = $ttValueSkill + $VOTtotal + $salary + $SUMBONUSs + $payspe;
 
         $tax = $TOTALINCOME*7/100;
         $TOTALDEDUCTION = $absentnotshow + $leavessnotshow + $absentnotshow + $tax + $socialSecurityFund;
@@ -383,7 +421,7 @@ class HRcontroller extends Controller
             ->with('ID',$IDmember)
             ->with('Absent',$absent)
             ->with('Salary',$salary)
-            ->with('Bonus',$SUMBONUS)
+            ->with('Bonus',$SUMBONUSs)
             ->with('NETINCOME',$NETINCOME)
             ->with('TOTALDEDUCTION',$TOTALDEDUCTION)
             ->with('Leave',$leavess)

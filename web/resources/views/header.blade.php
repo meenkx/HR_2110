@@ -92,6 +92,7 @@
                             <li style="line-height: 30px !important;"><a href="{{ route('admin_certificate') }}"><span><img src="{{ asset('../img/icon/certificate.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Certificate</a></li>
                             <li style="line-height: 30px !important;"><a href="{{ route('admin_payment') }}"><span><img src="{{ asset('../img/icon/payment.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Payment</a></li>
                             <li style="line-height: 30px !important;"><a href="{{ route('admin_salaryEdit') }}"><span><img src="{{ asset('../img/icon/salary.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>salary edit</a></li>
+                            <li style="line-height: 30px !important;"><a href="{{ route('holiday') }}"><span><img src="{{ asset('../img/icon/holiday.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Holiday Special</a></li>
                         </ul>
 
                         {{--@if(Session::has('admin'))--}}
