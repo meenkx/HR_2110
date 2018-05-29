@@ -18,8 +18,6 @@
                         </div>
                     @endif
 
-
-
                 </div>
 
                 <div class="col-md-9">
@@ -34,7 +32,7 @@
                                 <div>
                                     <span style="font-weight: bold">Name :</span> <span>{{ $profiles->Firstname }} {{ $profiles->Lastname }}</span>
                                     <span style="padding-left: 40px;font-weight: bold">Birthday :</span> <span>{{ $profiles->DOB }}</span>
-                                    <span style="padding-left: 40px;font-weight: bold">Age :</span> <span></span>
+                                    <span style="padding-left: 40px;font-weight: bold">Age :</span> <span id="age"></span>
                                 </div>
                                 <div>
                                     <span style="font-weight: bold">Gender :</span> <span>{{ $profiles->Gender }}</span>
@@ -124,16 +122,25 @@
                         </div>
                         <div style="display: inline-flex;">
                             <div style="padding-top: 15px;font-size: 18px;line-height: 1.8;width: 630px;">
-                                <div><span style="font-weight: bold">Bachelor</span></div>
-                                <div>
-                                    <span style="padding-left: 100px;font-weight: bold">1. Faculty :</span> <span>Engineer</span> <span style="font-weight: bold">Department :</span> <span>Computer Engineering</span>
-                                    <div><span style="padding-left: 116px;font-weight: bold">From :</span> <span>King Mongkut's University of Technology Thonburi</span> <div><span style="padding-left: 116px;font-weight: bold">Year     :</span> <span>2539</span></div></div>
-                                </div>
-                                <div>
-                                    <span style="padding-left: 100px;font-weight: bold">2. Faculty :</span> <span>Engineer</span> <span style="font-weight: bold">Department :</span> <span>Computer Engineering</span>
-                                    <div><span style="padding-left: 116px;font-weight: bold">From :</span> <span>King Mongkut's University of Technology Thonburi</span> <div><span style="padding-left: 116px;font-weight: bold">Year     :</span> <span>2539</span></div>
+                                @foreach($eduhist as $eduhiss)
+                                    <div>
+                                        <span style="font-weight: bold">{{ $eduhiss->Degree }}</span>
                                     </div>
-                                </div>
+                                    <div>
+                                        <span style="padding-left: 100px;font-weight: bold">{{ $eduhiss->ID_Education }}. Faculty :</span>
+                                        <span>{{ $eduhiss->Faculty }}</span>
+                                        <span style="font-weight: bold">Department :</span>
+                                        <span>{{ $eduhiss->Department }}</span>
+                                        <div>
+                                            <span style="padding-left: 116px;font-weight: bold">From :</span>
+                                            <span>{{ $eduhiss->Academy }}</span>
+                                            <div>
+                                                <span style="padding-left: 116px;font-weight: bold">Year :</span>
+                                                <span>{{ $eduhiss->Year }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                                 @if( Session::get('authen_type') == 'admin' || Session::get('authen_type') == 'hr_admin')
                                 <div style="line-height: 80px;vertical-align: middle;padding-left: 60px;">
                                     <button type="button" class="btn btn-default" style="border: 1px solid red;color: red;width: 100px;" data-toggle="modal" data-target="#Contact_information" id="Edit">Edit</button>
@@ -148,14 +155,12 @@
                             </div>
                             <div style="display: inline-flex;">
                                 <div style="padding-top: 15px;font-size: 18px;line-height: 1.8;width: 630px;">
+                                    @foreach($hstwork as $hstworks)
                                     <div>
-                                        <span style="font-weight: bold">1. Department :</span> <span>Introduction International</span> <span style="font-weight: bold">Job :</span> <span>Computer Engineering</span>
-                                        <div><span style="padding-left: 16px;font-weight: bold">Company :</span> <span>Apple (Thailand) Inc.</span> <span style="padding-left: 16px;font-weight: bold">End Work     :</span> <span>10/11/40</span></div>
+                                        <span style="font-weight: bold">{{ $hstworks->HW_ID }}. Department :</span> <span>{{ $hstworks->Department }}</span> <span style="font-weight: bold">Job :</span> <span>{{ $hstworks->Job }}</span>
+                                        <div><span style="padding-left: 16px;font-weight: bold">Company :</span> <span>{{ $hstworks->Company }}</span> <span style="padding-left: 16px;font-weight: bold">End Work :</span> <span>{{ $hstworks->EndWork }}</span></div>
                                     </div>
-                                    <div>
-                                        <span style="font-weight: bold">2. Department :</span> <span>Introduction International</span> <span style="font-weight: bold">Job :</span> <span>Computer Engineering</span>
-                                        <div><span style="padding-left: 16px;font-weight: bold">Company :</span> <span>Apple (Thailand) Inc.</span> <span style="padding-left: 16px;font-weight: bold">End Work     :</span> <span>10/11/40</span></div>
-                                    </div>
+                                    @endforeach
                                     @if( Session::get('authen_type') == 'admin' || Session::get('authen_type') == 'hr_admin')
                                     <div style="line-height: 80px;vertical-align: middle;padding-left: 60px;">
                                         <button type="button" class="btn btn-default" style="border: 1px solid red;color: red;width: 100px;" data-toggle="modal" data-target="#Contact_information" id="Edit">Edit</button>
@@ -181,41 +186,42 @@
                                 <h4 class="modal-title" id="myModalLabel">General information</h4>
                             </div>
 
-                            <form action="" method="POST">
+
                                 <div class="modal-body">
                                     <div class="col-md-12">
+
                                         <div class="form-group">
-                                            <label>Name </label>
-                                            <input type="text" name="Name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Birthday </label>
-                                            <input type="date"  name="Birthday" class="form-control">
+                                            <label>Firstname </label>
+                                            <input type="text" name="Firstname" class="form-control" id="Firstname" required autocomplete="off">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Age </label>
-                                            <input type="text" id="Age" name="Age" class="form-control" disabled >
+                                            <label>Lastname </label>
+                                            <input type="text" name="Lastname" class="form-control" id="Lastname" required autocomplete="off">
                                         </div>
+                                        <div class="form-group">
+                                            <label>Birthday </label>
+                                            <input type="date"  name="Birthday" class="form-control" id="Birthday" autocomplete="off">
+                                        </div>
+
                                         <div class="form-group">
                                             <label>Gender </label>
-                                            <input type="text" name="Gender" class="form-control">
-                                        </div>
+                                            <select class="form-control" id="Gender" name="Gender" required>
+                                                <option selected disabled="disabled"> -- เลือกเพศ --</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>                                        </div>
                                         <div class="form-group">
                                             <label>Marital </label>
-                                            <input type="text" name="Marital" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Education </label>
-                                            <input type="text" name="Education" class="form-control">
+                                            <input type="text" name="Marital" class="form-control" id="Marital" required autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="reset" class="btn btn-danger" data-dismiss="modal" style="width: 100px">Close</button>
-                                        <button type="submit" class="btn btn-primary" style="width: 175px">Save changes</button>
+                                        <button type="submit" class="btn btn-primary" style="width: 175px" onclick="savePROFILE()">Save changes</button>
                                     </div>
                                 </div>
-                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -317,4 +323,42 @@
                     {{--</div>--}}
                 {{--</div>--}}
             {{--</div>--}}
+        </div>
+    </div>
+
+    {{--script--}}
+            <script>
+                function savePROFILE() {
+                    var dataArray={
+                        id:'{{ Auth::user()->ID_member  }}',
+                        Firstname:$('#Firstname').val(),
+                        Lastname:$('#Lastname').val(),
+                        Birthday:$('#Birthday').val(),
+                        Gender:$('#Gender').val(),
+                        Marital:$('#Marital').val()
+                    };
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'POST',
+                        url: '/editProfile',
+                        data: dataArray,
+                        sucess: function(data){
+                            console.log('save data Form Admin Profle success: ' + data);
+                        }
+                    });
+                    window.location.href = '/'
+                }
+                function calculateAge(birthday) { // birthday is a date
+                    console.log(birthday);
+                    var d = new Date(birthday);;
+                    var ageDifMs = Date.now() - d.getTime();
+                    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+                    return Math.abs(ageDate.getUTCFullYear() - 1970);
+                }
+                $(document).ready(function () {
+                    document.getElementById("age").innerHTML = calculateAge('{{ $DOB }}');
+                });
+            </script>
 @endsection

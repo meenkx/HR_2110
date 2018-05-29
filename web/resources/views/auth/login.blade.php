@@ -4,9 +4,14 @@
     {{--check session--}}
     <script> console.log("session status = {{ Session::get('authen_type') }}")</script>
 
-<div class="container" style="vertical-align: middle;height: 100%">
-    <div class="row justify-content-center align-items-center h-100" style="background-color: white;" >
 
+<div class="container" style="vertical-align: middle;height: 100%">
+    <div class="row justify-content-center align-items-center" style="    background-color: #eee;padding: 20px 0px;font-size: 20px;">
+        <a href="{{ route('timestamp') }}">lINK TO TIMESTAMP MODE</a>
+    </div>
+    <HR>
+    <div class="row justify-content-center align-items-center h-100" style="background-color: white;" >
+        
         {{--type your code here--}}
         <div class="col-md-5 col-centered" style="height: 385px;">
             <img src="{{ asset('img/icon/logo2.jpg') }}" class="responsive_img_logo2" alt="" style="margin: 0px auto">

@@ -111,6 +111,10 @@ class EventController extends Controller
                 'aspectRatio' => 2.5
             ]);
 
-        return view('holiday.holidaymain', compact('holiday'));
+        return view('holiday.holiday', compact('holiday'));
+    }
+
+    public function holidaymain(){
+        return view('holiday.holidaymain');
     }
 }

@@ -79,7 +79,28 @@
         html,body{
             font-family: 'Kanit', sans-serif;
             overflow-x: hidden;
+            /*cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"), auto;*/
         }
+        ::-webkit-scrollbar-track
+        {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            /*border-radius: 10px;*/
+            background-color: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar
+        {
+            width: 12px;
+            background-color: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: black;
+        }
+
         .navbar{
             border-radius: 0px;
         }
@@ -562,9 +583,12 @@
                 url : '{{ route('search') }}',
                 data:{'search':$value},
                 success:function(data){
-                    $('tbody').html(data);
-                    // $('#search_content_zone').html(data);
-                    console.log(data);
+                    if (data == ""){
+                        $('tbody').html('<tr>'+'<td colspan="4" style="text-align: center">ยังไม่พบข้อมูล</td>'+'</tr>');
+                    } else{
+                        $('tbody').html(data);
+                        // console.log(data);
+                    }
                 }
             });
         })
@@ -599,7 +623,7 @@
                     }
                 }
                 // alert(data[1]);
-                window.location.href = "/profile?profile="+data[1];
+                window.location.href = "/profile?Firstname="+data[1]+"&&Lastname="+data[2];
             };
         }
     </script>
@@ -792,7 +816,6 @@
                 }
             });
             window.location.href = "/admin_profile";
-
         }
         @endif
     </script>

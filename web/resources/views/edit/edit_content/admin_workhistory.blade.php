@@ -15,7 +15,9 @@
                         <th>Over Time Check in</th>
                         <th>Over Time Check out</th>
                         <th>OT hours</th>
+                        @if( Session::get('authen_type') == 'admin' || Session::get('authen_type') == 'hr_admin' )
                         <th>Edit</th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -28,11 +30,13 @@
                             <td>{{ $adworks->OT_Time_CheckIn }}</td>
                             <td>{{ $adworks->OT_Time_CheckOut }}</td>
                             <td>{{ $adworks->Over_Time }}</td>
+                            @if( Session::get('authen_type') == 'admin' || Session::get('authen_type') == 'hr_admin' )
                             <td>
                                 <div style="line-height: 80px;vertical-align: middle">
                                     <button type="button" class="btn btn-default" style="border: 1px solid red;color: red;width: 100px;" data-id="{{ $adworks->Work_Date }}" data-toggle="modal" data-target="#adworks">Edit</button>
                                 </div>
                             </td>
+                            @endif
                         </tr>
                     @endforeach
                     </tbody>

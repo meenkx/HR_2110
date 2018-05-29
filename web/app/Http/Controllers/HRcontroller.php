@@ -6,12 +6,14 @@ use App\Certificate;
 use App\Department;
 use App\Forms_Evidence;
 use App\Value_of_Each_Certificate;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-
+use DateTime;
 
 class HRcontroller extends Controller
 {
@@ -23,19 +25,53 @@ class HRcontroller extends Controller
 
     public function profile(Request $request)
     {
-        $profileid = $request->query('profile');
-        if ($profileid == null){
+        $Firstname = $request->query('Firstname');
+        $Lastname = $request->query('Lastname');
+        if ($Firstname == null && $Lastname == null){
             return redirect()->route('admin_profile');
         }else{
-            return view('profile');
+            $profile = DB::select(DB::raw("SELECT * FROM `profile` WHERE Firstname = '$Firstname' AND Lastname = '$Lastname'"));
+            foreach ($profile as $profiled){
+                $jobb = $profiled->Job_ID;
+                $idMember = $profiled->ID_member;
+            }
+            $another = DB::select(DB::raw("SELECT p.Firstname , p.Lastname , j.Job_name , dm.Depart_name , dm.Tel FROM profile p, job j , department dm WHERE  p.Job_ID = j.Job_ID AND j.Depart_ID = dm.Depart_ID AND p.Job_id = '$jobb' AND p.ID_member = '$idMember'"));
+            foreach ($another as $users){
+                $Depart_name = $users->Depart_name;
+                $Job_name = $users->Job_name;
+                $Workphone = $users->Tel;
+            }
+            return view('profile')
+                ->with(compact('profile'))
+                ->with('depart',$Depart_name)
+                ->with('job',$Job_name)
+                ->with('Workphone',$Workphone);
         }
     }
+
+
+    public function editProfile(Request $request){
+                $id = $request->input('id');
+                $Firstname = $request->input('Firstname');
+                $Lastname = $request->input('Lastname');
+                $DOB = $request->input('Birthday');
+                $Gender = $request->input('Gender');
+                $Marital_status = $request->input('Marital');
+
+        DB::select(DB::raw("UPDATE profile SET Firstname = '$Firstname' , Lastname = '$Lastname' , DOB = '$DOB' , Gender = '$Gender' , Marital_status = '$Marital_status' WHERE ID_member = '$id'"));
+//        return redirect()->route('admin_profile');
+
+    }
+
     public function admin_profile()
     {
 //        dd(session()->all());
         $jobid = Auth::user()->Job_ID;
         $IDmember = Auth::user()->ID_member;
         $profile = DB::select(DB::raw("SELECT * FROM profile WHERE ID_member = '$IDmember'"));
+        foreach ($profile as $profiles){
+            $DOB = $profiles->DOB;
+        }
         $eduhist = DB::select(DB::raw("SELECT * FROM education_history WHERE ID_mamber = '$IDmember'"));
         $hstwork = DB::select(DB::raw("SELECT * FROM history_work WHERE ID_member = '$IDmember'"));
         $jobinfo = DB::select(DB::raw("SELECT p.Hire_day,p.Firstname,d.Depart_name,j.Job_name,l.Location_name, l.Apartment, l.Building, l.Floor, l.House_No, l.Village, l.Village_No, l.Street, l.Sub_district_Sub_area, l.Alley_Lane, l.District_Area, l.Province, l.Postal_Code, l.Tel, l.Tax FROM profile p,job j,department d,location l WHERE p.Job_ID = j.Job_ID AND j.Depart_ID = d.Depart_ID AND d.Location_ID = l.Location_ID AND ID_member='$IDmember'"));
@@ -45,6 +81,7 @@ class HRcontroller extends Controller
 
         return view('edit.edit_content.admin_profile')
             ->with(compact('profile'))
+            ->with('DOB',$DOB)
             ->with(compact('eduhist'))
             ->with(compact('hstwork'))
             ->with(compact('add'))
@@ -172,7 +209,8 @@ class HRcontroller extends Controller
     }
 
     public function admin_salary(){
-        return view('edit.edit_content.admin_salary');
+        $salary = DB::select(DB::raw("SELECT * FROM transection_peyment"));
+        return view('edit.edit_content.admin_salary',compact('salary'));
     }
 
     public function admin_salaryEdit(){
@@ -282,6 +320,11 @@ class HRcontroller extends Controller
     }
 
     public function payment(){
+        $month_ini = new Carbon('first day of this month');
+        $month_end = new Carbon('last day of this month');
+
+        $TOTALINCOME = 0;$ttValueSkill = 0;$salary = 0;$SUMBONUSs = 0;$payspe= 0;$TOTALDEDUCTION = 0;$absentnotshow = 0;$leavessnotshow = 0;$absentnotshow = 0;$socialSecurityFund= 0;$NETINCOME = 0;
+
         $IDmember = Auth::user()->ID_member;
         $profile = DB::select(DB::raw("SELECT p.ID_member,p.Firstname,p.Lastname,p.Job_ID,p.Book_Account_No,j.Job_name,d.Depart_ID FROM profile p , job j ,department d WHERE ID_member = '$IDmember' AND p.Job_ID = j.Job_ID AND j.Depart_ID = d.Depart_ID"));
         foreach ($profile as $profiles){
@@ -296,8 +339,8 @@ class HRcontroller extends Controller
         foreach ($totalValueSkill as $totalValueSkills){
             $ttValueSkill = $totalValueSkills->Total_valueOfCertificate;
         }
-
-        $ValueOTtotal = DB::select(DB::raw("SELECT p.Firstname, p.Lastname , SUM(stw.OT*j.OT_Rate) AS Total_ValueOfOT FROM profile p ,job j ,status_work stw WHERE p.ID_member = stw.ID_member AND p.Job_ID = j.Job_ID AND p.ID_member = '$IDmember'"));
+        $VOTtotal = 0;
+        $ValueOTtotal = DB::select(DB::raw("SELECT p.Firstname, p.Lastname , SUM(stw.OT*j.OT_Rate) AS Total_ValueOfOT FROM profile p ,job j ,status_work stw WHERE p.ID_member = stw.ID_member AND p.Job_ID = j.Job_ID AND p.ID_member = '$IDmember' AND stw.Work_date BETWEEN '$month_ini' AND '$month_end'"));
         foreach ($ValueOTtotal as $ValueOTtotals){
             $VOTtotal = $ValueOTtotals->Total_ValueOfOT;
         }
@@ -305,60 +348,68 @@ class HRcontroller extends Controller
         foreach ($totalBonus as $totalBonuss){
             $totalBonusss = $totalBonuss->Final_Score;
         }
+
         //วันสงกรานต์
+        $songkranassum =0 ;
         $songkrana = DB::select(DB::raw("SELECT Start_date , End_date FROM payment_special WHERE Detail = 'วันสงกรานต์'"));
         foreach ($songkrana as $songkranas){
             $songkranasstart = $songkranas->Start_date;
             $songkranasend = $songkranas->End_date;
         }
-        $songkranb = DB::select(DB::raw("SELECT COUNT(Work_date) AS COUNTSpecialPayment FROM status_work WHERE Work_date BETWEEN '$songkranasstart' AND '$songkranasend' AND ID_member = '$IDmember'"));
+        $songkranb = DB::select(DB::raw("SELECT COUNT(Work_date) as COUNTSpecialPayment FROM status_work WHERE Work_date BETWEEN '$songkranasstart' AND '$songkranasend' AND ID_member = '$IDmember' GROUP BY Work_date HAVING Work_date BETWEEN '$month_ini' AND '$month_end'"));
         foreach ($songkranb as $songkranbs){
             $songkranassum = $songkranbs->COUNTSpecialPayment;
         }
 
         //วันขึ้นปีใหม่
+        $happynewsum = 0 ;
         $b = DB::select(DB::raw("SELECT Start_date , End_date FROM payment_special WHERE Detail = 'วันขึ้นปีใหม่'"));
         foreach ($b as $bb){
             $bbstart = $bb->Start_date;
             $bbend = $bb->End_date;
         }
-        $bbb = DB::select(DB::raw("SELECT COUNT(Work_date) AS COUNT_Special_Payment1 FROM status_work WHERE Work_date BETWEEN '$bbstart' AND '$bbend' AND ID_member = '$IDmember'"));
-        foreach ($bbb as $bbbb){
-            $happynewsum = $bbbb->COUNT_Special_Payment1;
+        $bb = DB::select(DB::raw("SELECT COUNT(Work_date) as COUNT_Special_Payment1 FROM status_work WHERE Work_date BETWEEN '$bbstart' AND '$bbend' AND ID_member = '$IDmember' GROUP BY Work_date HAVING Work_date BETWEEN '$month_ini' AND '$month_end'"));
+        foreach ($bb as $bbs){
+            $happynewsum = $bbs->COUNT_Special_Payment1;
         }
 
         //วันแรงงาน
+        $rangsum = 0;
         $c = DB::select(DB::raw("SELECT Start_date , End_date FROM payment_special WHERE Detail = 'วันแรงงาน'"));
         foreach ($c as $cc){
             $ccstart = $cc->Start_date;
             $ccend = $cc->End_date;
         }
-        $ccc = DB::select(DB::raw("SELECT COUNT(Work_date) AS COUNT_Special_Payment2 FROM status_work WHERE Work_date BETWEEN '$ccstart' AND '$ccend' AND ID_member = '$IDmember'"));
+        $ccc = DB::select(DB::raw("SELECT COUNT(Work_date) as COUNT_Special_Payment2 FROM status_work WHERE Work_date BETWEEN '$ccstart' AND '$ccend' AND ID_member = '$IDmember' GROUP BY Work_date HAVING Work_date BETWEEN '$month_ini' AND '$month_end'"));
         foreach ($ccc as $cccc){
             $rangsum = $cccc->COUNT_Special_Payment2;
         }
 
         //วันวิสาขบูชา
+        $ddddsum = 0;
         $d = DB::select(DB::raw("SELECT Start_date , End_date FROM payment_special WHERE Detail = 'วันวิสาขบูชา'"));
         foreach ($d as $dd){
             $ddstart = $dd->Start_date;
             $ddend = $dd->End_date;
         }
-        $ddd = DB::select(DB::raw("SELECT COUNT(Work_date) AS COUNT_Special_Payment3 FROM status_work WHERE Work_date BETWEEN '$ddstart' AND '$ddend' AND ID_member = '$IDmember'"));
+        $ddd = DB::select(DB::raw("SELECT COUNT(Work_date) as COUNT_Special_Payment3 FROM status_work WHERE Work_date BETWEEN '$ddstart' AND '$ddend' AND ID_member = '$IDmember' GROUP BY Work_date HAVING Work_date BETWEEN '$month_ini' AND '$month_end'"));
         foreach ($ddd as $dddd){
             $ddddsum = $dddd->COUNT_Special_Payment3;
         }
 
+
         //วันอาสาฬหบูชา
+        $eeeesum = 0 ;
         $e = DB::select(DB::raw("SELECT Start_date , End_date FROM payment_special WHERE Detail = 'วันอาสาฬหบูชา'"));
         foreach ($e as $ee){
             $eestart = $ee->Start_date;
             $eeend = $ee->End_date;
         }
-        $eee = DB::select(DB::raw("SELECT COUNT(Work_date) AS COUNT_Special_Payment4 FROM status_work WHERE Work_date BETWEEN '$eestart' AND '$eeend' AND ID_member = '$IDmember'"));
+        $eee = DB::select(DB::raw("SELECT COUNT(Work_date) as COUNT_Special_Payment4 FROM status_work WHERE Work_date BETWEEN '$eestart' AND '$eeend' AND ID_member = '$IDmember' GROUP BY Work_date HAVING Work_date BETWEEN '$month_ini' AND '$month_end'"));
         foreach ($eee as $eeee){
             $eeeesum = $eeee->COUNT_Special_Payment4;
         }
+
 
         //การขาดงาน
         $Absent = DB::select(DB::raw("SELECT p.Firstname, p.Lastname , COUNT(sw.ID_member) AS Total_DayMissing FROM profile p , status_work sw WHERE p.ID_member = sw.ID_member AND p.ID_member = 1 AND sw.Work_status = 'Missing'"));
@@ -408,15 +459,28 @@ class HRcontroller extends Controller
         }else{
             $SUMBONUSs = 0 ;
         }
-
         $socialSecurityFund = "1000";
 
         $payspe = ($songkranassum + $happynewsum + $rangsum + $ddddsum + $eeeesum)*500;
+
         $TOTALINCOME = $ttValueSkill + $VOTtotal + $salary + $SUMBONUSs + $payspe;
 
         $tax = $TOTALINCOME*7/100;
         $TOTALDEDUCTION = $absentnotshow + $leavessnotshow + $absentnotshow + $tax + $socialSecurityFund;
         $NETINCOME = $TOTALINCOME-$TOTALDEDUCTION;
+
+        DB::table('transection_peyment')->insert(
+            [
+                'ID_member' => Auth::user()->ID_member,
+                'Total_Value_Skill' => $ttValueSkill,
+                'Date_Pay' => date('Y-m-d'),
+                'Value_OT_total' => $VOTtotal,
+                'Value_Bonus_total' => $SUMBONUSs,
+                'Value_payment_special' => $payspe,
+                'ALL_Total' => $NETINCOME,
+                'Deduction' => $TOTALDEDUCTION,
+            ]
+        );
         return view('payment')
             ->with('ID',$IDmember)
             ->with('Absent',$absent)

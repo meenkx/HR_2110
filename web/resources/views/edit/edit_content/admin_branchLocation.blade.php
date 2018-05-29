@@ -38,7 +38,11 @@
             </div>
             <div class="col-md-1">
                 <span>
-                    <img src="{{ asset('img/icon/plus.png') }}" alt="" style="width: 85px;" data-toggle="modal" data-target="#list" id="listLocation">
+                    @if( Session::get('authen_type') == 'admin' || Session::get('authen_type') == 'hr_admin' )
+                        <img src="{{ asset('img/icon/plus.png') }}" alt="" style="width: 85px;" data-toggle="modal" data-target="#list" id="listLocation">
+                    @elseif( Session::get('authen_type') == 'user' || Session::get('authen_type') == 'head')
+                        <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-error-icon.png" alt="" style="width: 85px;" data-toggle="modal" data-target="#error" id="edit_icon" name="editicon">
+                    @endif
                 </span>
             </div>
         </div>

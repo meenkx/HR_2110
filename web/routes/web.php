@@ -24,12 +24,12 @@ Route::get('/session', function () {
     dd(session()->all());
 });
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/print', 'HRcontroller@print')->name('print');
 Route::get('/profile', 'HRcontroller@profile')->name('profile');
+Route::post('/editProfile', 'HRcontroller@editProfile')->name('editProfile');
 
 Route::get('/admin_profile', 'HRcontroller@admin_profile')->name('admin_profile');
 //Route::get('/calender', 'HRcontroller@calender')->name('calender');
@@ -70,7 +70,8 @@ Route::post('/calKPI', 'HRcontroller@calKPI')->name('calKPI');
 //Route::get('/testex2', 'HRcontroller@testex2')->name('testex2');
 Route::get('/testex2', 'EventController@index')->name('testex2');
 //holiday
-Route::get('/holiday', 'EventController@holiday')->name('holiday');
+Route::get('/holidayeiei', 'EventController@holiday')->name('holidayeiei');
+Route::get('/holiday', 'EventController@holidaymain')->name('holiday');
 
 //uploadfile
 Route::post('/uploadfile','UploadFileController@UploadFileEvidence')->name('uploadfile');

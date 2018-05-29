@@ -34,23 +34,27 @@
                 <table class="table table-bordered" style="text-align: center">
                     <thead class="thead-light">
                     <tr>
-                        <th scope="col">Firstname</th>
-                        <th scope="col">Lastname</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Control</th>
-                        <th scope="col">Control</th>
-                        <th scope="col">Control</th>
+                        <th scope="col">วันที่จ่ายเงิน</th>
+                        <th scope="col">เงินที่ได้จากใบ Certificate</th>
+                        <th scope="col">เงินที่ได้การทำ OT</th>
+                        <th scope="col">เงิน BONUS</th>
+                        <th scope="col">เงืนที่ได้จากการทำงานในวันหยุด</th>
+                        <th scope="col">เงินที่โดนหักทั้งหมด</th>
+                        <th scope="col">เงินรวมทั้งหมด</th>
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($salary as $salarys)
                     <tr>
-                        <th scope="row" style="vertical-align: middle">Ms. NAYIKA SRINIAN</th>
-                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
-                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
-                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
-                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
-                        <td style="vertical-align: middle">Ms. NAYIKA SRINIAN</td>
+                        <th scope="row" style="vertical-align: middle">{{ $salarys->Date_Pay }}</th>
+                        <td style="vertical-align: middle">{{ $salarys->Total_Value_Skill }}</td>
+                        <td style="vertical-align: middle">{{ $salarys->Value_OT_total }}</td>
+                        <td style="vertical-align: middle">{{ $salarys->Value_Bonus_total }}</td>
+                        <td style="vertical-align: middle">{{ $salarys->Value_payment_special }}</td>
+                        <td style="vertical-align: middle">{{ $salarys->Deduction }}</td>
+                        <td style="vertical-align: middle">{{ $salarys->ALL_Total }}</td>
                     </tr>
+                    @endforeach
                     </tbody>
                 </table>
 

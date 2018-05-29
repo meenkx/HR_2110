@@ -70,8 +70,8 @@
                             <label for="Gender">Gender</label>
                             <select class="form-control" id="Gender" name="Gender" required>
                                 <option selected disabled="disabled"> -- เลือกเพศ --</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
                             </select>
                         </div>
                         <div class="form-group">

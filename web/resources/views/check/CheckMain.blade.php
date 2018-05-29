@@ -166,6 +166,7 @@
                     document.getElementById("ouout").value = data.OT_Time_CheckOut ;
                 }
             });
+            window.location.href = '/tt';
         }
 
         function workOut() {
@@ -185,6 +186,7 @@
                     console.log('save data Form Evident success: ' + data);
                 }
             });
+            window.location.href = '/tt';
         }
 
         function OTIn() {
@@ -206,6 +208,7 @@
                     console.log('save data Form Evident success: ' + data);
                 }
             });
+            window.location.href = '/tt';
         }
 
         function OTOut() {
@@ -227,6 +230,7 @@
                     // console.log('save data Form Evident success: ' + data);
                 }
             });
+            window.location.href = '/tt';
         }
 
         function LoginButton() {

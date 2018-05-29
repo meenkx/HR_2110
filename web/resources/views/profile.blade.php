@@ -9,10 +9,15 @@
             </div>
         </div>
         <div class="row justify-content-center" style="padding: 60px 20px;">
-
+            @foreach($profile as $profiles)
             <div class="col-md-4">
                 <div class="img-picture-profile" style="text-align: center">
-                    <img src="{{ asset('../img/icon/June_2017_BNK48_Nayika_Srinian.jpg') }}" alt="">
+                    @if($profiles->Photo == "" || $profiles->Photo == "-")
+                        <img src="{{ asset('../img/icon/June_2017_BNK48_Nayika_Srinian.jpg') }}" alt="">
+                    @else
+                        <img src="{{ asset('/User_Profile/'.$profiles->Photo) }}" alt="">
+
+                    @endif
                 </div>
             </div>
 
@@ -23,14 +28,13 @@
                     </div>
                     <div style="padding-top: 15px;font-size: 18px;line-height: 1.8;">
                         <div>
-                            <span style="font-weight: bold">Name :</span> <span>Ms. Nayika Srinian</span>
-                            <span style="padding-left: 40px;font-weight: bold">Birthday :</span> <span>November 10, 1996</span>
+                            <span style="font-weight: bold">Name :</span> <span>{{ $profiles->Firstname }} {{ $profiles->Lastname }}</span>
+                            <span style="padding-left: 40px;font-weight: bold">Birthday :</span> <span>{{ $profiles->DOB }}</span>
                             <span style="padding-left: 40px;font-weight: bold">Age :</span> <span>26</span>
                         </div>
                         <div>
-                            <span style="font-weight: bold">Gender :</span> <span><img src="{{ asset('../img/icon/femenine.png') }}" alt="" width="15px" height="15px"></span>
-                            <span style="padding-left: 40px;font-weight: bold">Marital :</span> <span>Single</span>
-                            <span style="padding-left: 40px;font-weight: bold">Education :</span> <span>Mahidol University</span>
+                            <span style="font-weight: bold">Gender :</span> <span>{{ $profiles->Gender }}</span>
+                            <span style="padding-left: 40px;font-weight: bold">Marital :</span> <span>{{ $profiles->Marital_status }}</span>
                         </div>
 
                     </div>
@@ -42,28 +46,28 @@
                     </div>
                     <div style="padding-top: 15px;font-size: 18px;line-height: 1.8;">
                         <div>
-                            <span style="font-weight: bold">E-mail :</span> <span>nayika_bnk48@mail.in.th</span>
-                            <span style="padding-left: 40px;font-weight: bold">Mobile :</span> <span>088-46250</span>
+                            <span style="font-weight: bold">E-mail :</span> <span>{{ $profiles->Email }}</span>
+                            <span style="padding-left: 40px;font-weight: bold">Mobile :</span> <span>{{ $profiles->Tel }}</span>
 
                         </div>
                         <div>
-                            <span style="font-weight: bold">Work Phone :</span> <span>02-1234567</span>
-                            <span style="padding-left: 40px;font-weight: bold">Emergency Contact :</span> <span>085-2148856</span>
+                            <span style="font-weight: bold">Work Phone :</span> <span>{{ $Workphone }}</span>
+                            <span style="padding-left: 40px;font-weight: bold">Emergency Contact :</span> <span>{{ $profiles->Emergency_Contact }}</span>
                         </div>
 
                     </div>
                 </div>
-
+            @endforeach
                 <div style="margin-top: 70px">
                     <div style="border-bottom: 1px solid black;font-size: 30px;font-weight: bold;">
                         Job information
                     </div>
                     <div style="padding-top: 15px;font-size: 18px;line-height: 1.8;">
                         <div>
-                            <span style="font-weight: bold">Department :</span> <span>Introduction International</span>
+                            <span style="font-weight: bold">Department :</span> <span>{{ $depart }}</span>
                         </div>
                         <div>
-                            <span style="font-weight: bold">Job :</span> <span>bioresource & environmental biotechnology</span>
+                            <span style="font-weight: bold">Job :</span> <span>{{ $job }}</span>
                         </div>
 
                     </div>

@@ -74,7 +74,8 @@
             <div class="col-md-5" style="padding: 0px 25px;padding-left: 290px;">
                 {{--<input type="text" name="search" id="search" class="search" placeholder="Search people">--}}
                 <button type="button" class="btn button_hover" name="search" id="search_button" style="width: 100%;text-align: left;background-color: white;border-radius: 30px;padding-left: 20px;vertical-align: middle;height: 45px;margin: 0px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">
-                    <img src="img/icon/magnifying-glass.png" alt="" width="20px" height="20px"><span style="padding-left: 15px;">Search people</span></button>
+                    <img src="img/icon/magnifying-glass.png" alt="" width="20px" height="20px"><span style="padding-left: 15px;">Search people</span>
+                </button>
             </div>
 
             <div class="col-md-1" style="border-left: 1px solid black;margin: 0px 30px;height: 60px;line-height: 60px;">
@@ -86,13 +87,32 @@
 
                     <div id="menu" style="display: inline-flex;">
                         <ul style="padding-right: 15px">
-                            <li style="line-height: 30px !important;padding: 20px 0px;"><button type="button" class="btn btn-default trigger" style="border: 1px solid red;color: red;width: 90%;">Administrator</button></li>
+                            <li style="line-height: 30px !important;padding: 20px 0px;"><button type="button" class="btn btn-default trigger" style="border: 1px solid red;color: red;width: 90%;">
+                                    @if( Session::get('authen_type') == 'user' )
+                                        <span style="color: #39a938;width: 150px !important;text-transform: uppercase;font-weight: bold">employee</span>
+                                    @elseif( Session::get('authen_type') == 'admin' )
+                                        <span style="color: #e22222;width: 150px !important;text-transform: uppercase;font-weight: bold">administrator</span>
+                                    @elseif( Session::get('authen_type') == 'head' )
+                                        <span style="color: #7914dd;width: 150px !important;text-transform: uppercase;font-weight: bold">supervisor</span>
+                                    @elseif( Session::get('authen_type') == 'hr_admin' )
+                                        <span style="color: black;width: 150px !important;text-transform: uppercase;font-weight: bold">hr admin</span>
+                                    @endif</button>
+                            </li>
+
+
+                            @if( Session::get('authen_type') == 'admin' || Session::get('authen_type') == 'hr_admin' )
                             <li style="line-height: 30px !important;"><a href="{{ route('noti') }}"><span><img src="{{ asset('../img/icon/bell.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Notification</a></li>
-                            <li style="line-height: 30px !important;"><a href="{{ route('admin_branchLocation') }}"><span><img src="{{ asset('../img/icon/location.svg') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Branch location</a></li>
-                            <li style="line-height: 30px !important;"><a href="{{ route('admin_certificate') }}"><span><img src="{{ asset('../img/icon/certificate.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Certificate</a></li>
-                            <li style="line-height: 30px !important;"><a href="{{ route('admin_payment') }}"><span><img src="{{ asset('../img/icon/payment.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Payment</a></li>
                             <li style="line-height: 30px !important;"><a href="{{ route('admin_salaryEdit') }}"><span><img src="{{ asset('../img/icon/salary.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>salary edit</a></li>
-                            <li style="line-height: 30px !important;"><a href="{{ route('holiday') }}"><span><img src="{{ asset('../img/icon/holiday.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Holiday Special</a></li>
+                                <li style="line-height: 30px !important;"><a href="{{ route('holiday') }}"><span><img src="{{ asset('../img/icon/holiday.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Holiday Special</a></li>
+                                <li style="line-height: 30px !important;"><a href="{{ route('admin_branchLocation') }}"><span><img src="{{ asset('../img/icon/location.svg') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Branch location</a></li>
+                                <li style="line-height: 30px !important;"><a href="{{ route('admin_certificate') }}"><span><img src="{{ asset('../img/icon/certificate.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Certificate</a></li>
+                                <li style="line-height: 30px !important;"><a href="{{ route('admin_payment') }}"><span><img src="{{ asset('../img/icon/payment.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Payment</a></li>
+                            @else
+                                <li style="line-height: 30px !important;"><a href="{{ route('holiday') }}"><span><img src="{{ asset('../img/icon/holiday.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Holiday Special</a></li>
+                                <li style="line-height: 30px !important;"><a href="{{ route('admin_branchLocation') }}"><span><img src="{{ asset('../img/icon/location.svg') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Branch location</a></li>
+                                <li style="line-height: 30px !important;"><a href="{{ route('admin_certificate') }}"><span><img src="{{ asset('../img/icon/certificate.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Certificate</a></li>
+                                <li style="line-height: 30px !important;"><a href="{{ route('admin_payment') }}"><span><img src="{{ asset('../img/icon/payment.png') }}" alt="" style="width: 25px;margin-right: 15px;"></span>Payment</a></li>
+                            @endif
                         </ul>
 
                         {{--@if(Session::has('admin'))--}}
