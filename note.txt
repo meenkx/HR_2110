@@ -1,9 +1,0 @@
-22:56:55  [main] 	All prerequisites found
-22:56:55  [main] 	Initializing Modules
-22:56:55  [Apache] 	Problem detected!
-22:56:55  [Apache] 	Port 443 in use by ""C:\Program Files (x86)\VMware\VMware Workstation\vmware-hostd.exe" -u "C:\ProgramData\VMware\hostd\config.xml"" with PID 6724!
-22:56:55  [Apache] 	Apache WILL NOT start without the configured ports free!
-22:56:55  [Apache] 	You need to uninstall/disable/reconfigure the blocking application
-22:56:55  [Apache] 	or reconfigure Apache and the Control Panel to listen on a different port
-
-Taskkill /PID 6724 /F
