@@ -826,7 +826,7 @@ var Dropzone = function (_Emitter) {
                             type: 'GET',
                             url: '/deleteFile',
                             data: {dateEvident2:$('#dateEvident').val()},
-                            sucess: function(data){
+                            success: function(data){
                                 console.log('delete success: ' + data);
                             }
                         });

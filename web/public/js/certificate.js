@@ -85,7 +85,7 @@ function formEvidentSubmit() {
         type: 'POST',
         url: '/saveFormCer',
         data: dataArray,
-        sucess: function(data){
+        success: function(data){
             console.log('save data Form Evident success: ' + data);
         }
     });

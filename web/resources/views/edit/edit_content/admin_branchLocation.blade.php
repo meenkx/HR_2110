@@ -134,7 +134,7 @@
                 type: 'POST',
                 url: '/saveDepartment',
                 data: dataArray,
-                sucess: function(data){
+                success: function(data){
                     console.log('save data Form Depart success: ' + data);
                 }
             });

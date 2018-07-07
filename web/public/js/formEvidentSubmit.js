@@ -48,7 +48,7 @@ function pesquisar(value) {
             type: 'POST',
             url: '/saveFormEv',
             data: dataArray,
-            sucess: function(data){
+            success: function(data){
                 console.log('save data Form Evident success: ' + data);
             }
         });
@@ -70,7 +70,7 @@ function formEvidentSubmit() {
             type: 'POST',
             url: '/saveFormEv',
             data: dataArray,
-            sucess: function(data){
+            success: function(data){
                 console.log('save data Form Evident success: ' + data);
             }
         });
